@@ -32,7 +32,7 @@ const props = {
   },
   icon: {
     type: Object,
-    twoWay: true
+    // twoWay: true
   },
   label: {
   },
