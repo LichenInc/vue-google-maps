@@ -25,13 +25,11 @@ const props = {
     }
   },
   content: {
-    twoWay: false,
   default: null
   },
   opened: {
     type: Boolean,
   default: true,
-    twoWay: true
   },
   position: {
     type: Object,
