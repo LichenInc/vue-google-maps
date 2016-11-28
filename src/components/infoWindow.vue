@@ -110,7 +110,7 @@ export default {
         options.position = this.position;
       }
 
-      this.infoWindow = new InfoBubble(options);
+      this.infoWindow = new google.maps.InfoWindow(options);
 
       // Binding
       const propsToBind = _.clone(props);
