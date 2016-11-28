@@ -53,7 +53,7 @@ export default {
   ready () {
     this.destroyed = false;
 
-    // if the user set the content of the info window by adding children to the 
+    // if the user set the content of the info window by adding children to the
     // InfoWindow element
     this.$el.style.display='none';
     if (this.$el.getElementsByClassName('you-will-never-find-this').length === 0) {
@@ -62,7 +62,7 @@ export default {
       }
       innerChanged();
       this.disconnect = mutationObserver(this.$el, innerChanged);
-    } 
+    }
 
     this.$dispatch('register-infoWindow', this);
     this.markerObject = null;
@@ -94,7 +94,7 @@ export default {
     createInfoWindow(map) {
       if (this.destroyed) return;
       this.mapObject = map;
-      
+
       var el = document.createElement('div');
       el.innerHTML = this.content;
 
@@ -110,7 +110,7 @@ export default {
         options.position = this.position;
       }
 
-      this.infoWindow = new google.maps.InfoWindow(options);
+      this.infoWindow = new InfoBubble(options);
 
       // Binding
       const propsToBind = _.clone(props);
@@ -146,4 +146,3 @@ export default {
   }
 }
 </script>
-
