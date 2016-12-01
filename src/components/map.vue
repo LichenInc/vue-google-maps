@@ -73,6 +73,7 @@ const methods = {};
 
 const registerChild = function (child, type) {
     this.mapCreated.then((map) => {
+      this.$emit('ready', map);
       child.$emit('map-ready', map);
     }, (error) => {
       throw error;
