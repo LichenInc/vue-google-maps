@@ -7,6 +7,8 @@ import eventsBinder from '../utils/eventsBinder.js';
 import propsBinder from '../utils/propsBinder.js';
 import getPropsValuesMixin from '../utils/getPropsValuesMixin.js'
 import Q from 'q';
+import markerWithLabel from 'markerwithlabel'
+const MarkerWithLabel = markerWithLabel(google.maps)
 
 const props = {
   animation: {
@@ -36,6 +38,10 @@ const props = {
   },
   label: {
   },
+  labelContent: {},
+  labelAnchor: {},
+  labelClass: {}, // the CSS class for the label
+  labelInBackground: {},
   opacity: {
     type: Number,
   default: 1
@@ -118,7 +124,7 @@ export default {
   methods: {
     createMarker (options, map) {
       if (!this.destroyed) {
-        this.markerObject = new google.maps.Marker(options);
+        this.markerObject = new MarkerWithLabel(options);
         propsBinder(this, this.markerObject, props);
         eventsBinder(this, this.markerObject, events);
         this.mapAvailableDefered.resolve(map);
