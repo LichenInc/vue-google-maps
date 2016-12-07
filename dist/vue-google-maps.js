@@ -1,4 +1,196 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueGoogleMap=e():t.VueGoogleMap=e()}(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.PlaceInput=e.Rectangle=e.Circle=e.Polygon=e.Polyline=e.InfoWindow=e.Cluster=e.Marker=e.Map=e.loaded=e.load=void 0;var o=n(9);Object.defineProperty(e,"load",{enumerable:!0,get:function(){return o.load}}),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return o.loaded}});var i=n(70),s=r(i),a=n(71),u=r(a),c=n(68),l=r(c),p=n(69),f=r(p),d=n(74),h=r(d),y=n(73),v=r(y),m=n(67),g=r(m),_=n(75),b=r(_),k=n(72),x=r(k);e.Map=s.default,e.Marker=u.default,e.Cluster=l.default,e.InfoWindow=f.default,e.Polyline=h.default,e.Polygon=v.default,e.Circle=g.default,e.Rectangle=b.default,e.PlaceInput=x.default},function(t,e){"use strict";t.exports=window._},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t){return t.charAt(0).toUpperCase()+t.slice(1)}Object.defineProperty(e,"__esModule",{value:!0});var i=n(1),s=r(i);e.default=function(t,e,n,r){r=r||{};var i=r,a=i.afterModelChanged;s.default.forEach(n,function(n,r){var i=n.twoWay,u=n.type,c="set"+o(r),l="get"+o(r),p=r.toLowerCase()+"_changed";if(i){var f=0,d=function(){if(f++,f>0){var n=t[r];e[c](n),a&&a(r,n)}},h=function(){if(f--,f<0){var n=e[l]();n instanceof google.maps.LatLng?t[r]={lat:n.lat(),lng:n.lng()}:t[r]=n}};t.$watch(r,d,{deep:u===Object}),e.addListener(p,s.default.throttle(h,100,{leading:!0,trailing:!0}))}else t.$watch(r,function(){var n=t[r];e[c](n),a&&a(r,n)},{deep:u===Object})})}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o);e.default=function(t,e,n){i.default.forEach(n,function(n){var r="g-"+n;e.addListener(n,function(e){t.$emit(r,e)})})}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o);e.default={methods:{getPropsValues:function(){var t=this;return i.default.mapValues(this.$options.props,function(e,n){return t[n]})}}}},function(t,e){var n=Object;t.exports={create:n.create,getProto:n.getPrototypeOf,isEnum:{}.propertyIsEnumerable,getDesc:n.getOwnPropertyDescriptor,setDesc:n.defineProperty,setDescs:n.defineProperties,getKeys:n.keys,getNames:n.getOwnPropertyNames,getSymbols:n.getOwnPropertySymbols,each:[].forEach}},function(t,e){var n=t.exports={version:"1.2.6"};"number"==typeof __e&&(__e=n)},function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e,n){(function(e,n){/*!
+!function(root, factory) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = factory() : "function" == typeof define && define.amd ? define([], factory) : "object" == typeof exports ? exports.VueGoogleMap = factory() : root.VueGoogleMap = factory();
+}(this, function() {
+    return function(modules) {
+        function __webpack_require__(moduleId) {
+            if (installedModules[moduleId]) return installedModules[moduleId].exports;
+            var module = installedModules[moduleId] = {
+                exports: {},
+                id: moduleId,
+                loaded: !1
+            };
+            return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+            module.loaded = !0, module.exports;
+        }
+        var installedModules = {};
+        return __webpack_require__.m = modules, __webpack_require__.c = installedModules, 
+        __webpack_require__.p = "", __webpack_require__(0);
+    }([ function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.PlaceInput = exports.Rectangle = exports.Circle = exports.Polygon = exports.Polyline = exports.InfoWindow = exports.Cluster = exports.Marker = exports.Map = exports.loaded = exports.load = void 0;
+        var _manager = __webpack_require__(6);
+        Object.defineProperty(exports, "load", {
+            enumerable: !0,
+            get: function() {
+                return _manager.load;
+            }
+        }), Object.defineProperty(exports, "loaded", {
+            enumerable: !0,
+            get: function() {
+                return _manager.loaded;
+            }
+        });
+        var _map = __webpack_require__(70), _map2 = _interopRequireDefault(_map), _marker = __webpack_require__(71), _marker2 = _interopRequireDefault(_marker), _cluster = __webpack_require__(68), _cluster2 = _interopRequireDefault(_cluster), _infoWindow = __webpack_require__(69), _infoWindow2 = _interopRequireDefault(_infoWindow), _polyline = __webpack_require__(74), _polyline2 = _interopRequireDefault(_polyline), _polygon = __webpack_require__(73), _polygon2 = _interopRequireDefault(_polygon), _circle = __webpack_require__(67), _circle2 = _interopRequireDefault(_circle), _rectangle = __webpack_require__(75), _rectangle2 = _interopRequireDefault(_rectangle), _placeInput = __webpack_require__(72), _placeInput2 = _interopRequireDefault(_placeInput);
+        exports.Map = _map2.default, exports.Marker = _marker2.default, exports.Cluster = _cluster2.default, 
+        exports.InfoWindow = _infoWindow2.default, exports.Polyline = _polyline2.default, 
+        exports.Polygon = _polygon2.default, exports.Circle = _circle2.default, exports.Rectangle = _rectangle2.default, 
+        exports.PlaceInput = _placeInput2.default;
+    }, function(module, exports) {
+        "use strict";
+        module.exports = window._;
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash);
+        exports.default = function(vueElement, googleMapsElement, props, options) {
+            options = options || {};
+            var _options = options, afterModelChanged = _options.afterModelChanged;
+            _lodash2.default.forEach(props, function(_ref, attribute) {
+                var twoWay = _ref.twoWay, type = _ref.type, setMethodName = "set" + capitalizeFirstLetter(attribute), getMethodName = "get" + capitalizeFirstLetter(attribute), eventName = attribute.toLowerCase() + "_changed";
+                if (twoWay) {
+                    var stable = 0, modelWatcher = function() {
+                        if (stable++, stable > 0) {
+                            var attributeValue = vueElement[attribute];
+                            googleMapsElement[setMethodName](attributeValue), afterModelChanged && afterModelChanged(attribute, attributeValue);
+                        }
+                    }, gmapWatcher = function() {
+                        if (stable--, stable < 0) {
+                            var value = googleMapsElement[getMethodName]();
+                            value instanceof google.maps.LatLng ? vueElement[attribute] = {
+                                lat: value.lat(),
+                                lng: value.lng()
+                            } : vueElement[attribute] = value;
+                        }
+                    };
+                    vueElement.$watch(attribute, modelWatcher, {
+                        deep: type === Object
+                    }), googleMapsElement.addListener(eventName, _lodash2.default.throttle(gmapWatcher, 100, {
+                        leading: !0,
+                        trailing: !0
+                    }));
+                } else vueElement.$watch(attribute, function() {
+                    var attributeValue = vueElement[attribute];
+                    googleMapsElement[setMethodName](attributeValue), afterModelChanged && afterModelChanged(attribute, attributeValue);
+                }, {
+                    deep: type === Object
+                });
+            });
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash);
+        exports.default = function(vueElement, googleMapObject, events) {
+            _lodash2.default.forEach(events, function(eventName) {
+                var exposedName = "g-" + eventName;
+                googleMapObject.addListener(eventName, function(ev) {
+                    vueElement.$emit(exposedName, ev);
+                });
+            });
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash);
+        exports.default = {
+            methods: {
+                getPropsValues: function() {
+                    var _this = this;
+                    return _lodash2.default.mapValues(this.$options.props, function(v, k) {
+                        return _this[k];
+                    });
+                }
+            }
+        };
+    }, function(module, exports) {
+        var $Object = Object;
+        module.exports = {
+            create: $Object.create,
+            getProto: $Object.getPrototypeOf,
+            isEnum: {}.propertyIsEnumerable,
+            getDesc: $Object.getOwnPropertyDescriptor,
+            setDesc: $Object.defineProperty,
+            setDescs: $Object.defineProperties,
+            getKeys: $Object.keys,
+            getNames: $Object.getOwnPropertyNames,
+            getSymbols: $Object.getOwnPropertySymbols,
+            each: [].forEach
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.load = exports.loaded = void 0;
+        var _keys = __webpack_require__(35), _keys2 = _interopRequireDefault(_keys), _typeof2 = __webpack_require__(13), _typeof3 = _interopRequireDefault(_typeof2), Q = __webpack_require__(9), setUp = !1, loadingDefered = Q.defer();
+        exports.loaded = loadingDefered.promise;
+        window.vueGoogleMapsInit = function() {
+            loadingDefered.resolve();
+        };
+        exports.load = function(apiKey, version, libraries, loadCn) {
+            if (setUp) throw new Error("You already started the loading of google maps");
+            var googleMapScript = document.createElement("SCRIPT"), options = {};
+            if ("string" == typeof apiKey) options.key = apiKey; else {
+                if ("object" != ("undefined" == typeof apiKey ? "undefined" : (0, _typeof3.default)(apiKey))) throw new Error("apiKey should either be a string or an object");
+                for (var k in apiKey) options[k] = apiKey[k];
+            }
+            var librariesPath = "";
+            libraries && libraries.length > 0 ? (librariesPath = libraries.join(","), options.libraries = librariesPath) : Array.prototype.isPrototypeOf(options.libraries) && (options.libraries = options.libraries.join(",")), 
+            options.callback = "vueGoogleMapsInit", version && (url = url + "&v=" + version);
+            var baseUrl = "https://maps.googleapis.com/";
+            "boolean" == typeof loadCn && loadCn === !0 && (baseUrl = "http://maps.google.cn/");
+            var url = baseUrl + "maps/api/js?" + (0, _keys2.default)(options).map(function(key) {
+                return encodeURIComponent(key) + "=" + encodeURIComponent(options[key]);
+            }).join("&");
+            googleMapScript.setAttribute("src", url), googleMapScript.setAttribute("async", ""), 
+            googleMapScript.setAttribute("defer", ""), document.body.appendChild(googleMapScript);
+        };
+    }, function(module, exports) {
+        var core = module.exports = {
+            version: "1.2.6"
+        };
+        "number" == typeof __e && (__e = core);
+    }, function(module, exports) {
+        var global = module.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
+        "number" == typeof __g && (__g = global);
+    }, function(module, exports, __webpack_require__) {
+        (function(process, setImmediate) {
+            /*!
 	 *
 	 * Copyright 2009-2012 Kris Kowal under the terms of the MIT
 	 * license found at http://github.com/kriskowal/q/raw/master/LICENSE
@@ -24,8 +216,1989 @@
 	 * limitations under the License.
 	 *
 	 */
-!function(e){"use strict";if("function"==typeof bootstrap)bootstrap("promise",e);else{t.exports=e()}}(function(){"use strict";function t(t){return function(){return K.apply(t,arguments)}}function r(t){return t===Object(t)}function o(t){return"[object StopIteration]"===rt(t)||t instanceof F}function i(t,e){if(U&&e.stack&&"object"==typeof t&&null!==t&&t.stack&&t.stack.indexOf(ot)===-1){for(var n=[],r=e;r;r=r.source)r.stack&&n.unshift(r.stack);n.unshift(t.stack);var o=n.join("\n"+ot+"\n");t.stack=s(o)}}function s(t){for(var e=t.split("\n"),n=[],r=0;r<e.length;++r){var o=e[r];c(o)||a(o)||!o||n.push(o)}return n.join("\n")}function a(t){return t.indexOf("(module.js:")!==-1||t.indexOf("(node.js:")!==-1}function u(t){var e=/at .+ \((.+):(\d+):(?:\d+)\)$/.exec(t);if(e)return[e[1],Number(e[2])];var n=/at ([^ ]+):(\d+):(?:\d+)$/.exec(t);if(n)return[n[1],Number(n[2])];var r=/.*@(.+):(\d+)$/.exec(t);return r?[r[1],Number(r[2])]:void 0}function c(t){var e=u(t);if(!e)return!1;var n=e[0],r=e[1];return n===Z&&r>=G&&r<=ct}function l(){if(U)try{throw new Error}catch(r){var t=r.stack.split("\n"),e=t[0].indexOf("@")>0?t[1]:t[2],n=u(e);if(!n)return;return Z=n[0],n[1]}}function p(t,e,n){return function(){return"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e+" is deprecated, use "+n+" instead.",new Error("").stack),t.apply(t,arguments)}}function f(t){return t instanceof v?t:b(t)?L(t):D(t)}function d(){function t(t){e=t,i.source=t,X(n,function(e,n){f.nextTick(function(){t.promiseDispatch.apply(t,n)})},void 0),n=void 0,r=void 0}var e,n=[],r=[],o=tt(d.prototype),i=tt(v.prototype);if(i.promiseDispatch=function(t,o,i){var s=J(arguments);n?(n.push(s),"when"===o&&i[1]&&r.push(i[1])):f.nextTick(function(){e.promiseDispatch.apply(e,s)})},i.valueOf=function(){if(n)return i;var t=g(e);return _(t)&&(e=t),t},i.inspect=function(){return e?e.inspect():{state:"pending"}},f.longStackSupport&&U)try{throw new Error}catch(t){i.stack=t.stack.substring(t.stack.indexOf("\n")+1)}return o.promise=i,o.resolve=function(n){e||t(f(n))},o.fulfill=function(n){e||t(D(n))},o.reject=function(n){e||t(C(n))},o.notify=function(t){e||X(r,function(e,n){f.nextTick(function(){n(t)})},void 0)},o}function h(t){if("function"!=typeof t)throw new TypeError("resolver must be a function.");var e=d();try{t(e.resolve,e.reject,e.notify)}catch(t){e.reject(t)}return e.promise}function y(t){return h(function(e,n){for(var r=0,o=t.length;r<o;r++)f(t[r]).then(e,n)})}function v(t,e,n){void 0===e&&(e=function(t){return C(new Error("Promise does not support operation: "+t))}),void 0===n&&(n=function(){return{state:"unknown"}});var r=tt(v.prototype);if(r.promiseDispatch=function(n,o,i){var s;try{s=t[o]?t[o].apply(r,i):e.call(r,o,i)}catch(t){s=C(t)}n&&n(s)},r.inspect=n,n){var o=n();"rejected"===o.state&&(r.exception=o.reason),r.valueOf=function(){var t=n();return"pending"===t.state||"rejected"===t.state?r:t.value}}return r}function m(t,e,n,r){return f(t).then(e,n,r)}function g(t){if(_(t)){var e=t.inspect();if("fulfilled"===e.state)return e.value}return t}function _(t){return t instanceof v}function b(t){return r(t)&&"function"==typeof t.then}function k(t){return _(t)&&"pending"===t.inspect().state}function x(t){return!_(t)||"fulfilled"===t.inspect().state}function w(t){return _(t)&&"rejected"===t.inspect().state}function j(){it.length=0,st.length=0,ut||(ut=!0)}function M(t,n){ut&&("object"==typeof e&&"function"==typeof e.emit&&f.nextTick.runAfter(function(){Q(st,t)!==-1&&(e.emit("unhandledRejection",n,t),at.push(t))}),st.push(t),n&&"undefined"!=typeof n.stack?it.push(n.stack):it.push("(no stack) "+n))}function O(t){if(ut){var n=Q(st,t);n!==-1&&("object"==typeof e&&"function"==typeof e.emit&&f.nextTick.runAfter(function(){var r=Q(at,t);r!==-1&&(e.emit("rejectionHandled",it[n],t),at.splice(r,1))}),st.splice(n,1),it.splice(n,1))}}function C(t){var e=v({when:function(e){return e&&O(this),e?e(t):this}},function(){return this},function(){return{state:"rejected",reason:t}});return M(e,t),e}function D(t){return v({when:function(){return t},get:function(e){return t[e]},set:function(e,n){t[e]=n},delete:function(e){delete t[e]},post:function(e,n){return null===e||void 0===e?t.apply(void 0,n):t[e].apply(t,n)},apply:function(e,n){return t.apply(e,n)},keys:function(){return nt(t)}},void 0,function(){return{state:"fulfilled",value:t}})}function L(t){var e=d();return f.nextTick(function(){try{t.then(e.resolve,e.reject,e.notify)}catch(t){e.reject(t)}}),e.promise}function P(t){return v({isDef:function(){}},function(e,n){return R(t,e,n)},function(){return f(t).inspect()})}function T(t,e,n){return f(t).spread(e,n)}function S(t){return function(){function e(t,e){var s;if("undefined"==typeof StopIteration){try{s=n[t](e)}catch(t){return C(t)}return s.done?f(s.value):m(s.value,r,i)}try{s=n[t](e)}catch(t){return o(t)?f(t.value):C(t)}return m(s,r,i)}var n=t.apply(this,arguments),r=e.bind(e,"next"),i=e.bind(e,"throw");return r()}}function A(t){f.done(f.async(t)())}function I(t){throw new F(t)}function E(t){return function(){return T([this,W(arguments)],function(e,n){return t.apply(e,n)})}}function R(t,e,n){return f(t).dispatch(e,n)}function W(t){return m(t,function(t){var e=0,n=d();return X(t,function(r,o,i){var s;_(o)&&"fulfilled"===(s=o.inspect()).state?t[i]=s.value:(++e,m(o,function(r){t[i]=r,0===--e&&n.resolve(t)},n.reject,function(t){n.notify({index:i,value:t})}))},void 0),0===e&&n.resolve(t),n.promise})}function B(t){if(0===t.length)return f.resolve();var e=f.defer(),n=0;return X(t,function(r,o,i){function s(t){e.resolve(t)}function a(){n--,0===n&&e.reject(new Error("Can't get fulfillment value from any promise, all promises were rejected."))}function u(t){e.notify({index:i,value:t})}var c=t[i];n++,m(c,s,a,u)},void 0),e.promise}function z(t){return m(t,function(t){return t=Y(t,f),m(W(Y(t,function(t){return m(t,H,H)})),function(){return t})})}function N(t){return f(t).allSettled()}function $(t,e){return f(t).then(void 0,void 0,e)}function V(t,e){return f(t).nodeify(e)}var U=!1;try{throw new Error}catch(t){U=!!t.stack}var Z,F,G=l(),H=function(){},q=function(){function t(){for(var t,e;o.next;)o=o.next,t=o.task,o.task=void 0,e=o.domain,e&&(o.domain=void 0,e.enter()),r(t,e);for(;c.length;)t=c.pop(),r(t);s=!1}function r(e,n){try{e()}catch(e){if(u)throw n&&n.exit(),setTimeout(t,0),n&&n.enter(),e;setTimeout(function(){throw e},0)}n&&n.exit()}var o={task:void 0,next:null},i=o,s=!1,a=void 0,u=!1,c=[];if(q=function(t){i=i.next={task:t,domain:u&&e.domain,next:null},s||(s=!0,a())},"object"==typeof e&&"[object process]"===e.toString()&&e.nextTick)u=!0,a=function(){e.nextTick(t)};else if("function"==typeof n)a="undefined"!=typeof window?n.bind(window,t):function(){n(t)};else if("undefined"!=typeof MessageChannel){var l=new MessageChannel;l.port1.onmessage=function(){a=p,l.port1.onmessage=t,t()};var p=function(){l.port2.postMessage(0)};a=function(){setTimeout(t,0),p()}}else a=function(){setTimeout(t,0)};return q.runAfter=function(t){c.push(t),s||(s=!0,a())},q}(),K=Function.call,J=t(Array.prototype.slice),X=t(Array.prototype.reduce||function(t,e){var n=0,r=this.length;if(1===arguments.length)for(;;){if(n in this){e=this[n++];break}if(++n>=r)throw new TypeError}for(;n<r;n++)n in this&&(e=t(e,this[n],n));return e}),Q=t(Array.prototype.indexOf||function(t){for(var e=0;e<this.length;e++)if(this[e]===t)return e;return-1}),Y=t(Array.prototype.map||function(t,e){var n=this,r=[];return X(n,function(o,i,s){r.push(t.call(e,i,s,n))},void 0),r}),tt=Object.create||function(t){function e(){}return e.prototype=t,new e},et=t(Object.prototype.hasOwnProperty),nt=Object.keys||function(t){var e=[];for(var n in t)et(t,n)&&e.push(n);return e},rt=t(Object.prototype.toString);F="undefined"!=typeof ReturnValue?ReturnValue:function(t){this.value=t};var ot="From previous event:";f.resolve=f,f.nextTick=q,f.longStackSupport=!1,"object"==typeof e&&e&&{NODE_ENV:"production"}.Q_DEBUG&&(f.longStackSupport=!0),f.defer=d,d.prototype.makeNodeResolver=function(){var t=this;return function(e,n){e?t.reject(e):arguments.length>2?t.resolve(J(arguments,1)):t.resolve(n)}},f.Promise=h,f.promise=h,h.race=y,h.all=W,h.reject=C,h.resolve=f,f.passByCopy=function(t){return t},v.prototype.passByCopy=function(){return this},f.join=function(t,e){return f(t).join(e)},v.prototype.join=function(t){return f([this,t]).spread(function(t,e){if(t===e)return t;throw new Error("Can't join: not the same: "+t+" "+e)})},f.race=y,v.prototype.race=function(){return this.then(f.race)},f.makePromise=v,v.prototype.toString=function(){return"[object Promise]"},v.prototype.then=function(t,e,n){function r(e){try{return"function"==typeof t?t(e):e}catch(t){return C(t)}}function o(t){if("function"==typeof e){i(t,a);try{return e(t)}catch(t){return C(t)}}return C(t)}function s(t){return"function"==typeof n?n(t):t}var a=this,u=d(),c=!1;return f.nextTick(function(){a.promiseDispatch(function(t){c||(c=!0,u.resolve(r(t)))},"when",[function(t){c||(c=!0,u.resolve(o(t)))}])}),a.promiseDispatch(void 0,"when",[void 0,function(t){var e,n=!1;try{e=s(t)}catch(t){if(n=!0,!f.onerror)throw t;f.onerror(t)}n||u.notify(e)}]),u.promise},f.tap=function(t,e){return f(t).tap(e)},v.prototype.tap=function(t){return t=f(t),this.then(function(e){return t.fcall(e).thenResolve(e)})},f.when=m,v.prototype.thenResolve=function(t){return this.then(function(){return t})},f.thenResolve=function(t,e){return f(t).thenResolve(e)},v.prototype.thenReject=function(t){return this.then(function(){throw t})},f.thenReject=function(t,e){return f(t).thenReject(e)},f.nearer=g,f.isPromise=_,f.isPromiseAlike=b,f.isPending=k,v.prototype.isPending=function(){return"pending"===this.inspect().state},f.isFulfilled=x,v.prototype.isFulfilled=function(){return"fulfilled"===this.inspect().state},f.isRejected=w,v.prototype.isRejected=function(){return"rejected"===this.inspect().state};var it=[],st=[],at=[],ut=!0;f.resetUnhandledRejections=j,f.getUnhandledReasons=function(){return it.slice()},f.stopUnhandledRejectionTracking=function(){j(),ut=!1},j(),f.reject=C,f.fulfill=D,f.master=P,f.spread=T,v.prototype.spread=function(t,e){return this.all().then(function(e){return t.apply(void 0,e)},e)},f.async=S,f.spawn=A,f.return=I,f.promised=E,f.dispatch=R,v.prototype.dispatch=function(t,e){var n=this,r=d();return f.nextTick(function(){n.promiseDispatch(r.resolve,t,e)}),r.promise},f.get=function(t,e){return f(t).dispatch("get",[e])},v.prototype.get=function(t){return this.dispatch("get",[t])},f.set=function(t,e,n){return f(t).dispatch("set",[e,n])},v.prototype.set=function(t,e){return this.dispatch("set",[t,e])},f.del=f.delete=function(t,e){return f(t).dispatch("delete",[e])},v.prototype.del=v.prototype.delete=function(t){return this.dispatch("delete",[t])},f.mapply=f.post=function(t,e,n){return f(t).dispatch("post",[e,n])},v.prototype.mapply=v.prototype.post=function(t,e){return this.dispatch("post",[t,e])},f.send=f.mcall=f.invoke=function(t,e){return f(t).dispatch("post",[e,J(arguments,2)])},v.prototype.send=v.prototype.mcall=v.prototype.invoke=function(t){return this.dispatch("post",[t,J(arguments,1)])},f.fapply=function(t,e){return f(t).dispatch("apply",[void 0,e])},v.prototype.fapply=function(t){return this.dispatch("apply",[void 0,t])},f.try=f.fcall=function(t){return f(t).dispatch("apply",[void 0,J(arguments,1)])},v.prototype.fcall=function(){return this.dispatch("apply",[void 0,J(arguments)])},f.fbind=function(t){var e=f(t),n=J(arguments,1);return function(){return e.dispatch("apply",[this,n.concat(J(arguments))])}},v.prototype.fbind=function(){var t=this,e=J(arguments);return function(){return t.dispatch("apply",[this,e.concat(J(arguments))])}},f.keys=function(t){return f(t).dispatch("keys",[])},v.prototype.keys=function(){return this.dispatch("keys",[])},f.all=W,v.prototype.all=function(){return W(this)},f.any=B,v.prototype.any=function(){return B(this)},f.allResolved=p(z,"allResolved","allSettled"),v.prototype.allResolved=function(){return z(this)},f.allSettled=N,v.prototype.allSettled=function(){return this.then(function(t){return W(Y(t,function(t){function e(){return t.inspect()}return t=f(t),t.then(e,e)}))})},f.fail=f.catch=function(t,e){return f(t).then(void 0,e)},v.prototype.fail=v.prototype.catch=function(t){return this.then(void 0,t)},f.progress=$,v.prototype.progress=function(t){return this.then(void 0,void 0,t)},f.fin=f.finally=function(t,e){return f(t).finally(e)},v.prototype.fin=v.prototype.finally=function(t){return t=f(t),this.then(function(e){return t.fcall().then(function(){return e})},function(e){return t.fcall().then(function(){throw e})})},f.done=function(t,e,n,r){return f(t).done(e,n,r)},v.prototype.done=function(t,n,r){var o=function(t){f.nextTick(function(){if(i(t,s),!f.onerror)throw t;f.onerror(t)})},s=t||n||r?this.then(t,n,r):this;"object"==typeof e&&e&&e.domain&&(o=e.domain.bind(o)),s.then(void 0,o)},f.timeout=function(t,e,n){return f(t).timeout(e,n)},v.prototype.timeout=function(t,e){var n=d(),r=setTimeout(function(){e&&"string"!=typeof e||(e=new Error(e||"Timed out after "+t+" ms"),e.code="ETIMEDOUT"),n.reject(e)},t);return this.then(function(t){clearTimeout(r),n.resolve(t)},function(t){clearTimeout(r),n.reject(t)},n.notify),n.promise},f.delay=function(t,e){return void 0===e&&(e=t,t=void 0),f(t).delay(e)},v.prototype.delay=function(t){return this.then(function(e){var n=d();return setTimeout(function(){n.resolve(e)},t),n.promise})},f.nfapply=function(t,e){return f(t).nfapply(e)},v.prototype.nfapply=function(t){var e=d(),n=J(t);return n.push(e.makeNodeResolver()),this.fapply(n).fail(e.reject),e.promise},f.nfcall=function(t){var e=J(arguments,1);return f(t).nfapply(e)},v.prototype.nfcall=function(){var t=J(arguments),e=d();return t.push(e.makeNodeResolver()),this.fapply(t).fail(e.reject),e.promise},f.nfbind=f.denodeify=function(t){var e=J(arguments,1);return function(){var n=e.concat(J(arguments)),r=d();return n.push(r.makeNodeResolver()),f(t).fapply(n).fail(r.reject),r.promise}},v.prototype.nfbind=v.prototype.denodeify=function(){var t=J(arguments);return t.unshift(this),f.denodeify.apply(void 0,t)},f.nbind=function(t,e){var n=J(arguments,2);return function(){function r(){return t.apply(e,arguments)}var o=n.concat(J(arguments)),i=d();return o.push(i.makeNodeResolver()),f(r).fapply(o).fail(i.reject),i.promise}},v.prototype.nbind=function(){var t=J(arguments,0);return t.unshift(this),f.nbind.apply(void 0,t)},f.nmapply=f.npost=function(t,e,n){return f(t).npost(e,n)},v.prototype.nmapply=v.prototype.npost=function(t,e){var n=J(e||[]),r=d();return n.push(r.makeNodeResolver()),this.dispatch("post",[t,n]).fail(r.reject),r.promise},f.nsend=f.nmcall=f.ninvoke=function(t,e){var n=J(arguments,2),r=d();return n.push(r.makeNodeResolver()),f(t).dispatch("post",[e,n]).fail(r.reject),r.promise},v.prototype.nsend=v.prototype.nmcall=v.prototype.ninvoke=function(t){var e=J(arguments,1),n=d();return e.push(n.makeNodeResolver()),this.dispatch("post",[t,e]).fail(n.reject),n.promise},f.nodeify=V,v.prototype.nodeify=function(t){return t?void this.then(function(e){f.nextTick(function(){t(null,e)})},function(e){f.nextTick(function(){t(e)})}):this},f.noConflict=function(){throw new Error("Q.noConflict only works when Q is used as a global")};var ct=l();return f})}).call(e,n(23),n(12).setImmediate)},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.load=e.loaded=void 0;var o=n(35),i=r(o),s=n(13),a=r(s),u=n(8),c=!1,l=u.defer();e.loaded=l.promise;window.vueGoogleMapsInit=function(){l.resolve()};e.load=function(t,e,n,r){if(c)throw new Error("You already started the loading of google maps");var o=document.createElement("SCRIPT"),s={};if("string"==typeof t)s.key=t;else{if("object"!=("undefined"==typeof t?"undefined":(0,a.default)(t)))throw new Error("apiKey should either be a string or an object");for(var u in t)s[u]=t[u]}var l="";n&&n.length>0?(l=n.join(","),s.libraries=l):Array.prototype.isPrototypeOf(s.libraries)&&(s.libraries=s.libraries.join(",")),s.callback="vueGoogleMapsInit",e&&(f=f+"&v="+e);var p="https://maps.googleapis.com/";"boolean"==typeof r&&r===!0&&(p="http://maps.google.cn/");var f=p+"maps/api/js?"+(0,i.default)(s).map(function(t){return encodeURIComponent(t)+"="+encodeURIComponent(s[t])}).join("&");o.setAttribute("src",f),o.setAttribute("async",""),o.setAttribute("defer",""),document.body.appendChild(o)}},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e,n){var r=n(45),o=n(15);t.exports=function(t){return r(o(t))}},function(t,e,n){(function(t,r){function o(t,e){this._id=t,this._clearFn=e}var i=n(23).nextTick,s=Function.prototype.apply,a=Array.prototype.slice,u={},c=0;e.setTimeout=function(){return new o(s.call(setTimeout,window,arguments),clearTimeout)},e.setInterval=function(){return new o(s.call(setInterval,window,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t.close()},o.prototype.unref=o.prototype.ref=function(){},o.prototype.close=function(){this._clearFn.call(window,this._id)},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout(function(){t._onTimeout&&t._onTimeout()},e))},e.setImmediate="function"==typeof t?t:function(t){var n=c++,r=!(arguments.length<2)&&a.call(arguments,1);return u[n]=!0,i(function(){u[n]&&(r?t.apply(null,r):t.call(null),e.clearImmediate(n))}),n},e.clearImmediate="function"==typeof r?r:function(t){delete u[t]}}).call(e,n(12).setImmediate,n(12).clearImmediate)},function(t,e,n){"use strict";var r=n(36).default;e.default=function(t){return t&&t.constructor===r?"symbol":typeof t},e.__esModule=!0},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e,n){t.exports=!n(10)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e,n){var r=n(7),o=n(6),i=n(41),s="prototype",a=function(t,e,n){var u,c,l,p=t&a.F,f=t&a.G,d=t&a.S,h=t&a.P,y=t&a.B,v=t&a.W,m=f?o:o[e]||(o[e]={}),g=f?r:d?r[e]:(r[e]||{})[s];f&&(n=e);for(u in n)c=!p&&g&&u in g,c&&u in m||(l=c?g[u]:n[u],m[u]=f&&"function"!=typeof g[u]?n[u]:y&&c?i(l,r):v&&g[u]==l?function(t){var e=function(e){return this instanceof t?new t(e):t(e)};return e[s]=t[s],e}(l):h&&"function"==typeof l?i(Function.call,l):l,h&&((m[s]||(m[s]={}))[u]=l))};a.F=1,a.G=2,a.S=4,a.P=8,a.B=16,a.W=32,t.exports=a},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e,n){var r=n(7),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,e){var n=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+r).toString(36))}},function(t,e,n){var r=n(20)("wks"),o=n(21),i=n(7).Symbol;t.exports=function(t){return r[t]||(r[t]=i&&i[t]||(i||o)("Symbol."+t))}},function(t,e){function n(){throw new Error("setTimeout has not been defined")}function r(){throw new Error("clearTimeout has not been defined")}function o(t){if(l===setTimeout)return setTimeout(t,0);if((l===n||!l)&&setTimeout)return l=setTimeout,setTimeout(t,0);try{return l(t,0)}catch(e){try{return l.call(null,t,0)}catch(e){return l.call(this,t,0)}}}function i(t){if(p===clearTimeout)return clearTimeout(t);if((p===r||!p)&&clearTimeout)return p=clearTimeout,clearTimeout(t);try{return p(t)}catch(e){try{return p.call(null,t)}catch(e){return p.call(this,t)}}}function s(){y&&d&&(y=!1,d.length?h=d.concat(h):v=-1,h.length&&a())}function a(){if(!y){var t=o(s);y=!0;for(var e=h.length;e;){for(d=h,h=[];++v<e;)d&&d[v].run();v=-1,e=h.length}d=null,y=!1,i(t)}}function u(t,e){this.fun=t,this.array=e}function c(){}var l,p,f=t.exports={};!function(){try{l="function"==typeof setTimeout?setTimeout:n}catch(t){l=n}try{p="function"==typeof clearTimeout?clearTimeout:r}catch(t){p=r}}();var d,h=[],y=!1,v=-1;f.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];h.push(new u(t,e)),1!==h.length||y||o(a)},u.prototype.run=function(){this.fun.apply(null,this.array)},f.title="browser",f.browser=!0,f.env={},f.argv=[],f.version="",f.versions={},f.on=c,f.addListener=c,f.once=c,f.off=c,f.removeListener=c,f.removeAllListeners=c,f.emit=c,f.binding=function(t){throw new Error("process.binding is not supported")},f.cwd=function(){return"/"},f.chdir=function(t){throw new Error("process.chdir is not supported")},f.umask=function(){return 0}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l),f={center:{type:Object,twoWay:!0,required:!0},radius:{type:Number,default:1e3,twoWay:!0},bounds:{type:Object,twoWay:!0},draggable:{type:Boolean,default:!1},editable:{type:Boolean,default:!1},options:{type:Object,twoWay:!1}},d=["click","dblclick","drag","dragend","dragstart","mousedown","mousemove","mouseout","mouseover","mouseup","radius_changed","rightclick"];e.default={mixins:[p.default],props:f,version:2,ready:function(){this.destroyed=!1,this.$dispatch("register-circle",this)},methods:{createCircle:function(t,e){var n=this;if(!this.destroyed){this.circleObject=new google.maps.Circle(t);var r=i.default.clone(f);delete r.bounds,(0,c.default)(this,this.circleObject,r),(0,a.default)(this,this.circleObject,d);var o=function(){n.bounds=n.circleObject.getBounds()};this.$watch("radius",o),this.$watch("center",o,{deep:!0}),o()}}},destroyed:function(){this.destroyed=!0,this.circleObject&&this.circleObject.setMap(null)},events:{"map-ready":function(t){this.registrar="map",this.mapObject=t;var e=i.default.clone(this.getPropsValues());e.map=this.mapObject,delete e.bounds,this.createCircle(e,t)}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(8),i=r(o),s=n(1),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l);n(59);var f={maxZoom:{type:Number,twoWay:!1},calculor:{type:Function,twoWay:!1},gridSize:{type:Number,twoWay:!1},styles:{type:Array,twoWay:!1}};e.default={mixins:[p.default],props:f,created:function(){this.mapReadyDefered=new i.default.defer,this.mapReady=this.mapReadyDefered.promise,this.clusterReadyDefered=new i.default.defer,this.clusterReady=this.clusterReadyDefered.promise},data:function(){return{clusterObject:null}},ready:function(){var t=this;this.$dispatch("register-cluster",this),this.mapReady.then(function(e){t.mapObject=e;var n=a.default.clone(t.getPropsValues());t.clusterObject=new MarkerClusterer(t.mapObject,[],n),t.clusterReadyDefered.resolve(t.clusterObject),(0,c.default)(t,t.clusterObject,f,{afterModelChanged:function(e,n){var r=t.clusterObject.getMarkers();t.clusterObject.clearMarkers(),t.clusterObject.addMarkers(r)}})})},detached:function(){this.clusterObject.clearMarkers()},events:{"map-ready":function(t){this.mapReadyDefered.resolve(t)},"register-marker":function(t){var e=this;this.clusterReady.then(function(n){t.$emit("cluster-ready",n,e.mapObject)})}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(2),a=r(s),u=n(3),c=r(u),l=n(33),p=r(l),f={options:{type:Object,twoWay:!1,required:!1,default:function(){return{}}},content:{default:null},opened:{type:Boolean,default:!0},position:{type:Object,twoWay:!1},zIndex:{type:Number,twoWay:!0}},d=["domready","closeclick"];e.default={replace:!1,props:f,ready:function(){var t=this;if(this.destroyed=!1,this.$el.style.display="none",0===this.$el.getElementsByClassName("you-will-never-find-this").length){var e=function(){t.content=t.$el.innerHTML};e(),this.disconnect=(0,p.default)(this.$el,e)}this.$dispatch("register-infoWindow",this),this.markerObject=null},destroyed:function(){this.disconnect&&this.disconnect(),this.infoWindow&&this.infoWindow.setMap(null),this.destroyed=!0},methods:{openInfoWindow:function(){this.opened?null!==this.markerObject?this.infoWindow.open(this.mapObject,this.markerObject):this.infoWindow.open(this.mapObject):this.infoWindow.close()},createInfoWindow:function(t){var e=this;if(!this.destroyed){this.mapObject=t;var n=document.createElement("div");n.innerHTML=this.content,google.maps.event.addDomListener(n,"click",function(t){e.$emit("g-click",t)});var r=i.default.clone(this.options);r.content=n,null===this.markerObject&&(r.position=this.position),this.infoWindow=new google.maps.InfoWindow(r);var o=i.default.clone(f);delete o.opened,(0,a.default)(this,this.infoWindow,o),(0,c.default)(this,this.infoWindow,d),this.infoWindow.addListener("closeclick",function(){e.opened=!1}),this.$watch("opened",function(){e.openInfoWindow()}),this.openInfoWindow()}}},events:{"map-ready":function(t){this.createInfoWindow(t)},"marker-ready":function(t,e){var n=this;this.markerObject=t.markerObject,this.createInfoWindow(e),t.$on("g-click",function(){n.opened=!n.opened})}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(8),i=r(o),s=n(1),a=r(s),u=n(9),c=n(3),l=r(c),p=n(2),f=r(p),d=n(4),h=r(d),y={center:{required:!0,twoWay:!0,type:Object},zoom:{required:!1,twoWay:!0,type:Number},heading:{twoWay:!0,type:Number},mapTypeId:{twoWay:!0,type:String},bounds:{type:Object,twoWay:!0},options:{twoWay:!1,type:Object,default:function(){return{}}}},v=["click","dblclick","rightclick","mousemove","mouseout","mouseover","drag","dragend","dragstart","idle","resize","tilesloaded","bounds_changed"],m=["panBy","panTo","panToBounds","fitBounds"],g={},_=function(t,e){var n=this;this.mapCreated.then(function(e){n.$emit("ready",e),t.$emit("map-ready",e)},function(t){throw t})},b={"register-marker":_,"register-cluster":_,"register-infoWindow":_,"register-polyline":_,"register-polygon":_,"register-circle":_,"register-rectangle":_,"g-bounds_changed":function(){this.bounds=this.mapObject.getBounds()},"g-fitBounds":function(t){this.mapObject&&t&&this.mapObject.fitBounds},"g-resize-map":function(){var t=this.mapObject.getCenter();google.maps.event.trigger(this.mapObject,"resize"),this.mapObject.setCenter(t)}};a.default.each(m,function(t){var e=function(){this.mapObject&&this.mapObject[t].apply(this.mapObject,arguments)};b["g-"+t]=e,g[t]=e}),e.default={mixins:[h.default],props:y,replace:!1,created:function(){this.mapCreatedDefered=new i.default.defer,this.mapCreated=this.mapCreatedDefered.promise},ready:function(){var t=this;u.loaded.then(function(){var e=t.$el.getElementsByClassName("vue-map")[0],n=a.default.clone(t.getPropsValues());delete n.options;var r=a.default.clone(t.options);a.default.assign(r,n),t.mapObject=new google.maps.Map(e,r);var o=a.default.clone(y);delete o.bounds,(0,f.default)(t,t.mapObject,o),(0,l.default)(t,t.mapObject,v),t.$emit("g-bounds_changed"),t.$once("g-bounds_changed",function(){t.mapCreatedDefered.resolve(t.mapObject)})},function(t){throw t})},events:b,methods:g}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l),f=n(8),d=r(f),h=n(60),y=r(h),v=void 0,m={animation:{twoWay:!0,type:Number},attribution:{type:Object},clickable:{type:Boolean,twoWay:!0,default:!0},cursor:{type:String,twoWay:!0},draggable:{type:Boolean,twoWay:!0,default:!1},icon:{type:Object},label:{},labelContent:{},labelAnchor:{},labelClass:{},labelInBackground:{},opacity:{type:Number,default:1},place:{type:Object},position:{type:Object,twoWay:!0},shape:{type:Object,twoWay:!0},title:{type:String,twoWay:!0},zIndex:{type:Number,twoWay:!0},visible:{twoWay:!0,default:"auto"}},g=["click","rightclick","dblclick","drag","dragstart","dragend","mouseup","mousedown","mouseover","mouseout"];e.default={mixins:[p.default],props:m,created:function(){this.mapAvailableDefered=new d.default.defer,this.mapAvailable=this.mapAvailableDefered.promise,this.destroyed=!1},attached:function(){"auto"===this.visible&&(this.visible=!0)},ready:function(){this.$dispatch("register-marker",this)},detached:function(){"auto"===this.visible&&(this.visible=!1)},destroyed:function(){this.destroyed=!0,"map"===this.registrar&&this.markerObject?this.markerObject.setMap(null):this.markerObject&&this.clusterObject.removeMarker(this.markerObject)},methods:{createMarker:function(t,e){this.destroyed||(this.markerObject=new v(t),(0,c.default)(this,this.markerObject,m),(0,a.default)(this,this.markerObject,g),this.mapAvailableDefered.resolve(e))}},events:{"map-ready":function(t){v=(0,y.default)(google.maps),this.registrar="map",this.mapObject=t;var e=i.default.clone(this.getPropsValues());e.map=this.mapObject,this.createMarker(e,t)},"cluster-ready":function(t,e){this.registrar="cluster",this.clusterObject=t;var n=i.default.clone(this.getPropsValues());this.createMarker(n,e),t.addMarker(this.markerObject)},"register-infoWindow":function(t){var e=this;this.mapAvailable.then(function(n){t.$emit("marker-ready",e,n)})}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(34),p=r(l),f=n(4),d=r(f),h=n(9),y={bounds:{type:Object,twoWay:!0},place:{type:Object,twoWay:!0,default:function(){return{name:""}}},componentRestrictions:{type:Object,twoWay:!1,default:null},types:{type:Array,twoWay:!1,default:[]},placeholder:{required:!1,type:String},class:{required:!1,type:String},label:{required:!1,type:String,default:null},selectFirstOnEnter:{require:!1,type:Boolean,default:!1}},v=["place_changed"];e.default={mixins:[d.default],ready:function(){var t=this,e=this.$els.input;e.value=this.place.name,h.loaded.then(function(){window.i=e;var n=i.default.clone(t.getPropsValues());t.selectFirstOnEnter&&(0,p.default)(t.$els.input),t.autoCompleter=new google.maps.places.Autocomplete(t.$els.input,n),(0,a.default)(t,t.autoCompleter,v);var r=i.default.clone(y);delete r.placeholder,delete r.place,delete r.selectFirstOnEnter,(0,c.default)(t,t.autoCompleter,r)}).catch(function(){setTimeout(function(){throw new Error("Impossible to load the Autocomplete Class from the google places api, did you loaded it ?")},0)})},props:y,events:{"g-place_changed":function(){this.place=this.autoCompleter.getPlace()}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l),f={draggable:{type:Boolean},editable:{type:Boolean},options:{twoWay:!1,type:Object},path:{type:Array,twoWay:!0},paths:{type:Array,twoWay:!0}},d=["click","dblclick","drag","dragend","dragstart","mousedown","mousemove","mouseout","mouseover","mouseup","rightclick"];e.default={mixins:[p.default],props:f,ready:function(){this.destroyed=!1,this.$dispatch("register-polygon",this)},attached:function(){this.mapObject&&null===this.polygonObject.getMap()&&this.polygonObject.setMap(this.mapObject)},destroyed:function(){this.destroyed=!0,this.polygonObject&&this.polygonObject.setMap(null)},events:{"map-ready":function(t){var e=this;if(!this.destroyed){this.mapObject=t;var n=i.default.clone(this.getPropsValues());delete n.options,i.default.assign(n,this.options),n.path||delete n.path,n.paths||delete n.paths,this.polygonObject=new google.maps.Polygon(n),this.polygonObject.setMap(this.mapObject);var r=i.default.clone(f);delete r.path,delete r.paths,(0,c.default)(this,this.polygonObject,r),(0,a.default)(this,this.polygonObject,d);var o=[],s=function(t){return i.default.map(t,function(t){return{lat:t.lat(),lng:t.lng()}})},u=0,l=function(){u-=2,u<0&&(e.path=s(e.polygonObject.getPath().getArray()),
-e.paths=i.default.map(e.polygonObject.getPaths().getArray(),function(t){return s(t.getArray())}))},p=function(){var t=e.polygonObject.getPaths();o.push(t.addListener("insert_at",l)),o.push(t.addListener("remove_at",l)),o.push(t.addListener("set_at",l)),i.default.each(t.getArray(),function(t){o.push(t.addListener("insert_at",l)),o.push(t.addListener("remove_at",l)),o.push(t.addListener("set_at",l))})},h=function(t){i.default.each(o,function(t){google.maps.event.removeListener(t)}),o.length=0,e.polygonObject.setPaths(t),p()};this.$watch("paths",function(){u++,u>-1&&h(e.paths)},{deep:!0}),this.$watch("path",function(){u++,u>-1&&h([e.path])},{deep:!0}),p(),this.polygonObject.setMap(this.mapObject)}}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l),f={draggable:{type:Boolean},editable:{type:Boolean},options:{twoWay:!1,type:Object},path:{type:Array,twoWay:!0}},d=["click","dblclick","drag","dragend","dragstart","mousedown","mousemove","mouseout","mouseover","mouseup","rightclick"];e.default={mixins:[p.default],props:f,ready:function(){this.destroyed=!1,this.$dispatch("register-polyline",this)},attached:function(){this.mapObject&&null===this.polyLineObject.getMap()&&this.polyLineObject.setMap(this.mapObject)},destroyed:function(){this.destroyed=!0,this.polyLineObject&&this.polyLineObject.setMap(null)},events:{"map-ready":function(t){var e=this;if(!this.destroyed){this.mapObject=t;var n=i.default.clone(this.getPropsValues());delete n.options,i.default.assign(n,this.options),this.polyLineObject=new google.maps.Polyline(n),this.polyLineObject.setMap(this.mapObject);var r=i.default.clone(f);delete r.path,(0,c.default)(this,this.polyLineObject,r),(0,a.default)(this,this.polyLineObject,d);var o=[],s=function(){e.path=i.default.map(e.polyLineObject.getPath().getArray(),function(t){return{lat:t.lat(),lng:t.lng()}})},u=function(){var t=e.polyLineObject.getPath();o.push(t.addListener("insert_at",s)),o.push(t.addListener("remove_at",s)),o.push(t.addListener("set_at",s))};this.$watch("path",function(){i.default.each(o,function(t){google.maps.event.removeListener(t)}),o.length=0,e.polyLineObject.setPath(e.path),u()},{deep:!0}),u(),this.polyLineObject.setMap(this.mapObject)}}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),i=r(o),s=n(3),a=r(s),u=n(2),c=r(u),l=n(4),p=r(l),f={bounds:{type:Object,twoWay:!0},draggable:{type:Boolean,default:!1},editable:{type:Boolean,default:!1},options:{type:Object,twoWay:!1}},d=["click","dblclick","drag","dragend","dragstart","mousedown","mousemove","mouseout","mouseover","mouseup","rightclick"];e.default={mixins:[p.default],props:f,ready:function(){this.destroyed=!1,this.$dispatch("register-rectangle",this)},methods:{createRectangle:function(t,e){var n=this;if(!this.destroyed){this.rectangleObject=new google.maps.Rectangle(t),(0,c.default)(this,this.rectangleObject,f),(0,a.default)(this,this.rectangleObject,d);var r=function(){n.bounds=n.rectangleObject.getBounds()};this.$watch("bounds_changed",r,{deep:!0})}}},destroyed:function(){this.rectangleObject&&this.rectangleObject.setMap(null),this.destroyed=!0},events:{"map-ready":function(t){this.registrar="map",this.mapObject=t;var e=i.default.clone(this.getPropsValues());e.map=this.mapObject,this.createRectangle(e,t)}}}},function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var o=n(13),i=r(o),s={attributes:!0,childList:!0,characterData:!0,subtree:!0},a=window.MutationObserver||window.WebKitMutationObserver||window.MozMutationObserver;e.default=function(t,e){if(!a){var n="";return setInterval(function(){n!=t.innerHTML&&(n=t.innerHTML,e())},500),function(){}}var r=function(){var n=new a(e);return n.observe(t,s),{v:function(){n.disconnect()}}}();if("object"===("undefined"==typeof r?"undefined":(0,i.default)(r)))return r.v}},function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(t){function e(e,r){if("keydown"==e){var o=r;r=function(e){var n=document.getElementsByClassName("ac-item-selected").length>0;if(13==e.which&&!n){var r=document.createEvent("Event");r.keyCode=40,r.which=40,o.apply(t,[r])}o.apply(t,[e])}}n.apply(t,[e,r])}var n=t.addEventListener?t.addEventListener:t.attachEvent;t.addEventListener=e,t.attachEvent=e}},function(t,e,n){t.exports={default:n(37),__esModule:!0}},function(t,e,n){t.exports={default:n(38),__esModule:!0}},function(t,e,n){n(54),t.exports=n(6).Object.keys},function(t,e,n){n(56),n(55),t.exports=n(6).Symbol},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e,n){var r=n(47);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,e,n){var r=n(39);t.exports=function(t,e,n){if(r(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,r){return t.call(e,n,r)};case 3:return function(n,r,o){return t.call(e,n,r,o)}}return function(){return t.apply(e,arguments)}}},function(t,e,n){var r=n(5);t.exports=function(t){var e=r.getKeys(t),n=r.getSymbols;if(n)for(var o,i=n(t),s=r.isEnum,a=0;i.length>a;)s.call(t,o=i[a++])&&e.push(o);return e}},function(t,e,n){var r=n(11),o=n(5).getNames,i={}.toString,s="object"==typeof window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],a=function(t){try{return o(t)}catch(t){return s.slice()}};t.exports.get=function(t){return s&&"[object Window]"==i.call(t)?a(t):o(r(t))}},function(t,e,n){var r=n(5),o=n(19);t.exports=n(16)?function(t,e,n){return r.setDesc(t,e,o(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e,n){var r=n(14);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,e,n){var r=n(14);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var r=n(5),o=n(11);t.exports=function(t,e){for(var n,i=o(t),s=r.getKeys(i),a=s.length,u=0;a>u;)if(i[n=s[u++]]===e)return n}},function(t,e){t.exports=!0},function(t,e,n){var r=n(17),o=n(6),i=n(10);t.exports=function(t,e){var n=(o.Object||{})[t]||Object[t],s={};s[t]=e(n),r(r.S+r.F*i(function(){n(1)}),"Object",s)}},function(t,e,n){t.exports=n(44)},function(t,e,n){var r=n(5).setDesc,o=n(18),i=n(22)("toStringTag");t.exports=function(t,e,n){t&&!o(t=n?t:t.prototype,i)&&r(t,i,{configurable:!0,value:e})}},function(t,e,n){var r=n(15);t.exports=function(t){return Object(r(t))}},function(t,e,n){var r=n(53);n(50)("keys",function(t){return function(e){return t(r(e))}})},function(t,e){},function(t,e,n){"use strict";var r=n(5),o=n(7),i=n(18),s=n(16),a=n(17),u=n(51),c=n(10),l=n(20),p=n(52),f=n(21),d=n(22),h=n(48),y=n(43),v=n(42),m=n(46),g=n(40),_=n(11),b=n(19),k=r.getDesc,x=r.setDesc,w=r.create,j=y.get,M=o.Symbol,O=o.JSON,C=O&&O.stringify,D=!1,L=d("_hidden"),P=r.isEnum,T=l("symbol-registry"),S=l("symbols"),A="function"==typeof M,I=Object.prototype,E=s&&c(function(){return 7!=w(x({},"a",{get:function(){return x(this,"a",{value:7}).a}})).a})?function(t,e,n){var r=k(I,e);r&&delete I[e],x(t,e,n),r&&t!==I&&x(I,e,r)}:x,R=function(t){var e=S[t]=w(M.prototype);return e._k=t,s&&D&&E(I,t,{configurable:!0,set:function(e){i(this,L)&&i(this[L],t)&&(this[L][t]=!1),E(this,t,b(1,e))}}),e},W=function(t){return"symbol"==typeof t},B=function(t,e,n){return n&&i(S,e)?(n.enumerable?(i(t,L)&&t[L][e]&&(t[L][e]=!1),n=w(n,{enumerable:b(0,!1)})):(i(t,L)||x(t,L,b(1,{})),t[L][e]=!0),E(t,e,n)):x(t,e,n)},z=function(t,e){g(t);for(var n,r=v(e=_(e)),o=0,i=r.length;i>o;)B(t,n=r[o++],e[n]);return t},N=function(t,e){return void 0===e?w(t):z(w(t),e)},$=function(t){var e=P.call(this,t);return!(e||!i(this,t)||!i(S,t)||i(this,L)&&this[L][t])||e},V=function(t,e){var n=k(t=_(t),e);return!n||!i(S,e)||i(t,L)&&t[L][e]||(n.enumerable=!0),n},U=function(t){for(var e,n=j(_(t)),r=[],o=0;n.length>o;)i(S,e=n[o++])||e==L||r.push(e);return r},Z=function(t){for(var e,n=j(_(t)),r=[],o=0;n.length>o;)i(S,e=n[o++])&&r.push(S[e]);return r},F=function(t){if(void 0!==t&&!W(t)){for(var e,n,r=[t],o=1,i=arguments;i.length>o;)r.push(i[o++]);return e=r[1],"function"==typeof e&&(n=e),!n&&m(e)||(e=function(t,e){if(n&&(e=n.call(this,t,e)),!W(e))return e}),r[1]=e,C.apply(O,r)}},G=c(function(){var t=M();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))});A||(M=function(){if(W(this))throw TypeError("Symbol is not a constructor");return R(f(arguments.length>0?arguments[0]:void 0))},u(M.prototype,"toString",function(){return this._k}),W=function(t){return t instanceof M},r.create=N,r.isEnum=$,r.getDesc=V,r.setDesc=B,r.setDescs=z,r.getNames=y.get=U,r.getSymbols=Z,s&&!n(49)&&u(I,"propertyIsEnumerable",$,!0));var H={for:function(t){return i(T,t+="")?T[t]:T[t]=M(t)},keyFor:function(t){return h(T,t)},useSetter:function(){D=!0},useSimple:function(){D=!1}};r.each.call("hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),function(t){var e=d(t);H[t]=A?e:R(e)}),D=!0,a(a.G+a.W,{Symbol:M}),a(a.S,"Symbol",H),a(a.S+a.F*!A,"Object",{create:N,defineProperty:B,defineProperties:z,getOwnPropertyDescriptor:V,getOwnPropertyNames:U,getOwnPropertySymbols:Z}),O&&a(a.S+a.F*(!A||G),"JSON",{stringify:F}),p(M,"Symbol"),p(Math,"Math",!0),p(o.JSON,"JSON",!0)},function(t,e,n){e=t.exports=n(58)(),e.push([t.id,".vue-map-container,.vue-map-container .vue-map{width:100%;height:100%}","",{version:3,sources:["/./src/components/map.vue.style"],names:[],mappings:"AAA0C,+CAA4B,WAAW,WAAW,CAAC",file:"map.vue",sourcesContent:[".vue-map-container{width:100%;height:100%}.vue-map-container .vue-map{width:100%;height:100%}"],sourceRoot:"webpack://"}])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var n=this[e];n[2]?t.push("@media "+n[2]+"{"+n[1]+"}"):t.push(n[1])}return t.join("")},t.i=function(e,n){"string"==typeof e&&(e=[[null,e,""]]);for(var r={},o=0;o<this.length;o++){var i=this[o][0];"number"==typeof i&&(r[i]=!0)}for(o=0;o<e.length;o++){var s=e[o];"number"==typeof s[0]&&r[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),t.push(s))}},t}},function(t,e){/**
+            !function(definition) {
+                "use strict";
+                if ("function" == typeof bootstrap) bootstrap("promise", definition); else {
+                    module.exports = definition();
+                }
+            }(function() {
+                "use strict";
+                function uncurryThis(f) {
+                    return function() {
+                        return call.apply(f, arguments);
+                    };
+                }
+                function isObject(value) {
+                    return value === Object(value);
+                }
+                function isStopIteration(exception) {
+                    return "[object StopIteration]" === object_toString(exception) || exception instanceof QReturnValue;
+                }
+                function makeStackTraceLong(error, promise) {
+                    if (hasStacks && promise.stack && "object" == typeof error && null !== error && error.stack && error.stack.indexOf(STACK_JUMP_SEPARATOR) === -1) {
+                        for (var stacks = [], p = promise; p; p = p.source) p.stack && stacks.unshift(p.stack);
+                        stacks.unshift(error.stack);
+                        var concatedStacks = stacks.join("\n" + STACK_JUMP_SEPARATOR + "\n");
+                        error.stack = filterStackString(concatedStacks);
+                    }
+                }
+                function filterStackString(stackString) {
+                    for (var lines = stackString.split("\n"), desiredLines = [], i = 0; i < lines.length; ++i) {
+                        var line = lines[i];
+                        isInternalFrame(line) || isNodeFrame(line) || !line || desiredLines.push(line);
+                    }
+                    return desiredLines.join("\n");
+                }
+                function isNodeFrame(stackLine) {
+                    return stackLine.indexOf("(module.js:") !== -1 || stackLine.indexOf("(node.js:") !== -1;
+                }
+                function getFileNameAndLineNumber(stackLine) {
+                    var attempt1 = /at .+ \((.+):(\d+):(?:\d+)\)$/.exec(stackLine);
+                    if (attempt1) return [ attempt1[1], Number(attempt1[2]) ];
+                    var attempt2 = /at ([^ ]+):(\d+):(?:\d+)$/.exec(stackLine);
+                    if (attempt2) return [ attempt2[1], Number(attempt2[2]) ];
+                    var attempt3 = /.*@(.+):(\d+)$/.exec(stackLine);
+                    return attempt3 ? [ attempt3[1], Number(attempt3[2]) ] : void 0;
+                }
+                function isInternalFrame(stackLine) {
+                    var fileNameAndLineNumber = getFileNameAndLineNumber(stackLine);
+                    if (!fileNameAndLineNumber) return !1;
+                    var fileName = fileNameAndLineNumber[0], lineNumber = fileNameAndLineNumber[1];
+                    return fileName === qFileName && lineNumber >= qStartingLine && lineNumber <= qEndingLine;
+                }
+                function captureLine() {
+                    if (hasStacks) try {
+                        throw new Error();
+                    } catch (e) {
+                        var lines = e.stack.split("\n"), firstLine = lines[0].indexOf("@") > 0 ? lines[1] : lines[2], fileNameAndLineNumber = getFileNameAndLineNumber(firstLine);
+                        if (!fileNameAndLineNumber) return;
+                        return qFileName = fileNameAndLineNumber[0], fileNameAndLineNumber[1];
+                    }
+                }
+                function deprecate(callback, name, alternative) {
+                    return function() {
+                        return "undefined" != typeof console && "function" == typeof console.warn && console.warn(name + " is deprecated, use " + alternative + " instead.", new Error("").stack), 
+                        callback.apply(callback, arguments);
+                    };
+                }
+                function Q(value) {
+                    return value instanceof Promise ? value : isPromiseAlike(value) ? coerce(value) : fulfill(value);
+                }
+                function defer() {
+                    function become(newPromise) {
+                        resolvedPromise = newPromise, promise.source = newPromise, array_reduce(messages, function(undefined, message) {
+                            Q.nextTick(function() {
+                                newPromise.promiseDispatch.apply(newPromise, message);
+                            });
+                        }, void 0), messages = void 0, progressListeners = void 0;
+                    }
+                    var resolvedPromise, messages = [], progressListeners = [], deferred = object_create(defer.prototype), promise = object_create(Promise.prototype);
+                    if (promise.promiseDispatch = function(resolve, op, operands) {
+                        var args = array_slice(arguments);
+                        messages ? (messages.push(args), "when" === op && operands[1] && progressListeners.push(operands[1])) : Q.nextTick(function() {
+                            resolvedPromise.promiseDispatch.apply(resolvedPromise, args);
+                        });
+                    }, promise.valueOf = function() {
+                        if (messages) return promise;
+                        var nearerValue = nearer(resolvedPromise);
+                        return isPromise(nearerValue) && (resolvedPromise = nearerValue), nearerValue;
+                    }, promise.inspect = function() {
+                        return resolvedPromise ? resolvedPromise.inspect() : {
+                            state: "pending"
+                        };
+                    }, Q.longStackSupport && hasStacks) try {
+                        throw new Error();
+                    } catch (e) {
+                        promise.stack = e.stack.substring(e.stack.indexOf("\n") + 1);
+                    }
+                    return deferred.promise = promise, deferred.resolve = function(value) {
+                        resolvedPromise || become(Q(value));
+                    }, deferred.fulfill = function(value) {
+                        resolvedPromise || become(fulfill(value));
+                    }, deferred.reject = function(reason) {
+                        resolvedPromise || become(reject(reason));
+                    }, deferred.notify = function(progress) {
+                        resolvedPromise || array_reduce(progressListeners, function(undefined, progressListener) {
+                            Q.nextTick(function() {
+                                progressListener(progress);
+                            });
+                        }, void 0);
+                    }, deferred;
+                }
+                function promise(resolver) {
+                    if ("function" != typeof resolver) throw new TypeError("resolver must be a function.");
+                    var deferred = defer();
+                    try {
+                        resolver(deferred.resolve, deferred.reject, deferred.notify);
+                    } catch (reason) {
+                        deferred.reject(reason);
+                    }
+                    return deferred.promise;
+                }
+                function race(answerPs) {
+                    return promise(function(resolve, reject) {
+                        for (var i = 0, len = answerPs.length; i < len; i++) Q(answerPs[i]).then(resolve, reject);
+                    });
+                }
+                function Promise(descriptor, fallback, inspect) {
+                    void 0 === fallback && (fallback = function(op) {
+                        return reject(new Error("Promise does not support operation: " + op));
+                    }), void 0 === inspect && (inspect = function() {
+                        return {
+                            state: "unknown"
+                        };
+                    });
+                    var promise = object_create(Promise.prototype);
+                    if (promise.promiseDispatch = function(resolve, op, args) {
+                        var result;
+                        try {
+                            result = descriptor[op] ? descriptor[op].apply(promise, args) : fallback.call(promise, op, args);
+                        } catch (exception) {
+                            result = reject(exception);
+                        }
+                        resolve && resolve(result);
+                    }, promise.inspect = inspect, inspect) {
+                        var inspected = inspect();
+                        "rejected" === inspected.state && (promise.exception = inspected.reason), promise.valueOf = function() {
+                            var inspected = inspect();
+                            return "pending" === inspected.state || "rejected" === inspected.state ? promise : inspected.value;
+                        };
+                    }
+                    return promise;
+                }
+                function when(value, fulfilled, rejected, progressed) {
+                    return Q(value).then(fulfilled, rejected, progressed);
+                }
+                function nearer(value) {
+                    if (isPromise(value)) {
+                        var inspected = value.inspect();
+                        if ("fulfilled" === inspected.state) return inspected.value;
+                    }
+                    return value;
+                }
+                function isPromise(object) {
+                    return object instanceof Promise;
+                }
+                function isPromiseAlike(object) {
+                    return isObject(object) && "function" == typeof object.then;
+                }
+                function isPending(object) {
+                    return isPromise(object) && "pending" === object.inspect().state;
+                }
+                function isFulfilled(object) {
+                    return !isPromise(object) || "fulfilled" === object.inspect().state;
+                }
+                function isRejected(object) {
+                    return isPromise(object) && "rejected" === object.inspect().state;
+                }
+                function resetUnhandledRejections() {
+                    unhandledReasons.length = 0, unhandledRejections.length = 0, trackUnhandledRejections || (trackUnhandledRejections = !0);
+                }
+                function trackRejection(promise, reason) {
+                    trackUnhandledRejections && ("object" == typeof process && "function" == typeof process.emit && Q.nextTick.runAfter(function() {
+                        array_indexOf(unhandledRejections, promise) !== -1 && (process.emit("unhandledRejection", reason, promise), 
+                        reportedUnhandledRejections.push(promise));
+                    }), unhandledRejections.push(promise), reason && "undefined" != typeof reason.stack ? unhandledReasons.push(reason.stack) : unhandledReasons.push("(no stack) " + reason));
+                }
+                function untrackRejection(promise) {
+                    if (trackUnhandledRejections) {
+                        var at = array_indexOf(unhandledRejections, promise);
+                        at !== -1 && ("object" == typeof process && "function" == typeof process.emit && Q.nextTick.runAfter(function() {
+                            var atReport = array_indexOf(reportedUnhandledRejections, promise);
+                            atReport !== -1 && (process.emit("rejectionHandled", unhandledReasons[at], promise), 
+                            reportedUnhandledRejections.splice(atReport, 1));
+                        }), unhandledRejections.splice(at, 1), unhandledReasons.splice(at, 1));
+                    }
+                }
+                function reject(reason) {
+                    var rejection = Promise({
+                        when: function(rejected) {
+                            return rejected && untrackRejection(this), rejected ? rejected(reason) : this;
+                        }
+                    }, function() {
+                        return this;
+                    }, function() {
+                        return {
+                            state: "rejected",
+                            reason: reason
+                        };
+                    });
+                    return trackRejection(rejection, reason), rejection;
+                }
+                function fulfill(value) {
+                    return Promise({
+                        when: function() {
+                            return value;
+                        },
+                        get: function(name) {
+                            return value[name];
+                        },
+                        set: function(name, rhs) {
+                            value[name] = rhs;
+                        },
+                        delete: function(name) {
+                            delete value[name];
+                        },
+                        post: function(name, args) {
+                            return null === name || void 0 === name ? value.apply(void 0, args) : value[name].apply(value, args);
+                        },
+                        apply: function(thisp, args) {
+                            return value.apply(thisp, args);
+                        },
+                        keys: function() {
+                            return object_keys(value);
+                        }
+                    }, void 0, function() {
+                        return {
+                            state: "fulfilled",
+                            value: value
+                        };
+                    });
+                }
+                function coerce(promise) {
+                    var deferred = defer();
+                    return Q.nextTick(function() {
+                        try {
+                            promise.then(deferred.resolve, deferred.reject, deferred.notify);
+                        } catch (exception) {
+                            deferred.reject(exception);
+                        }
+                    }), deferred.promise;
+                }
+                function master(object) {
+                    return Promise({
+                        isDef: function() {}
+                    }, function(op, args) {
+                        return dispatch(object, op, args);
+                    }, function() {
+                        return Q(object).inspect();
+                    });
+                }
+                function spread(value, fulfilled, rejected) {
+                    return Q(value).spread(fulfilled, rejected);
+                }
+                function async(makeGenerator) {
+                    return function() {
+                        function continuer(verb, arg) {
+                            var result;
+                            if ("undefined" == typeof StopIteration) {
+                                try {
+                                    result = generator[verb](arg);
+                                } catch (exception) {
+                                    return reject(exception);
+                                }
+                                return result.done ? Q(result.value) : when(result.value, callback, errback);
+                            }
+                            try {
+                                result = generator[verb](arg);
+                            } catch (exception) {
+                                return isStopIteration(exception) ? Q(exception.value) : reject(exception);
+                            }
+                            return when(result, callback, errback);
+                        }
+                        var generator = makeGenerator.apply(this, arguments), callback = continuer.bind(continuer, "next"), errback = continuer.bind(continuer, "throw");
+                        return callback();
+                    };
+                }
+                function spawn(makeGenerator) {
+                    Q.done(Q.async(makeGenerator)());
+                }
+                function _return(value) {
+                    throw new QReturnValue(value);
+                }
+                function promised(callback) {
+                    return function() {
+                        return spread([ this, all(arguments) ], function(self, args) {
+                            return callback.apply(self, args);
+                        });
+                    };
+                }
+                function dispatch(object, op, args) {
+                    return Q(object).dispatch(op, args);
+                }
+                function all(promises) {
+                    return when(promises, function(promises) {
+                        var pendingCount = 0, deferred = defer();
+                        return array_reduce(promises, function(undefined, promise, index) {
+                            var snapshot;
+                            isPromise(promise) && "fulfilled" === (snapshot = promise.inspect()).state ? promises[index] = snapshot.value : (++pendingCount, 
+                            when(promise, function(value) {
+                                promises[index] = value, 0 === --pendingCount && deferred.resolve(promises);
+                            }, deferred.reject, function(progress) {
+                                deferred.notify({
+                                    index: index,
+                                    value: progress
+                                });
+                            }));
+                        }, void 0), 0 === pendingCount && deferred.resolve(promises), deferred.promise;
+                    });
+                }
+                function any(promises) {
+                    if (0 === promises.length) return Q.resolve();
+                    var deferred = Q.defer(), pendingCount = 0;
+                    return array_reduce(promises, function(prev, current, index) {
+                        function onFulfilled(result) {
+                            deferred.resolve(result);
+                        }
+                        function onRejected() {
+                            pendingCount--, 0 === pendingCount && deferred.reject(new Error("Can't get fulfillment value from any promise, all promises were rejected."));
+                        }
+                        function onProgress(progress) {
+                            deferred.notify({
+                                index: index,
+                                value: progress
+                            });
+                        }
+                        var promise = promises[index];
+                        pendingCount++, when(promise, onFulfilled, onRejected, onProgress);
+                    }, void 0), deferred.promise;
+                }
+                function allResolved(promises) {
+                    return when(promises, function(promises) {
+                        return promises = array_map(promises, Q), when(all(array_map(promises, function(promise) {
+                            return when(promise, noop, noop);
+                        })), function() {
+                            return promises;
+                        });
+                    });
+                }
+                function allSettled(promises) {
+                    return Q(promises).allSettled();
+                }
+                function progress(object, progressed) {
+                    return Q(object).then(void 0, void 0, progressed);
+                }
+                function nodeify(object, nodeback) {
+                    return Q(object).nodeify(nodeback);
+                }
+                var hasStacks = !1;
+                try {
+                    throw new Error();
+                } catch (e) {
+                    hasStacks = !!e.stack;
+                }
+                var qFileName, QReturnValue, qStartingLine = captureLine(), noop = function() {}, nextTick = function() {
+                    function flush() {
+                        for (var task, domain; head.next; ) head = head.next, task = head.task, head.task = void 0, 
+                        domain = head.domain, domain && (head.domain = void 0, domain.enter()), runSingle(task, domain);
+                        for (;laterQueue.length; ) task = laterQueue.pop(), runSingle(task);
+                        flushing = !1;
+                    }
+                    function runSingle(task, domain) {
+                        try {
+                            task();
+                        } catch (e) {
+                            if (isNodeJS) throw domain && domain.exit(), setTimeout(flush, 0), domain && domain.enter(), 
+                            e;
+                            setTimeout(function() {
+                                throw e;
+                            }, 0);
+                        }
+                        domain && domain.exit();
+                    }
+                    var head = {
+                        task: void 0,
+                        next: null
+                    }, tail = head, flushing = !1, requestTick = void 0, isNodeJS = !1, laterQueue = [];
+                    if (nextTick = function(task) {
+                        tail = tail.next = {
+                            task: task,
+                            domain: isNodeJS && process.domain,
+                            next: null
+                        }, flushing || (flushing = !0, requestTick());
+                    }, "object" == typeof process && "[object process]" === process.toString() && process.nextTick) isNodeJS = !0, 
+                    requestTick = function() {
+                        process.nextTick(flush);
+                    }; else if ("function" == typeof setImmediate) requestTick = "undefined" != typeof window ? setImmediate.bind(window, flush) : function() {
+                        setImmediate(flush);
+                    }; else if ("undefined" != typeof MessageChannel) {
+                        var channel = new MessageChannel();
+                        channel.port1.onmessage = function() {
+                            requestTick = requestPortTick, channel.port1.onmessage = flush, flush();
+                        };
+                        var requestPortTick = function() {
+                            channel.port2.postMessage(0);
+                        };
+                        requestTick = function() {
+                            setTimeout(flush, 0), requestPortTick();
+                        };
+                    } else requestTick = function() {
+                        setTimeout(flush, 0);
+                    };
+                    return nextTick.runAfter = function(task) {
+                        laterQueue.push(task), flushing || (flushing = !0, requestTick());
+                    }, nextTick;
+                }(), call = Function.call, array_slice = uncurryThis(Array.prototype.slice), array_reduce = uncurryThis(Array.prototype.reduce || function(callback, basis) {
+                    var index = 0, length = this.length;
+                    if (1 === arguments.length) for (;;) {
+                        if (index in this) {
+                            basis = this[index++];
+                            break;
+                        }
+                        if (++index >= length) throw new TypeError();
+                    }
+                    for (;index < length; index++) index in this && (basis = callback(basis, this[index], index));
+                    return basis;
+                }), array_indexOf = uncurryThis(Array.prototype.indexOf || function(value) {
+                    for (var i = 0; i < this.length; i++) if (this[i] === value) return i;
+                    return -1;
+                }), array_map = uncurryThis(Array.prototype.map || function(callback, thisp) {
+                    var self = this, collect = [];
+                    return array_reduce(self, function(undefined, value, index) {
+                        collect.push(callback.call(thisp, value, index, self));
+                    }, void 0), collect;
+                }), object_create = Object.create || function(prototype) {
+                    function Type() {}
+                    return Type.prototype = prototype, new Type();
+                }, object_hasOwnProperty = uncurryThis(Object.prototype.hasOwnProperty), object_keys = Object.keys || function(object) {
+                    var keys = [];
+                    for (var key in object) object_hasOwnProperty(object, key) && keys.push(key);
+                    return keys;
+                }, object_toString = uncurryThis(Object.prototype.toString);
+                QReturnValue = "undefined" != typeof ReturnValue ? ReturnValue : function(value) {
+                    this.value = value;
+                };
+                var STACK_JUMP_SEPARATOR = "From previous event:";
+                Q.resolve = Q, Q.nextTick = nextTick, Q.longStackSupport = !1, "object" == typeof process && process && {
+                    NODE_ENV: "production"
+                }.Q_DEBUG && (Q.longStackSupport = !0), Q.defer = defer, defer.prototype.makeNodeResolver = function() {
+                    var self = this;
+                    return function(error, value) {
+                        error ? self.reject(error) : arguments.length > 2 ? self.resolve(array_slice(arguments, 1)) : self.resolve(value);
+                    };
+                }, Q.Promise = promise, Q.promise = promise, promise.race = race, promise.all = all, 
+                promise.reject = reject, promise.resolve = Q, Q.passByCopy = function(object) {
+                    return object;
+                }, Promise.prototype.passByCopy = function() {
+                    return this;
+                }, Q.join = function(x, y) {
+                    return Q(x).join(y);
+                }, Promise.prototype.join = function(that) {
+                    return Q([ this, that ]).spread(function(x, y) {
+                        if (x === y) return x;
+                        throw new Error("Can't join: not the same: " + x + " " + y);
+                    });
+                }, Q.race = race, Promise.prototype.race = function() {
+                    return this.then(Q.race);
+                }, Q.makePromise = Promise, Promise.prototype.toString = function() {
+                    return "[object Promise]";
+                }, Promise.prototype.then = function(fulfilled, rejected, progressed) {
+                    function _fulfilled(value) {
+                        try {
+                            return "function" == typeof fulfilled ? fulfilled(value) : value;
+                        } catch (exception) {
+                            return reject(exception);
+                        }
+                    }
+                    function _rejected(exception) {
+                        if ("function" == typeof rejected) {
+                            makeStackTraceLong(exception, self);
+                            try {
+                                return rejected(exception);
+                            } catch (newException) {
+                                return reject(newException);
+                            }
+                        }
+                        return reject(exception);
+                    }
+                    function _progressed(value) {
+                        return "function" == typeof progressed ? progressed(value) : value;
+                    }
+                    var self = this, deferred = defer(), done = !1;
+                    return Q.nextTick(function() {
+                        self.promiseDispatch(function(value) {
+                            done || (done = !0, deferred.resolve(_fulfilled(value)));
+                        }, "when", [ function(exception) {
+                            done || (done = !0, deferred.resolve(_rejected(exception)));
+                        } ]);
+                    }), self.promiseDispatch(void 0, "when", [ void 0, function(value) {
+                        var newValue, threw = !1;
+                        try {
+                            newValue = _progressed(value);
+                        } catch (e) {
+                            if (threw = !0, !Q.onerror) throw e;
+                            Q.onerror(e);
+                        }
+                        threw || deferred.notify(newValue);
+                    } ]), deferred.promise;
+                }, Q.tap = function(promise, callback) {
+                    return Q(promise).tap(callback);
+                }, Promise.prototype.tap = function(callback) {
+                    return callback = Q(callback), this.then(function(value) {
+                        return callback.fcall(value).thenResolve(value);
+                    });
+                }, Q.when = when, Promise.prototype.thenResolve = function(value) {
+                    return this.then(function() {
+                        return value;
+                    });
+                }, Q.thenResolve = function(promise, value) {
+                    return Q(promise).thenResolve(value);
+                }, Promise.prototype.thenReject = function(reason) {
+                    return this.then(function() {
+                        throw reason;
+                    });
+                }, Q.thenReject = function(promise, reason) {
+                    return Q(promise).thenReject(reason);
+                }, Q.nearer = nearer, Q.isPromise = isPromise, Q.isPromiseAlike = isPromiseAlike, 
+                Q.isPending = isPending, Promise.prototype.isPending = function() {
+                    return "pending" === this.inspect().state;
+                }, Q.isFulfilled = isFulfilled, Promise.prototype.isFulfilled = function() {
+                    return "fulfilled" === this.inspect().state;
+                }, Q.isRejected = isRejected, Promise.prototype.isRejected = function() {
+                    return "rejected" === this.inspect().state;
+                };
+                var unhandledReasons = [], unhandledRejections = [], reportedUnhandledRejections = [], trackUnhandledRejections = !0;
+                Q.resetUnhandledRejections = resetUnhandledRejections, Q.getUnhandledReasons = function() {
+                    return unhandledReasons.slice();
+                }, Q.stopUnhandledRejectionTracking = function() {
+                    resetUnhandledRejections(), trackUnhandledRejections = !1;
+                }, resetUnhandledRejections(), Q.reject = reject, Q.fulfill = fulfill, Q.master = master, 
+                Q.spread = spread, Promise.prototype.spread = function(fulfilled, rejected) {
+                    return this.all().then(function(array) {
+                        return fulfilled.apply(void 0, array);
+                    }, rejected);
+                }, Q.async = async, Q.spawn = spawn, Q.return = _return, Q.promised = promised, 
+                Q.dispatch = dispatch, Promise.prototype.dispatch = function(op, args) {
+                    var self = this, deferred = defer();
+                    return Q.nextTick(function() {
+                        self.promiseDispatch(deferred.resolve, op, args);
+                    }), deferred.promise;
+                }, Q.get = function(object, key) {
+                    return Q(object).dispatch("get", [ key ]);
+                }, Promise.prototype.get = function(key) {
+                    return this.dispatch("get", [ key ]);
+                }, Q.set = function(object, key, value) {
+                    return Q(object).dispatch("set", [ key, value ]);
+                }, Promise.prototype.set = function(key, value) {
+                    return this.dispatch("set", [ key, value ]);
+                }, Q.del = Q.delete = function(object, key) {
+                    return Q(object).dispatch("delete", [ key ]);
+                }, Promise.prototype.del = Promise.prototype.delete = function(key) {
+                    return this.dispatch("delete", [ key ]);
+                }, Q.mapply = Q.post = function(object, name, args) {
+                    return Q(object).dispatch("post", [ name, args ]);
+                }, Promise.prototype.mapply = Promise.prototype.post = function(name, args) {
+                    return this.dispatch("post", [ name, args ]);
+                }, Q.send = Q.mcall = Q.invoke = function(object, name) {
+                    return Q(object).dispatch("post", [ name, array_slice(arguments, 2) ]);
+                }, Promise.prototype.send = Promise.prototype.mcall = Promise.prototype.invoke = function(name) {
+                    return this.dispatch("post", [ name, array_slice(arguments, 1) ]);
+                }, Q.fapply = function(object, args) {
+                    return Q(object).dispatch("apply", [ void 0, args ]);
+                }, Promise.prototype.fapply = function(args) {
+                    return this.dispatch("apply", [ void 0, args ]);
+                }, Q.try = Q.fcall = function(object) {
+                    return Q(object).dispatch("apply", [ void 0, array_slice(arguments, 1) ]);
+                }, Promise.prototype.fcall = function() {
+                    return this.dispatch("apply", [ void 0, array_slice(arguments) ]);
+                }, Q.fbind = function(object) {
+                    var promise = Q(object), args = array_slice(arguments, 1);
+                    return function() {
+                        return promise.dispatch("apply", [ this, args.concat(array_slice(arguments)) ]);
+                    };
+                }, Promise.prototype.fbind = function() {
+                    var promise = this, args = array_slice(arguments);
+                    return function() {
+                        return promise.dispatch("apply", [ this, args.concat(array_slice(arguments)) ]);
+                    };
+                }, Q.keys = function(object) {
+                    return Q(object).dispatch("keys", []);
+                }, Promise.prototype.keys = function() {
+                    return this.dispatch("keys", []);
+                }, Q.all = all, Promise.prototype.all = function() {
+                    return all(this);
+                }, Q.any = any, Promise.prototype.any = function() {
+                    return any(this);
+                }, Q.allResolved = deprecate(allResolved, "allResolved", "allSettled"), Promise.prototype.allResolved = function() {
+                    return allResolved(this);
+                }, Q.allSettled = allSettled, Promise.prototype.allSettled = function() {
+                    return this.then(function(promises) {
+                        return all(array_map(promises, function(promise) {
+                            function regardless() {
+                                return promise.inspect();
+                            }
+                            return promise = Q(promise), promise.then(regardless, regardless);
+                        }));
+                    });
+                }, Q.fail = Q.catch = function(object, rejected) {
+                    return Q(object).then(void 0, rejected);
+                }, Promise.prototype.fail = Promise.prototype.catch = function(rejected) {
+                    return this.then(void 0, rejected);
+                }, Q.progress = progress, Promise.prototype.progress = function(progressed) {
+                    return this.then(void 0, void 0, progressed);
+                }, Q.fin = Q.finally = function(object, callback) {
+                    return Q(object).finally(callback);
+                }, Promise.prototype.fin = Promise.prototype.finally = function(callback) {
+                    return callback = Q(callback), this.then(function(value) {
+                        return callback.fcall().then(function() {
+                            return value;
+                        });
+                    }, function(reason) {
+                        return callback.fcall().then(function() {
+                            throw reason;
+                        });
+                    });
+                }, Q.done = function(object, fulfilled, rejected, progress) {
+                    return Q(object).done(fulfilled, rejected, progress);
+                }, Promise.prototype.done = function(fulfilled, rejected, progress) {
+                    var onUnhandledError = function(error) {
+                        Q.nextTick(function() {
+                            if (makeStackTraceLong(error, promise), !Q.onerror) throw error;
+                            Q.onerror(error);
+                        });
+                    }, promise = fulfilled || rejected || progress ? this.then(fulfilled, rejected, progress) : this;
+                    "object" == typeof process && process && process.domain && (onUnhandledError = process.domain.bind(onUnhandledError)), 
+                    promise.then(void 0, onUnhandledError);
+                }, Q.timeout = function(object, ms, error) {
+                    return Q(object).timeout(ms, error);
+                }, Promise.prototype.timeout = function(ms, error) {
+                    var deferred = defer(), timeoutId = setTimeout(function() {
+                        error && "string" != typeof error || (error = new Error(error || "Timed out after " + ms + " ms"), 
+                        error.code = "ETIMEDOUT"), deferred.reject(error);
+                    }, ms);
+                    return this.then(function(value) {
+                        clearTimeout(timeoutId), deferred.resolve(value);
+                    }, function(exception) {
+                        clearTimeout(timeoutId), deferred.reject(exception);
+                    }, deferred.notify), deferred.promise;
+                }, Q.delay = function(object, timeout) {
+                    return void 0 === timeout && (timeout = object, object = void 0), Q(object).delay(timeout);
+                }, Promise.prototype.delay = function(timeout) {
+                    return this.then(function(value) {
+                        var deferred = defer();
+                        return setTimeout(function() {
+                            deferred.resolve(value);
+                        }, timeout), deferred.promise;
+                    });
+                }, Q.nfapply = function(callback, args) {
+                    return Q(callback).nfapply(args);
+                }, Promise.prototype.nfapply = function(args) {
+                    var deferred = defer(), nodeArgs = array_slice(args);
+                    return nodeArgs.push(deferred.makeNodeResolver()), this.fapply(nodeArgs).fail(deferred.reject), 
+                    deferred.promise;
+                }, Q.nfcall = function(callback) {
+                    var args = array_slice(arguments, 1);
+                    return Q(callback).nfapply(args);
+                }, Promise.prototype.nfcall = function() {
+                    var nodeArgs = array_slice(arguments), deferred = defer();
+                    return nodeArgs.push(deferred.makeNodeResolver()), this.fapply(nodeArgs).fail(deferred.reject), 
+                    deferred.promise;
+                }, Q.nfbind = Q.denodeify = function(callback) {
+                    var baseArgs = array_slice(arguments, 1);
+                    return function() {
+                        var nodeArgs = baseArgs.concat(array_slice(arguments)), deferred = defer();
+                        return nodeArgs.push(deferred.makeNodeResolver()), Q(callback).fapply(nodeArgs).fail(deferred.reject), 
+                        deferred.promise;
+                    };
+                }, Promise.prototype.nfbind = Promise.prototype.denodeify = function() {
+                    var args = array_slice(arguments);
+                    return args.unshift(this), Q.denodeify.apply(void 0, args);
+                }, Q.nbind = function(callback, thisp) {
+                    var baseArgs = array_slice(arguments, 2);
+                    return function() {
+                        function bound() {
+                            return callback.apply(thisp, arguments);
+                        }
+                        var nodeArgs = baseArgs.concat(array_slice(arguments)), deferred = defer();
+                        return nodeArgs.push(deferred.makeNodeResolver()), Q(bound).fapply(nodeArgs).fail(deferred.reject), 
+                        deferred.promise;
+                    };
+                }, Promise.prototype.nbind = function() {
+                    var args = array_slice(arguments, 0);
+                    return args.unshift(this), Q.nbind.apply(void 0, args);
+                }, Q.nmapply = Q.npost = function(object, name, args) {
+                    return Q(object).npost(name, args);
+                }, Promise.prototype.nmapply = Promise.prototype.npost = function(name, args) {
+                    var nodeArgs = array_slice(args || []), deferred = defer();
+                    return nodeArgs.push(deferred.makeNodeResolver()), this.dispatch("post", [ name, nodeArgs ]).fail(deferred.reject), 
+                    deferred.promise;
+                }, Q.nsend = Q.nmcall = Q.ninvoke = function(object, name) {
+                    var nodeArgs = array_slice(arguments, 2), deferred = defer();
+                    return nodeArgs.push(deferred.makeNodeResolver()), Q(object).dispatch("post", [ name, nodeArgs ]).fail(deferred.reject), 
+                    deferred.promise;
+                }, Promise.prototype.nsend = Promise.prototype.nmcall = Promise.prototype.ninvoke = function(name) {
+                    var nodeArgs = array_slice(arguments, 1), deferred = defer();
+                    return nodeArgs.push(deferred.makeNodeResolver()), this.dispatch("post", [ name, nodeArgs ]).fail(deferred.reject), 
+                    deferred.promise;
+                }, Q.nodeify = nodeify, Promise.prototype.nodeify = function(nodeback) {
+                    return nodeback ? void this.then(function(value) {
+                        Q.nextTick(function() {
+                            nodeback(null, value);
+                        });
+                    }, function(error) {
+                        Q.nextTick(function() {
+                            nodeback(error);
+                        });
+                    }) : this;
+                }, Q.noConflict = function() {
+                    throw new Error("Q.noConflict only works when Q is used as a global");
+                };
+                var qEndingLine = captureLine();
+                return Q;
+            });
+        }).call(exports, __webpack_require__(23), __webpack_require__(12).setImmediate);
+    }, function(module, exports) {
+        module.exports = function(exec) {
+            try {
+                return !!exec();
+            } catch (e) {
+                return !0;
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        var IObject = __webpack_require__(45), defined = __webpack_require__(15);
+        module.exports = function(it) {
+            return IObject(defined(it));
+        };
+    }, function(module, exports, __webpack_require__) {
+        (function(setImmediate, clearImmediate) {
+            function Timeout(id, clearFn) {
+                this._id = id, this._clearFn = clearFn;
+            }
+            var nextTick = __webpack_require__(23).nextTick, apply = Function.prototype.apply, slice = Array.prototype.slice, immediateIds = {}, nextImmediateId = 0;
+            exports.setTimeout = function() {
+                return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+            }, exports.setInterval = function() {
+                return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+            }, exports.clearTimeout = exports.clearInterval = function(timeout) {
+                timeout.close();
+            }, Timeout.prototype.unref = Timeout.prototype.ref = function() {}, Timeout.prototype.close = function() {
+                this._clearFn.call(window, this._id);
+            }, exports.enroll = function(item, msecs) {
+                clearTimeout(item._idleTimeoutId), item._idleTimeout = msecs;
+            }, exports.unenroll = function(item) {
+                clearTimeout(item._idleTimeoutId), item._idleTimeout = -1;
+            }, exports._unrefActive = exports.active = function(item) {
+                clearTimeout(item._idleTimeoutId);
+                var msecs = item._idleTimeout;
+                msecs >= 0 && (item._idleTimeoutId = setTimeout(function() {
+                    item._onTimeout && item._onTimeout();
+                }, msecs));
+            }, exports.setImmediate = "function" == typeof setImmediate ? setImmediate : function(fn) {
+                var id = nextImmediateId++, args = !(arguments.length < 2) && slice.call(arguments, 1);
+                return immediateIds[id] = !0, nextTick(function() {
+                    immediateIds[id] && (args ? fn.apply(null, args) : fn.call(null), exports.clearImmediate(id));
+                }), id;
+            }, exports.clearImmediate = "function" == typeof clearImmediate ? clearImmediate : function(id) {
+                delete immediateIds[id];
+            };
+        }).call(exports, __webpack_require__(12).setImmediate, __webpack_require__(12).clearImmediate);
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        var _Symbol = __webpack_require__(36).default;
+        exports.default = function(obj) {
+            return obj && obj.constructor === _Symbol ? "symbol" : typeof obj;
+        }, exports.__esModule = !0;
+    }, function(module, exports) {
+        var toString = {}.toString;
+        module.exports = function(it) {
+            return toString.call(it).slice(8, -1);
+        };
+    }, function(module, exports) {
+        module.exports = function(it) {
+            if (void 0 == it) throw TypeError("Can't call method on  " + it);
+            return it;
+        };
+    }, function(module, exports, __webpack_require__) {
+        module.exports = !__webpack_require__(10)(function() {
+            return 7 != Object.defineProperty({}, "a", {
+                get: function() {
+                    return 7;
+                }
+            }).a;
+        });
+    }, function(module, exports, __webpack_require__) {
+        var global = __webpack_require__(8), core = __webpack_require__(7), ctx = __webpack_require__(41), PROTOTYPE = "prototype", $export = function(type, name, source) {
+            var key, own, out, IS_FORCED = type & $export.F, IS_GLOBAL = type & $export.G, IS_STATIC = type & $export.S, IS_PROTO = type & $export.P, IS_BIND = type & $export.B, IS_WRAP = type & $export.W, exports = IS_GLOBAL ? core : core[name] || (core[name] = {}), target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+            IS_GLOBAL && (source = name);
+            for (key in source) own = !IS_FORCED && target && key in target, own && key in exports || (out = own ? target[key] : source[key], 
+            exports[key] = IS_GLOBAL && "function" != typeof target[key] ? source[key] : IS_BIND && own ? ctx(out, global) : IS_WRAP && target[key] == out ? function(C) {
+                var F = function(param) {
+                    return this instanceof C ? new C(param) : C(param);
+                };
+                return F[PROTOTYPE] = C[PROTOTYPE], F;
+            }(out) : IS_PROTO && "function" == typeof out ? ctx(Function.call, out) : out, IS_PROTO && ((exports[PROTOTYPE] || (exports[PROTOTYPE] = {}))[key] = out));
+        };
+        $export.F = 1, $export.G = 2, $export.S = 4, $export.P = 8, $export.B = 16, $export.W = 32, 
+        module.exports = $export;
+    }, function(module, exports) {
+        var hasOwnProperty = {}.hasOwnProperty;
+        module.exports = function(it, key) {
+            return hasOwnProperty.call(it, key);
+        };
+    }, function(module, exports) {
+        module.exports = function(bitmap, value) {
+            return {
+                enumerable: !(1 & bitmap),
+                configurable: !(2 & bitmap),
+                writable: !(4 & bitmap),
+                value: value
+            };
+        };
+    }, function(module, exports, __webpack_require__) {
+        var global = __webpack_require__(8), SHARED = "__core-js_shared__", store = global[SHARED] || (global[SHARED] = {});
+        module.exports = function(key) {
+            return store[key] || (store[key] = {});
+        };
+    }, function(module, exports) {
+        var id = 0, px = Math.random();
+        module.exports = function(key) {
+            return "Symbol(".concat(void 0 === key ? "" : key, ")_", (++id + px).toString(36));
+        };
+    }, function(module, exports, __webpack_require__) {
+        var store = __webpack_require__(20)("wks"), uid = __webpack_require__(21), Symbol = __webpack_require__(8).Symbol;
+        module.exports = function(name) {
+            return store[name] || (store[name] = Symbol && Symbol[name] || (Symbol || uid)("Symbol." + name));
+        };
+    }, function(module, exports) {
+        function defaultSetTimout() {
+            throw new Error("setTimeout has not been defined");
+        }
+        function defaultClearTimeout() {
+            throw new Error("clearTimeout has not been defined");
+        }
+        function runTimeout(fun) {
+            if (cachedSetTimeout === setTimeout) return setTimeout(fun, 0);
+            if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) return cachedSetTimeout = setTimeout, 
+            setTimeout(fun, 0);
+            try {
+                return cachedSetTimeout(fun, 0);
+            } catch (e) {
+                try {
+                    return cachedSetTimeout.call(null, fun, 0);
+                } catch (e) {
+                    return cachedSetTimeout.call(this, fun, 0);
+                }
+            }
+        }
+        function runClearTimeout(marker) {
+            if (cachedClearTimeout === clearTimeout) return clearTimeout(marker);
+            if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) return cachedClearTimeout = clearTimeout, 
+            clearTimeout(marker);
+            try {
+                return cachedClearTimeout(marker);
+            } catch (e) {
+                try {
+                    return cachedClearTimeout.call(null, marker);
+                } catch (e) {
+                    return cachedClearTimeout.call(this, marker);
+                }
+            }
+        }
+        function cleanUpNextTick() {
+            draining && currentQueue && (draining = !1, currentQueue.length ? queue = currentQueue.concat(queue) : queueIndex = -1, 
+            queue.length && drainQueue());
+        }
+        function drainQueue() {
+            if (!draining) {
+                var timeout = runTimeout(cleanUpNextTick);
+                draining = !0;
+                for (var len = queue.length; len; ) {
+                    for (currentQueue = queue, queue = []; ++queueIndex < len; ) currentQueue && currentQueue[queueIndex].run();
+                    queueIndex = -1, len = queue.length;
+                }
+                currentQueue = null, draining = !1, runClearTimeout(timeout);
+            }
+        }
+        function Item(fun, array) {
+            this.fun = fun, this.array = array;
+        }
+        function noop() {}
+        var cachedSetTimeout, cachedClearTimeout, process = module.exports = {};
+        !function() {
+            try {
+                cachedSetTimeout = "function" == typeof setTimeout ? setTimeout : defaultSetTimout;
+            } catch (e) {
+                cachedSetTimeout = defaultSetTimout;
+            }
+            try {
+                cachedClearTimeout = "function" == typeof clearTimeout ? clearTimeout : defaultClearTimeout;
+            } catch (e) {
+                cachedClearTimeout = defaultClearTimeout;
+            }
+        }();
+        var currentQueue, queue = [], draining = !1, queueIndex = -1;
+        process.nextTick = function(fun) {
+            var args = new Array(arguments.length - 1);
+            if (arguments.length > 1) for (var i = 1; i < arguments.length; i++) args[i - 1] = arguments[i];
+            queue.push(new Item(fun, args)), 1 !== queue.length || draining || runTimeout(drainQueue);
+        }, Item.prototype.run = function() {
+            this.fun.apply(null, this.array);
+        }, process.title = "browser", process.browser = !0, process.env = {}, process.argv = [], 
+        process.version = "", process.versions = {}, process.on = noop, process.addListener = noop, 
+        process.once = noop, process.off = noop, process.removeListener = noop, process.removeAllListeners = noop, 
+        process.emit = noop, process.binding = function(name) {
+            throw new Error("process.binding is not supported");
+        }, process.cwd = function() {
+            return "/";
+        }, process.chdir = function(dir) {
+            throw new Error("process.chdir is not supported");
+        }, process.umask = function() {
+            return 0;
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), props = {
+            center: {
+                type: Object,
+                twoWay: !0,
+                required: !0
+            },
+            radius: {
+                type: Number,
+                default: 1e3,
+                twoWay: !0
+            },
+            bounds: {
+                type: Object,
+                twoWay: !0
+            },
+            draggable: {
+                type: Boolean,
+                default: !1
+            },
+            editable: {
+                type: Boolean,
+                default: !1
+            },
+            options: {
+                type: Object,
+                twoWay: !1
+            }
+        }, events = [ "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "radius_changed", "rightclick" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            version: 2,
+            ready: function() {
+                this.destroyed = !1, this.$dispatch("register-circle", this);
+            },
+            methods: {
+                createCircle: function(options, map) {
+                    var _this = this;
+                    if (!this.destroyed) {
+                        this.circleObject = new google.maps.Circle(options);
+                        var boundProps = _lodash2.default.clone(props);
+                        delete boundProps.bounds, (0, _propsBinder2.default)(this, this.circleObject, boundProps), 
+                        (0, _eventsBinder2.default)(this, this.circleObject, events);
+                        var updateBounds = function() {
+                            _this.bounds = _this.circleObject.getBounds();
+                        };
+                        this.$watch("radius", updateBounds), this.$watch("center", updateBounds, {
+                            deep: !0
+                        }), updateBounds();
+                    }
+                }
+            },
+            destroyed: function() {
+                this.destroyed = !0, this.circleObject && this.circleObject.setMap(null);
+            },
+            events: {
+                "map-ready": function(map) {
+                    this.registrar = "map", this.mapObject = map;
+                    var options = _lodash2.default.clone(this.getPropsValues());
+                    options.map = this.mapObject, delete options.bounds, this.createCircle(options, map);
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _q = __webpack_require__(9), _q2 = _interopRequireDefault(_q), _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+        __webpack_require__(59);
+        var props = {
+            maxZoom: {
+                type: Number,
+                twoWay: !1
+            },
+            calculor: {
+                type: Function,
+                twoWay: !1
+            },
+            gridSize: {
+                type: Number,
+                twoWay: !1
+            },
+            styles: {
+                type: Array,
+                twoWay: !1
+            }
+        };
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            created: function() {
+                this.mapReadyDefered = new _q2.default.defer(), this.mapReady = this.mapReadyDefered.promise, 
+                this.clusterReadyDefered = new _q2.default.defer(), this.clusterReady = this.clusterReadyDefered.promise;
+            },
+            data: function() {
+                return {
+                    clusterObject: null
+                };
+            },
+            ready: function() {
+                var _this = this;
+                this.$dispatch("register-cluster", this), this.mapReady.then(function(map) {
+                    _this.mapObject = map;
+                    var options = _lodash2.default.clone(_this.getPropsValues());
+                    _this.clusterObject = new MarkerClusterer(_this.mapObject, [], options), _this.clusterReadyDefered.resolve(_this.clusterObject), 
+                    (0, _propsBinder2.default)(_this, _this.clusterObject, props, {
+                        afterModelChanged: function(a, v) {
+                            var oldMarkers = _this.clusterObject.getMarkers();
+                            _this.clusterObject.clearMarkers(), _this.clusterObject.addMarkers(oldMarkers);
+                        }
+                    });
+                });
+            },
+            detached: function() {
+                this.clusterObject.clearMarkers();
+            },
+            events: {
+                "map-ready": function(map) {
+                    this.mapReadyDefered.resolve(map);
+                },
+                "register-marker": function(element) {
+                    var _this2 = this;
+                    this.clusterReady.then(function(cluster) {
+                        element.$emit("cluster-ready", cluster, _this2.mapObject);
+                    });
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _mutationObserver = __webpack_require__(33), _mutationObserver2 = _interopRequireDefault(_mutationObserver), props = {
+            options: {
+                type: Object,
+                twoWay: !1,
+                required: !1,
+                default: function() {
+                    return {};
+                }
+            },
+            content: {
+                default: null
+            },
+            opened: {
+                type: Boolean,
+                default: !0
+            },
+            position: {
+                type: Object,
+                twoWay: !1
+            },
+            zIndex: {
+                type: Number,
+                twoWay: !0
+            }
+        }, events = [ "domready", "closeclick" ];
+        exports.default = {
+            replace: !1,
+            props: props,
+            ready: function() {
+                var _this = this;
+                if (this.destroyed = !1, this.$el.style.display = "none", 0 === this.$el.getElementsByClassName("you-will-never-find-this").length) {
+                    var innerChanged = function() {
+                        _this.content = _this.$el.innerHTML;
+                    };
+                    innerChanged(), this.disconnect = (0, _mutationObserver2.default)(this.$el, innerChanged);
+                }
+                this.$dispatch("register-infoWindow", this), this.markerObject = null;
+            },
+            destroyed: function() {
+                this.disconnect && this.disconnect(), this.infoWindow && this.infoWindow.setMap(null), 
+                this.destroyed = !0;
+            },
+            methods: {
+                openInfoWindow: function() {
+                    this.opened ? null !== this.markerObject ? this.infoWindow.open(this.mapObject, this.markerObject) : this.infoWindow.open(this.mapObject) : this.infoWindow.close();
+                },
+                createInfoWindow: function(map) {
+                    var _this2 = this;
+                    if (!this.destroyed) {
+                        this.mapObject = map;
+                        var el = document.createElement("div");
+                        el.innerHTML = this.content, google.maps.event.addDomListener(el, "click", function(ev) {
+                            _this2.$emit("g-click", ev);
+                        });
+                        var options = _lodash2.default.clone(this.options);
+                        options.content = el, null === this.markerObject && (options.position = this.position), 
+                        this.infoWindow = new google.maps.InfoWindow(options);
+                        var propsToBind = _lodash2.default.clone(props);
+                        delete propsToBind.opened, (0, _propsBinder2.default)(this, this.infoWindow, propsToBind), 
+                        (0, _eventsBinder2.default)(this, this.infoWindow, events), this.infoWindow.addListener("closeclick", function() {
+                            _this2.opened = !1;
+                        }), this.$watch("opened", function() {
+                            _this2.openInfoWindow();
+                        }), this.openInfoWindow();
+                    }
+                }
+            },
+            events: {
+                "map-ready": function(map) {
+                    this.createInfoWindow(map);
+                },
+                "marker-ready": function(marker, map) {
+                    var _this3 = this;
+                    this.markerObject = marker.markerObject, this.createInfoWindow(map), marker.$on("g-click", function() {
+                        _this3.opened = !_this3.opened;
+                    });
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _q = __webpack_require__(9), _q2 = _interopRequireDefault(_q), _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _manager = __webpack_require__(6), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), props = {
+            center: {
+                required: !0,
+                twoWay: !0,
+                type: Object
+            },
+            zoom: {
+                required: !1,
+                twoWay: !0,
+                type: Number
+            },
+            heading: {
+                twoWay: !0,
+                type: Number
+            },
+            mapTypeId: {
+                twoWay: !0,
+                type: String
+            },
+            bounds: {
+                type: Object,
+                twoWay: !0
+            },
+            options: {
+                twoWay: !1,
+                type: Object,
+                default: function() {
+                    return {};
+                }
+            }
+        }, events = [ "click", "dblclick", "rightclick", "mousemove", "mouseout", "mouseover", "drag", "dragend", "dragstart", "idle", "resize", "tilesloaded", "bounds_changed" ], callableMethods = [ "panBy", "panTo", "panToBounds", "fitBounds" ], methods = {}, registerChild = function(child, type) {
+            var _this = this;
+            this.mapCreated.then(function(map) {
+                _this.$emit("ready", map), child.$emit("map-ready", map);
+            }, function(error) {
+                throw error;
+            });
+        }, eventListeners = {
+            "register-marker": registerChild,
+            "register-cluster": registerChild,
+            "register-infoWindow": registerChild,
+            "register-polyline": registerChild,
+            "register-polygon": registerChild,
+            "register-circle": registerChild,
+            "register-rectangle": registerChild,
+            "g-bounds_changed": function() {
+                this.bounds = this.mapObject.getBounds();
+            },
+            "g-fitBounds": function(bounds) {
+                this.mapObject && bounds && this.mapObject.fitBounds;
+            },
+            "g-resize-map": function() {
+                var center = this.mapObject.getCenter();
+                google.maps.event.trigger(this.mapObject, "resize"), this.mapObject.setCenter(center);
+            }
+        };
+        _lodash2.default.each(callableMethods, function(methodName) {
+            var applier = function() {
+                this.mapObject && this.mapObject[methodName].apply(this.mapObject, arguments);
+            };
+            eventListeners["g-" + methodName] = applier, methods[methodName] = applier;
+        }), exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            replace: !1,
+            created: function() {
+                this.mapCreatedDefered = new _q2.default.defer(), this.mapCreated = this.mapCreatedDefered.promise;
+            },
+            ready: function() {
+                var _this2 = this;
+                _manager.loaded.then(function() {
+                    var element = _this2.$el.getElementsByClassName("vue-map")[0], copiedData = _lodash2.default.clone(_this2.getPropsValues());
+                    delete copiedData.options;
+                    var options = _lodash2.default.clone(_this2.options);
+                    _lodash2.default.assign(options, copiedData), _this2.mapObject = new google.maps.Map(element, options);
+                    var boundProps = _lodash2.default.clone(props);
+                    delete boundProps.bounds, (0, _propsBinder2.default)(_this2, _this2.mapObject, boundProps), 
+                    (0, _eventsBinder2.default)(_this2, _this2.mapObject, events), _this2.$emit("g-bounds_changed"), 
+                    _this2.$once("g-bounds_changed", function() {
+                        _this2.mapCreatedDefered.resolve(_this2.mapObject);
+                    });
+                }, function(error) {
+                    throw error;
+                });
+            },
+            events: eventListeners,
+            methods: methods
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), _q = __webpack_require__(9), _q2 = _interopRequireDefault(_q), _markerwithlabel = __webpack_require__(60), _markerwithlabel2 = _interopRequireDefault(_markerwithlabel), _manager = __webpack_require__(6), MarkerWithLabel = void 0;
+        _manager.loaded.then(function() {
+            MarkerWithLabel = (0, _markerwithlabel2.default)(google.maps);
+        });
+        var props = {
+            animation: {
+                twoWay: !0,
+                type: Number
+            },
+            attribution: {
+                type: Object
+            },
+            clickable: {
+                type: Boolean,
+                twoWay: !0,
+                default: !0
+            },
+            cursor: {
+                type: String,
+                twoWay: !0
+            },
+            draggable: {
+                type: Boolean,
+                twoWay: !0,
+                default: !1
+            },
+            icon: {
+                type: Object
+            },
+            labelContent: {},
+            labelAnchor: {},
+            labelClass: {},
+            labelInBackground: {},
+            opacity: {
+                type: Number,
+                default: 1
+            },
+            place: {
+                type: Object
+            },
+            position: {
+                type: Object,
+                twoWay: !0
+            },
+            shape: {
+                type: Object,
+                twoWay: !0
+            },
+            title: {
+                type: String,
+                twoWay: !0
+            },
+            zIndex: {
+                type: Number,
+                twoWay: !0
+            },
+            visible: {
+                twoWay: !0,
+                default: "auto"
+            }
+        }, events = [ "click", "rightclick", "dblclick", "drag", "dragstart", "dragend", "mouseup", "mousedown", "mouseover", "mouseout" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            created: function() {
+                this.mapAvailableDefered = new _q2.default.defer(), this.mapAvailable = this.mapAvailableDefered.promise, 
+                this.destroyed = !1;
+            },
+            attached: function() {
+                "auto" === this.visible && (this.visible = !0);
+            },
+            ready: function() {
+                this.$dispatch("register-marker", this);
+            },
+            detached: function() {
+                "auto" === this.visible && (this.visible = !1);
+            },
+            destroyed: function() {
+                this.destroyed = !0, "map" === this.registrar && this.markerObject ? this.markerObject.setMap(null) : this.markerObject && this.clusterObject.removeMarker(this.markerObject);
+            },
+            methods: {
+                createMarker: function(options, map) {
+                    this.destroyed || (this.markerObject = new MarkerWithLabel(options), (0, _propsBinder2.default)(this, this.markerObject, props), 
+                    (0, _eventsBinder2.default)(this, this.markerObject, events), this.mapAvailableDefered.resolve(map));
+                }
+            },
+            events: {
+                "map-ready": function(map) {
+                    this.registrar = "map", this.mapObject = map;
+                    var options = _lodash2.default.clone(this.getPropsValues());
+                    options.map = this.mapObject, this.createMarker(options, map);
+                },
+                "cluster-ready": function(cluster, map) {
+                    this.registrar = "cluster", this.clusterObject = cluster;
+                    var options = _lodash2.default.clone(this.getPropsValues());
+                    this.createMarker(options, map), cluster.addMarker(this.markerObject);
+                },
+                "register-infoWindow": function(infoWindow) {
+                    var _this = this;
+                    this.mapAvailable.then(function(map) {
+                        infoWindow.$emit("marker-ready", _this, map);
+                    });
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _simulateArrowDown = __webpack_require__(34), _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), _manager = __webpack_require__(6), props = {
+            bounds: {
+                type: Object,
+                twoWay: !0
+            },
+            place: {
+                type: Object,
+                twoWay: !0,
+                default: function() {
+                    return {
+                        name: ""
+                    };
+                }
+            },
+            componentRestrictions: {
+                type: Object,
+                twoWay: !1,
+                default: null
+            },
+            types: {
+                type: Array,
+                twoWay: !1,
+                default: []
+            },
+            placeholder: {
+                required: !1,
+                type: String
+            },
+            class: {
+                required: !1,
+                type: String
+            },
+            label: {
+                required: !1,
+                type: String,
+                default: null
+            },
+            selectFirstOnEnter: {
+                require: !1,
+                type: Boolean,
+                default: !1
+            }
+        }, events = [ "place_changed" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            ready: function() {
+                var _this = this, input = this.$els.input;
+                input.value = this.place.name, _manager.loaded.then(function() {
+                    window.i = input;
+                    var options = _lodash2.default.clone(_this.getPropsValues());
+                    _this.selectFirstOnEnter && (0, _simulateArrowDown2.default)(_this.$els.input), 
+                    _this.autoCompleter = new google.maps.places.Autocomplete(_this.$els.input, options), 
+                    (0, _eventsBinder2.default)(_this, _this.autoCompleter, events);
+                    var propsToBind = _lodash2.default.clone(props);
+                    delete propsToBind.placeholder, delete propsToBind.place, delete propsToBind.selectFirstOnEnter, 
+                    (0, _propsBinder2.default)(_this, _this.autoCompleter, propsToBind);
+                }).catch(function() {
+                    setTimeout(function() {
+                        throw new Error("Impossible to load the Autocomplete Class from the google places api, did you loaded it ?");
+                    }, 0);
+                });
+            },
+            props: props,
+            events: {
+                "g-place_changed": function() {
+                    this.place = this.autoCompleter.getPlace();
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), props = {
+            draggable: {
+                type: Boolean
+            },
+            editable: {
+                type: Boolean
+            },
+            options: {
+                twoWay: !1,
+                type: Object
+            },
+            path: {
+                type: Array,
+                twoWay: !0
+            },
+            paths: {
+                type: Array,
+                twoWay: !0
+            }
+        }, events = [ "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            ready: function() {
+                this.destroyed = !1, this.$dispatch("register-polygon", this);
+            },
+            attached: function() {
+                this.mapObject && null === this.polygonObject.getMap() && this.polygonObject.setMap(this.mapObject);
+            },
+            destroyed: function() {
+                this.destroyed = !0, this.polygonObject && this.polygonObject.setMap(null);
+            },
+            events: {
+                "map-ready": function(map) {
+                    var _this = this;
+                    if (!this.destroyed) {
+                        this.mapObject = map;
+                        var options = _lodash2.default.clone(this.getPropsValues());
+                        delete options.options, _lodash2.default.assign(options, this.options), options.path || delete options.path, 
+                        options.paths || delete options.paths, this.polygonObject = new google.maps.Polygon(options), 
+                        this.polygonObject.setMap(this.mapObject);
+                        var localProps = _lodash2.default.clone(props);
+                        delete localProps.path, delete localProps.paths, (0, _propsBinder2.default)(this, this.polygonObject, localProps), 
+                        (0, _eventsBinder2.default)(this, this.polygonObject, events);
+                        var eventCancelers = [], convertToLatLng = function(arr) {
+                            return _lodash2.default.map(arr, function(v) {
+                                return {
+                                    lat: v.lat(),
+                                    lng: v.lng()
+                                };
+                            });
+                        }, stable = 0, editHandler = function() {
+                            stable -= 2, stable < 0 && (_this.path = convertToLatLng(_this.polygonObject.getPath().getArray()), 
+                            _this.paths = _lodash2.default.map(_this.polygonObject.getPaths().getArray(), function(pArray) {
+                                return convertToLatLng(pArray.getArray());
+                            }));
+                        }, setupBind = function() {
+                            var mvcoPaths = _this.polygonObject.getPaths();
+                            eventCancelers.push(mvcoPaths.addListener("insert_at", editHandler)), eventCancelers.push(mvcoPaths.addListener("remove_at", editHandler)), 
+                            eventCancelers.push(mvcoPaths.addListener("set_at", editHandler)), _lodash2.default.each(mvcoPaths.getArray(), function(mvcoPath) {
+                                eventCancelers.push(mvcoPath.addListener("insert_at", editHandler)), eventCancelers.push(mvcoPath.addListener("remove_at", editHandler)), 
+                                eventCancelers.push(mvcoPath.addListener("set_at", editHandler));
+                            });
+                        }, setPath = function(paths) {
+                            _lodash2.default.each(eventCancelers, function(id) {
+                                google.maps.event.removeListener(id);
+                            }), eventCancelers.length = 0, _this.polygonObject.setPaths(paths), setupBind();
+                        };
+                        this.$watch("paths", function() {
+                            stable++, stable > -1 && setPath(_this.paths);
+                        }, {
+                            deep: !0
+                        }), this.$watch("path", function() {
+                            stable++, stable > -1 && setPath([ _this.path ]);
+                        }, {
+                            deep: !0
+                        }), setupBind(), this.polygonObject.setMap(this.mapObject);
+                    }
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), props = {
+            draggable: {
+                type: Boolean
+            },
+            editable: {
+                type: Boolean
+            },
+            options: {
+                twoWay: !1,
+                type: Object
+            },
+            path: {
+                type: Array,
+                twoWay: !0
+            }
+        }, events = [ "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            ready: function() {
+                this.destroyed = !1, this.$dispatch("register-polyline", this);
+            },
+            attached: function() {
+                this.mapObject && null === this.polyLineObject.getMap() && this.polyLineObject.setMap(this.mapObject);
+            },
+            destroyed: function() {
+                this.destroyed = !0, this.polyLineObject && this.polyLineObject.setMap(null);
+            },
+            events: {
+                "map-ready": function(map) {
+                    var _this = this;
+                    if (!this.destroyed) {
+                        this.mapObject = map;
+                        var options = _lodash2.default.clone(this.getPropsValues());
+                        delete options.options, _lodash2.default.assign(options, this.options), this.polyLineObject = new google.maps.Polyline(options), 
+                        this.polyLineObject.setMap(this.mapObject);
+                        var localProps = _lodash2.default.clone(props);
+                        delete localProps.path, (0, _propsBinder2.default)(this, this.polyLineObject, localProps), 
+                        (0, _eventsBinder2.default)(this, this.polyLineObject, events);
+                        var eventCancelers = [], editHandler = function() {
+                            _this.path = _lodash2.default.map(_this.polyLineObject.getPath().getArray(), function(v) {
+                                return {
+                                    lat: v.lat(),
+                                    lng: v.lng()
+                                };
+                            });
+                        }, setupBind = function() {
+                            var mvcoPath = _this.polyLineObject.getPath();
+                            eventCancelers.push(mvcoPath.addListener("insert_at", editHandler)), eventCancelers.push(mvcoPath.addListener("remove_at", editHandler)), 
+                            eventCancelers.push(mvcoPath.addListener("set_at", editHandler));
+                        };
+                        this.$watch("path", function() {
+                            _lodash2.default.each(eventCancelers, function(id) {
+                                google.maps.event.removeListener(id);
+                            }), eventCancelers.length = 0, _this.polyLineObject.setPath(_this.path), setupBind();
+                        }, {
+                            deep: !0
+                        }), setupBind(), this.polyLineObject.setMap(this.mapObject);
+                    }
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _lodash = __webpack_require__(1), _lodash2 = _interopRequireDefault(_lodash), _eventsBinder = __webpack_require__(3), _eventsBinder2 = _interopRequireDefault(_eventsBinder), _propsBinder = __webpack_require__(2), _propsBinder2 = _interopRequireDefault(_propsBinder), _getPropsValuesMixin = __webpack_require__(4), _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin), props = {
+            bounds: {
+                type: Object,
+                twoWay: !0
+            },
+            draggable: {
+                type: Boolean,
+                default: !1
+            },
+            editable: {
+                type: Boolean,
+                default: !1
+            },
+            options: {
+                type: Object,
+                twoWay: !1
+            }
+        }, events = [ "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick" ];
+        exports.default = {
+            mixins: [ _getPropsValuesMixin2.default ],
+            props: props,
+            ready: function() {
+                this.destroyed = !1, this.$dispatch("register-rectangle", this);
+            },
+            methods: {
+                createRectangle: function(options, map) {
+                    var _this = this;
+                    if (!this.destroyed) {
+                        this.rectangleObject = new google.maps.Rectangle(options), (0, _propsBinder2.default)(this, this.rectangleObject, props), 
+                        (0, _eventsBinder2.default)(this, this.rectangleObject, events);
+                        var updateBounds = function() {
+                            _this.bounds = _this.rectangleObject.getBounds();
+                        };
+                        this.$watch("bounds_changed", updateBounds, {
+                            deep: !0
+                        });
+                    }
+                }
+            },
+            destroyed: function() {
+                this.rectangleObject && this.rectangleObject.setMap(null), this.destroyed = !0;
+            },
+            events: {
+                "map-ready": function(map) {
+                    this.registrar = "map", this.mapObject = map;
+                    var options = _lodash2.default.clone(this.getPropsValues());
+                    options.map = this.mapObject, this.createRectangle(options, map);
+                }
+            }
+        };
+    }, function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _typeof2 = __webpack_require__(13), _typeof3 = _interopRequireDefault(_typeof2), mutatorObservatorConfig = {
+            attributes: !0,
+            childList: !0,
+            characterData: !0,
+            subtree: !0
+        }, MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+        exports.default = function(element, callback) {
+            if (!MutationObserver) {
+                var oldContent = "";
+                return setInterval(function() {
+                    oldContent != element.innerHTML && (oldContent = element.innerHTML, callback());
+                }, 500), function() {};
+            }
+            var _ret = function() {
+                var observer = new MutationObserver(callback);
+                return observer.observe(element, mutatorObservatorConfig), {
+                    v: function() {
+                        observer.disconnect();
+                    }
+                };
+            }();
+            if ("object" === ("undefined" == typeof _ret ? "undefined" : (0, _typeof3.default)(_ret))) return _ret.v;
+        };
+    }, function(module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = function(input) {
+            function addEventListenerWrapper(type, listener) {
+                if ("keydown" == type) {
+                    var orig_listener = listener;
+                    listener = function(event) {
+                        var suggestion_selected = document.getElementsByClassName("ac-item-selected").length > 0;
+                        if (13 == event.which && !suggestion_selected) {
+                            var simulatedEvent = document.createEvent("Event");
+                            simulatedEvent.keyCode = 40, simulatedEvent.which = 40, orig_listener.apply(input, [ simulatedEvent ]);
+                        }
+                        orig_listener.apply(input, [ event ]);
+                    };
+                }
+                _addEventListener.apply(input, [ type, listener ]);
+            }
+            var _addEventListener = input.addEventListener ? input.addEventListener : input.attachEvent;
+            input.addEventListener = addEventListenerWrapper, input.attachEvent = addEventListenerWrapper;
+        };
+    }, function(module, exports, __webpack_require__) {
+        module.exports = {
+            default: __webpack_require__(37),
+            __esModule: !0
+        };
+    }, function(module, exports, __webpack_require__) {
+        module.exports = {
+            default: __webpack_require__(38),
+            __esModule: !0
+        };
+    }, function(module, exports, __webpack_require__) {
+        __webpack_require__(54), module.exports = __webpack_require__(7).Object.keys;
+    }, function(module, exports, __webpack_require__) {
+        __webpack_require__(56), __webpack_require__(55), module.exports = __webpack_require__(7).Symbol;
+    }, function(module, exports) {
+        module.exports = function(it) {
+            if ("function" != typeof it) throw TypeError(it + " is not a function!");
+            return it;
+        };
+    }, function(module, exports, __webpack_require__) {
+        var isObject = __webpack_require__(47);
+        module.exports = function(it) {
+            if (!isObject(it)) throw TypeError(it + " is not an object!");
+            return it;
+        };
+    }, function(module, exports, __webpack_require__) {
+        var aFunction = __webpack_require__(39);
+        module.exports = function(fn, that, length) {
+            if (aFunction(fn), void 0 === that) return fn;
+            switch (length) {
+              case 1:
+                return function(a) {
+                    return fn.call(that, a);
+                };
+
+              case 2:
+                return function(a, b) {
+                    return fn.call(that, a, b);
+                };
+
+              case 3:
+                return function(a, b, c) {
+                    return fn.call(that, a, b, c);
+                };
+            }
+            return function() {
+                return fn.apply(that, arguments);
+            };
+        };
+    }, function(module, exports, __webpack_require__) {
+        var $ = __webpack_require__(5);
+        module.exports = function(it) {
+            var keys = $.getKeys(it), getSymbols = $.getSymbols;
+            if (getSymbols) for (var key, symbols = getSymbols(it), isEnum = $.isEnum, i = 0; symbols.length > i; ) isEnum.call(it, key = symbols[i++]) && keys.push(key);
+            return keys;
+        };
+    }, function(module, exports, __webpack_require__) {
+        var toIObject = __webpack_require__(11), getNames = __webpack_require__(5).getNames, toString = {}.toString, windowNames = "object" == typeof window && Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [], getWindowNames = function(it) {
+            try {
+                return getNames(it);
+            } catch (e) {
+                return windowNames.slice();
+            }
+        };
+        module.exports.get = function(it) {
+            return windowNames && "[object Window]" == toString.call(it) ? getWindowNames(it) : getNames(toIObject(it));
+        };
+    }, function(module, exports, __webpack_require__) {
+        var $ = __webpack_require__(5), createDesc = __webpack_require__(19);
+        module.exports = __webpack_require__(16) ? function(object, key, value) {
+            return $.setDesc(object, key, createDesc(1, value));
+        } : function(object, key, value) {
+            return object[key] = value, object;
+        };
+    }, function(module, exports, __webpack_require__) {
+        var cof = __webpack_require__(14);
+        module.exports = Object("z").propertyIsEnumerable(0) ? Object : function(it) {
+            return "String" == cof(it) ? it.split("") : Object(it);
+        };
+    }, function(module, exports, __webpack_require__) {
+        var cof = __webpack_require__(14);
+        module.exports = Array.isArray || function(arg) {
+            return "Array" == cof(arg);
+        };
+    }, function(module, exports) {
+        module.exports = function(it) {
+            return "object" == typeof it ? null !== it : "function" == typeof it;
+        };
+    }, function(module, exports, __webpack_require__) {
+        var $ = __webpack_require__(5), toIObject = __webpack_require__(11);
+        module.exports = function(object, el) {
+            for (var key, O = toIObject(object), keys = $.getKeys(O), length = keys.length, index = 0; length > index; ) if (O[key = keys[index++]] === el) return key;
+        };
+    }, function(module, exports) {
+        module.exports = !0;
+    }, function(module, exports, __webpack_require__) {
+        var $export = __webpack_require__(17), core = __webpack_require__(7), fails = __webpack_require__(10);
+        module.exports = function(KEY, exec) {
+            var fn = (core.Object || {})[KEY] || Object[KEY], exp = {};
+            exp[KEY] = exec(fn), $export($export.S + $export.F * fails(function() {
+                fn(1);
+            }), "Object", exp);
+        };
+    }, function(module, exports, __webpack_require__) {
+        module.exports = __webpack_require__(44);
+    }, function(module, exports, __webpack_require__) {
+        var def = __webpack_require__(5).setDesc, has = __webpack_require__(18), TAG = __webpack_require__(22)("toStringTag");
+        module.exports = function(it, tag, stat) {
+            it && !has(it = stat ? it : it.prototype, TAG) && def(it, TAG, {
+                configurable: !0,
+                value: tag
+            });
+        };
+    }, function(module, exports, __webpack_require__) {
+        var defined = __webpack_require__(15);
+        module.exports = function(it) {
+            return Object(defined(it));
+        };
+    }, function(module, exports, __webpack_require__) {
+        var toObject = __webpack_require__(53);
+        __webpack_require__(50)("keys", function($keys) {
+            return function(it) {
+                return $keys(toObject(it));
+            };
+        });
+    }, function(module, exports) {}, function(module, exports, __webpack_require__) {
+        "use strict";
+        var $ = __webpack_require__(5), global = __webpack_require__(8), has = __webpack_require__(18), DESCRIPTORS = __webpack_require__(16), $export = __webpack_require__(17), redefine = __webpack_require__(51), $fails = __webpack_require__(10), shared = __webpack_require__(20), setToStringTag = __webpack_require__(52), uid = __webpack_require__(21), wks = __webpack_require__(22), keyOf = __webpack_require__(48), $names = __webpack_require__(43), enumKeys = __webpack_require__(42), isArray = __webpack_require__(46), anObject = __webpack_require__(40), toIObject = __webpack_require__(11), createDesc = __webpack_require__(19), getDesc = $.getDesc, setDesc = $.setDesc, _create = $.create, getNames = $names.get, $Symbol = global.Symbol, $JSON = global.JSON, _stringify = $JSON && $JSON.stringify, setter = !1, HIDDEN = wks("_hidden"), isEnum = $.isEnum, SymbolRegistry = shared("symbol-registry"), AllSymbols = shared("symbols"), useNative = "function" == typeof $Symbol, ObjectProto = Object.prototype, setSymbolDesc = DESCRIPTORS && $fails(function() {
+            return 7 != _create(setDesc({}, "a", {
+                get: function() {
+                    return setDesc(this, "a", {
+                        value: 7
+                    }).a;
+                }
+            })).a;
+        }) ? function(it, key, D) {
+            var protoDesc = getDesc(ObjectProto, key);
+            protoDesc && delete ObjectProto[key], setDesc(it, key, D), protoDesc && it !== ObjectProto && setDesc(ObjectProto, key, protoDesc);
+        } : setDesc, wrap = function(tag) {
+            var sym = AllSymbols[tag] = _create($Symbol.prototype);
+            return sym._k = tag, DESCRIPTORS && setter && setSymbolDesc(ObjectProto, tag, {
+                configurable: !0,
+                set: function(value) {
+                    has(this, HIDDEN) && has(this[HIDDEN], tag) && (this[HIDDEN][tag] = !1), setSymbolDesc(this, tag, createDesc(1, value));
+                }
+            }), sym;
+        }, isSymbol = function(it) {
+            return "symbol" == typeof it;
+        }, $defineProperty = function(it, key, D) {
+            return D && has(AllSymbols, key) ? (D.enumerable ? (has(it, HIDDEN) && it[HIDDEN][key] && (it[HIDDEN][key] = !1), 
+            D = _create(D, {
+                enumerable: createDesc(0, !1)
+            })) : (has(it, HIDDEN) || setDesc(it, HIDDEN, createDesc(1, {})), it[HIDDEN][key] = !0), 
+            setSymbolDesc(it, key, D)) : setDesc(it, key, D);
+        }, $defineProperties = function(it, P) {
+            anObject(it);
+            for (var key, keys = enumKeys(P = toIObject(P)), i = 0, l = keys.length; l > i; ) $defineProperty(it, key = keys[i++], P[key]);
+            return it;
+        }, $create = function(it, P) {
+            return void 0 === P ? _create(it) : $defineProperties(_create(it), P);
+        }, $propertyIsEnumerable = function(key) {
+            var E = isEnum.call(this, key);
+            return !(E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key]) || E;
+        }, $getOwnPropertyDescriptor = function(it, key) {
+            var D = getDesc(it = toIObject(it), key);
+            return !D || !has(AllSymbols, key) || has(it, HIDDEN) && it[HIDDEN][key] || (D.enumerable = !0), 
+            D;
+        }, $getOwnPropertyNames = function(it) {
+            for (var key, names = getNames(toIObject(it)), result = [], i = 0; names.length > i; ) has(AllSymbols, key = names[i++]) || key == HIDDEN || result.push(key);
+            return result;
+        }, $getOwnPropertySymbols = function(it) {
+            for (var key, names = getNames(toIObject(it)), result = [], i = 0; names.length > i; ) has(AllSymbols, key = names[i++]) && result.push(AllSymbols[key]);
+            return result;
+        }, $stringify = function(it) {
+            if (void 0 !== it && !isSymbol(it)) {
+                for (var replacer, $replacer, args = [ it ], i = 1, $$ = arguments; $$.length > i; ) args.push($$[i++]);
+                return replacer = args[1], "function" == typeof replacer && ($replacer = replacer), 
+                !$replacer && isArray(replacer) || (replacer = function(key, value) {
+                    if ($replacer && (value = $replacer.call(this, key, value)), !isSymbol(value)) return value;
+                }), args[1] = replacer, _stringify.apply($JSON, args);
+            }
+        }, buggyJSON = $fails(function() {
+            var S = $Symbol();
+            return "[null]" != _stringify([ S ]) || "{}" != _stringify({
+                a: S
+            }) || "{}" != _stringify(Object(S));
+        });
+        useNative || ($Symbol = function() {
+            if (isSymbol(this)) throw TypeError("Symbol is not a constructor");
+            return wrap(uid(arguments.length > 0 ? arguments[0] : void 0));
+        }, redefine($Symbol.prototype, "toString", function() {
+            return this._k;
+        }), isSymbol = function(it) {
+            return it instanceof $Symbol;
+        }, $.create = $create, $.isEnum = $propertyIsEnumerable, $.getDesc = $getOwnPropertyDescriptor, 
+        $.setDesc = $defineProperty, $.setDescs = $defineProperties, $.getNames = $names.get = $getOwnPropertyNames, 
+        $.getSymbols = $getOwnPropertySymbols, DESCRIPTORS && !__webpack_require__(49) && redefine(ObjectProto, "propertyIsEnumerable", $propertyIsEnumerable, !0));
+        var symbolStatics = {
+            for: function(key) {
+                return has(SymbolRegistry, key += "") ? SymbolRegistry[key] : SymbolRegistry[key] = $Symbol(key);
+            },
+            keyFor: function(key) {
+                return keyOf(SymbolRegistry, key);
+            },
+            useSetter: function() {
+                setter = !0;
+            },
+            useSimple: function() {
+                setter = !1;
+            }
+        };
+        $.each.call("hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","), function(it) {
+            var sym = wks(it);
+            symbolStatics[it] = useNative ? sym : wrap(sym);
+        }), setter = !0, $export($export.G + $export.W, {
+            Symbol: $Symbol
+        }), $export($export.S, "Symbol", symbolStatics), $export($export.S + $export.F * !useNative, "Object", {
+            create: $create,
+            defineProperty: $defineProperty,
+            defineProperties: $defineProperties,
+            getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+            getOwnPropertyNames: $getOwnPropertyNames,
+            getOwnPropertySymbols: $getOwnPropertySymbols
+        }), $JSON && $export($export.S + $export.F * (!useNative || buggyJSON), "JSON", {
+            stringify: $stringify
+        }), setToStringTag($Symbol, "Symbol"), setToStringTag(Math, "Math", !0), setToStringTag(global.JSON, "JSON", !0);
+    }, function(module, exports, __webpack_require__) {
+        exports = module.exports = __webpack_require__(58)(), exports.push([ module.id, ".vue-map-container,.vue-map-container .vue-map{width:100%;height:100%}", "", {
+            version: 3,
+            sources: [ "/./src/components/map.vue.style" ],
+            names: [],
+            mappings: "AAA0C,+CAA4B,WAAW,WAAW,CAAC",
+            file: "map.vue",
+            sourcesContent: [ ".vue-map-container{width:100%;height:100%}.vue-map-container .vue-map{width:100%;height:100%}" ],
+            sourceRoot: "webpack://"
+        } ]);
+    }, function(module, exports) {
+        module.exports = function() {
+            var list = [];
+            return list.toString = function() {
+                for (var result = [], i = 0; i < this.length; i++) {
+                    var item = this[i];
+                    item[2] ? result.push("@media " + item[2] + "{" + item[1] + "}") : result.push(item[1]);
+                }
+                return result.join("");
+            }, list.i = function(modules, mediaQuery) {
+                "string" == typeof modules && (modules = [ [ null, modules, "" ] ]);
+                for (var alreadyImportedModules = {}, i = 0; i < this.length; i++) {
+                    var id = this[i][0];
+                    "number" == typeof id && (alreadyImportedModules[id] = !0);
+                }
+                for (i = 0; i < modules.length; i++) {
+                    var item = modules[i];
+                    "number" == typeof item[0] && alreadyImportedModules[item[0]] || (mediaQuery && !item[2] ? item[2] = mediaQuery : mediaQuery && (item[2] = "(" + item[2] + ") and (" + mediaQuery + ")"), 
+                    list.push(item));
+                }
+            }, list;
+        };
+    }, function(module, exports) {
+        /**
 	 * @license
 	 * Copyright 2010 Google Inc. All Rights Reserved.
 	 *
@@ -41,7 +2214,292 @@ e.paths=i.default.map(e.polygonObject.getPaths().getArray(),function(t){return s
 	 * See the License for the specific language governing permissions and
 	 * limitations under the License.
 	 */
-function n(t,e,r){this.extend(n,google.maps.OverlayView),this.map_=t,this.markers_=[],this.clusters_=[],this.sizes=[53,56,66,78,90],this.styles_=[],this.ready_=!1;var o=r||{};this.gridSize_=o.gridSize||60,this.minClusterSize_=o.minimumClusterSize||2,this.maxZoom_=o.maxZoom||null,this.styles_=o.styles||[],this.imagePath_=o.imagePath||this.MARKER_CLUSTER_IMAGE_PATH_,this.imageExtension_=o.imageExtension||this.MARKER_CLUSTER_IMAGE_EXTENSION_,this.zoomOnClick_=!0,void 0!=o.zoomOnClick&&(this.zoomOnClick_=o.zoomOnClick),this.averageCenter_=!1,void 0!=o.averageCenter&&(this.averageCenter_=o.averageCenter),this.setupStyles_(),this.setMap(t),this.prevZoom_=this.map_.getZoom();var i=this;google.maps.event.addListener(this.map_,"zoom_changed",function(){var t=i.map_.getZoom();i.prevZoom_!=t&&(i.prevZoom_=t,i.resetViewport())}),google.maps.event.addListener(this.map_,"idle",function(){i.redraw()}),e&&e.length&&this.addMarkers(e,!1)}function r(t){this.markerClusterer_=t,this.map_=t.getMap(),this.gridSize_=t.getGridSize(),this.minClusterSize_=t.getMinClusterSize(),this.averageCenter_=t.isAverageCenter(),this.center_=null,this.markers_=[],this.bounds_=null,this.clusterIcon_=new o(this,t.getStyles(),t.getGridSize())}function o(t,e,n){t.getMarkerClusterer().extend(o,google.maps.OverlayView),this.styles_=e,this.padding_=n||0,this.cluster_=t,this.center_=null,this.map_=t.getMap(),this.div_=null,this.sums_=null,this.visible_=!1,this.setMap(this.map_)}n.prototype.MARKER_CLUSTER_IMAGE_PATH_="../images/m",n.prototype.MARKER_CLUSTER_IMAGE_EXTENSION_="png",n.prototype.extend=function(t,e){return function(t){for(var e in t.prototype)this.prototype[e]=t.prototype[e];return this}.apply(t,[e])},n.prototype.onAdd=function(){this.setReady_(!0)},n.prototype.draw=function(){},n.prototype.setupStyles_=function(){if(!this.styles_.length)for(var t,e=0;t=this.sizes[e];e++)this.styles_.push({url:this.imagePath_+(e+1)+"."+this.imageExtension_,height:t,width:t})},n.prototype.fitMapToMarkers=function(){for(var t,e=this.getMarkers(),n=new google.maps.LatLngBounds,r=0;t=e[r];r++)n.extend(t.getPosition());this.map_.fitBounds(n)},n.prototype.setStyles=function(t){this.styles_=t},n.prototype.getStyles=function(){return this.styles_},n.prototype.isZoomOnClick=function(){return this.zoomOnClick_},n.prototype.isAverageCenter=function(){return this.averageCenter_},n.prototype.getMarkers=function(){return this.markers_},n.prototype.getTotalMarkers=function(){return this.markers_.length},n.prototype.setMaxZoom=function(t){this.maxZoom_=t},n.prototype.getMaxZoom=function(){return this.maxZoom_},n.prototype.calculator_=function(t,e){for(var n=0,r=t.length,o=r;0!==o;)o=parseInt(o/10,10),n++;return n=Math.min(n,e),{text:r,index:n}},n.prototype.setCalculator=function(t){this.calculator_=t},n.prototype.getCalculator=function(){return this.calculator_},n.prototype.addMarkers=function(t,e){for(var n,r=0;n=t[r];r++)this.pushMarkerTo_(n);e||this.redraw()},n.prototype.pushMarkerTo_=function(t){if(t.isAdded=!1,t.draggable){var e=this;google.maps.event.addListener(t,"dragend",function(){t.isAdded=!1,e.repaint()})}this.markers_.push(t)},n.prototype.addMarker=function(t,e){this.pushMarkerTo_(t),e||this.redraw()},n.prototype.removeMarker_=function(t){var e=-1;if(this.markers_.indexOf)e=this.markers_.indexOf(t);else for(var n,r=0;n=this.markers_[r];r++)if(n==t){e=r;break}return e!=-1&&(t.setMap(null),this.markers_.splice(e,1),!0)},n.prototype.removeMarker=function(t,e){var n=this.removeMarker_(t);return!(e||!n)&&(this.resetViewport(),this.redraw(),!0)},n.prototype.removeMarkers=function(t,e){for(var n,r=!1,o=0;n=t[o];o++){var i=this.removeMarker_(n);r=r||i}if(!e&&r)return this.resetViewport(),this.redraw(),!0},n.prototype.setReady_=function(t){this.ready_||(this.ready_=t,this.createClusters_())},n.prototype.getTotalClusters=function(){return this.clusters_.length},n.prototype.getMap=function(){return this.map_},n.prototype.setMap=function(t){this.map_=t},n.prototype.getGridSize=function(){return this.gridSize_},n.prototype.setGridSize=function(t){this.gridSize_=t},n.prototype.getMinClusterSize=function(){return this.minClusterSize_},n.prototype.setMinClusterSize=function(t){this.minClusterSize_=t},n.prototype.getExtendedBounds=function(t){var e=this.getProjection(),n=new google.maps.LatLng(t.getNorthEast().lat(),t.getNorthEast().lng()),r=new google.maps.LatLng(t.getSouthWest().lat(),t.getSouthWest().lng()),o=e.fromLatLngToDivPixel(n);o.x+=this.gridSize_,o.y-=this.gridSize_;var i=e.fromLatLngToDivPixel(r);i.x-=this.gridSize_,i.y+=this.gridSize_;var s=e.fromDivPixelToLatLng(o),a=e.fromDivPixelToLatLng(i);return t.extend(s),t.extend(a),t},n.prototype.isMarkerInBounds_=function(t,e){return e.contains(t.getPosition())},n.prototype.clearMarkers=function(){this.resetViewport(!0),this.markers_=[]},n.prototype.resetViewport=function(t){for(var e,n=0;e=this.clusters_[n];n++)e.remove();for(var r,n=0;r=this.markers_[n];n++)r.isAdded=!1,t&&r.setMap(null);this.clusters_=[]},n.prototype.repaint=function(){var t=this.clusters_.slice();this.clusters_.length=0,this.resetViewport(),this.redraw(),window.setTimeout(function(){for(var e,n=0;e=t[n];n++)e.remove()},0)},n.prototype.redraw=function(){this.createClusters_()},n.prototype.distanceBetweenPoints_=function(t,e){if(!t||!e)return 0;var n=6371,r=(e.lat()-t.lat())*Math.PI/180,o=(e.lng()-t.lng())*Math.PI/180,i=Math.sin(r/2)*Math.sin(r/2)+Math.cos(t.lat()*Math.PI/180)*Math.cos(e.lat()*Math.PI/180)*Math.sin(o/2)*Math.sin(o/2),s=2*Math.atan2(Math.sqrt(i),Math.sqrt(1-i)),a=n*s;return a},n.prototype.addToClosestCluster_=function(t){for(var e,n=4e4,o=null,i=(t.getPosition(),0);e=this.clusters_[i];i++){var s=e.getCenter();if(s){var a=this.distanceBetweenPoints_(s,t.getPosition());a<n&&(n=a,o=e)}}if(o&&o.isMarkerInClusterBounds(t))o.addMarker(t);else{var e=new r(this);e.addMarker(t),this.clusters_.push(e)}},n.prototype.createClusters_=function(){if(this.ready_)for(var t,e=new google.maps.LatLngBounds(this.map_.getBounds().getSouthWest(),this.map_.getBounds().getNorthEast()),n=this.getExtendedBounds(e),r=0;t=this.markers_[r];r++)!t.isAdded&&this.isMarkerInBounds_(t,n)&&this.addToClosestCluster_(t)},r.prototype.isMarkerAlreadyAdded=function(t){if(this.markers_.indexOf)return this.markers_.indexOf(t)!=-1;for(var e,n=0;e=this.markers_[n];n++)if(e==t)return!0;return!1},r.prototype.addMarker=function(t){if(this.isMarkerAlreadyAdded(t))return!1;if(this.center_){if(this.averageCenter_){var e=this.markers_.length+1,n=(this.center_.lat()*(e-1)+t.getPosition().lat())/e,r=(this.center_.lng()*(e-1)+t.getPosition().lng())/e;this.center_=new google.maps.LatLng(n,r),this.calculateBounds_()}}else this.center_=t.getPosition(),this.calculateBounds_();t.isAdded=!0,this.markers_.push(t);var o=this.markers_.length;if(o<this.minClusterSize_&&t.getMap()!=this.map_&&t.setMap(this.map_),o==this.minClusterSize_)for(var i=0;i<o;i++)this.markers_[i].setMap(null);return o>=this.minClusterSize_&&t.setMap(null),this.updateIcon(),!0},r.prototype.getMarkerClusterer=function(){return this.markerClusterer_},r.prototype.getBounds=function(){for(var t,e=new google.maps.LatLngBounds(this.center_,this.center_),n=this.getMarkers(),r=0;t=n[r];r++)e.extend(t.getPosition());return e},r.prototype.remove=function(){this.clusterIcon_.remove(),this.markers_.length=0,delete this.markers_},r.prototype.getSize=function(){return this.markers_.length},r.prototype.getMarkers=function(){return this.markers_},r.prototype.getCenter=function(){return this.center_},r.prototype.calculateBounds_=function(){var t=new google.maps.LatLngBounds(this.center_,this.center_);this.bounds_=this.markerClusterer_.getExtendedBounds(t)},r.prototype.isMarkerInClusterBounds=function(t){return this.bounds_.contains(t.getPosition())},r.prototype.getMap=function(){return this.map_},r.prototype.updateIcon=function(){var t=this.map_.getZoom(),e=this.markerClusterer_.getMaxZoom();if(e&&t>e)for(var n,r=0;n=this.markers_[r];r++)n.setMap(this.map_);else{if(this.markers_.length<this.minClusterSize_)return void this.clusterIcon_.hide();var o=this.markerClusterer_.getStyles().length,i=this.markerClusterer_.getCalculator()(this.markers_,o);this.clusterIcon_.setCenter(this.center_),this.clusterIcon_.setSums(i),this.clusterIcon_.show()}},o.prototype.triggerClusterClick=function(t){var e=this.cluster_.getMarkerClusterer();google.maps.event.trigger(e,"clusterclick",this.cluster_,t),e.isZoomOnClick()&&this.map_.fitBounds(this.cluster_.getBounds())},o.prototype.onAdd=function(){if(this.div_=document.createElement("DIV"),this.visible_){var t=this.getPosFromLatLng_(this.center_);this.div_.style.cssText=this.createCss(t),this.div_.innerHTML=this.sums_.text}var e=this.getPanes();e.overlayMouseTarget.appendChild(this.div_);var n=this,r=!1;google.maps.event.addDomListener(this.div_,"click",function(t){r||n.triggerClusterClick(t)}),google.maps.event.addDomListener(this.div_,"mousedown",function(){r=!1}),google.maps.event.addDomListener(this.div_,"mousemove",function(){r=!0})},o.prototype.getPosFromLatLng_=function(t){var e=this.getProjection().fromLatLngToDivPixel(t);return"object"==typeof this.iconAnchor_&&2===this.iconAnchor_.length?(e.x-=this.iconAnchor_[0],e.y-=this.iconAnchor_[1]):(e.x-=parseInt(this.width_/2,10),e.y-=parseInt(this.height_/2,10)),e},o.prototype.draw=function(){if(this.visible_){var t=this.getPosFromLatLng_(this.center_);this.div_.style.top=t.y+"px",this.div_.style.left=t.x+"px"}},o.prototype.hide=function(){this.div_&&(this.div_.style.display="none"),this.visible_=!1},o.prototype.show=function(){if(this.div_){var t=this.getPosFromLatLng_(this.center_);this.div_.style.cssText=this.createCss(t),this.div_.style.display=""}this.visible_=!0},o.prototype.remove=function(){this.setMap(null)},o.prototype.onRemove=function(){this.div_&&this.div_.parentNode&&(this.hide(),this.div_.parentNode.removeChild(this.div_),this.div_=null)},o.prototype.setSums=function(t){this.sums_=t,this.text_=t.text,this.index_=t.index,this.div_&&(this.div_.innerHTML=t.text),this.useStyle()},o.prototype.useStyle=function(){var t=Math.max(0,this.sums_.index-1);t=Math.min(this.styles_.length-1,t);var e=this.styles_[t];this.url_=e.url,this.height_=e.height,this.width_=e.width,this.textColor_=e.textColor,this.anchor_=e.anchor,this.textSize_=e.textSize,this.backgroundPosition_=e.backgroundPosition,this.iconAnchor_=e.iconAnchor},o.prototype.setCenter=function(t){this.center_=t},o.prototype.createCss=function(t){var e=[];e.push("background-image:url("+this.url_+");");var n=this.backgroundPosition_?this.backgroundPosition_:"0 0";e.push("background-position:"+n+";"),"object"==typeof this.anchor_?("number"==typeof this.anchor_[0]&&this.anchor_[0]>0&&this.anchor_[0]<this.height_?e.push("height:"+(this.height_-this.anchor_[0])+"px; padding-top:"+this.anchor_[0]+"px;"):"number"==typeof this.anchor_[0]&&this.anchor_[0]<0&&-this.anchor_[0]<this.height_?e.push("height:"+this.height_+"px; line-height:"+(this.height_+this.anchor_[0])+"px;"):e.push("height:"+this.height_+"px; line-height:"+this.height_+"px;"),"number"==typeof this.anchor_[1]&&this.anchor_[1]>0&&this.anchor_[1]<this.width_?e.push("width:"+(this.width_-this.anchor_[1])+"px; padding-left:"+this.anchor_[1]+"px;"):e.push("width:"+this.width_+"px; text-align:center;")):e.push("height:"+this.height_+"px; line-height:"+this.height_+"px; width:"+this.width_+"px; text-align:center;");var r=this.textColor_?this.textColor_:"black",o=this.textSize_?this.textSize_:11;return e.push("cursor:pointer; top:"+t.y+"px; left:"+t.x+"px; color:"+r+"; position:absolute; font-size:"+o+"px; font-family:Arial,sans-serif; font-weight:bold"),e.join("")},window.MarkerClusterer=n,n.prototype.addMarker=n.prototype.addMarker,n.prototype.addMarkers=n.prototype.addMarkers,n.prototype.clearMarkers=n.prototype.clearMarkers,n.prototype.fitMapToMarkers=n.prototype.fitMapToMarkers,n.prototype.getCalculator=n.prototype.getCalculator,n.prototype.getGridSize=n.prototype.getGridSize,n.prototype.getExtendedBounds=n.prototype.getExtendedBounds,n.prototype.getMap=n.prototype.getMap,n.prototype.getMarkers=n.prototype.getMarkers,n.prototype.getMaxZoom=n.prototype.getMaxZoom,n.prototype.getStyles=n.prototype.getStyles,n.prototype.getTotalClusters=n.prototype.getTotalClusters,n.prototype.getTotalMarkers=n.prototype.getTotalMarkers,n.prototype.redraw=n.prototype.redraw,n.prototype.removeMarker=n.prototype.removeMarker,n.prototype.removeMarkers=n.prototype.removeMarkers,n.prototype.resetViewport=n.prototype.resetViewport,n.prototype.repaint=n.prototype.repaint,n.prototype.setCalculator=n.prototype.setCalculator,n.prototype.setGridSize=n.prototype.setGridSize,n.prototype.setMaxZoom=n.prototype.setMaxZoom,n.prototype.onAdd=n.prototype.onAdd,n.prototype.draw=n.prototype.draw,r.prototype.getCenter=r.prototype.getCenter,r.prototype.getSize=r.prototype.getSize,r.prototype.getMarkers=r.prototype.getMarkers,o.prototype.onAdd=o.prototype.onAdd,o.prototype.draw=o.prototype.draw,o.prototype.onRemove=o.prototype.onRemove},function(t,e){/*!
+        function MarkerClusterer(map, opt_markers, opt_options) {
+            this.extend(MarkerClusterer, google.maps.OverlayView), this.map_ = map, this.markers_ = [], 
+            this.clusters_ = [], this.sizes = [ 53, 56, 66, 78, 90 ], this.styles_ = [], this.ready_ = !1;
+            var options = opt_options || {};
+            this.gridSize_ = options.gridSize || 60, this.minClusterSize_ = options.minimumClusterSize || 2, 
+            this.maxZoom_ = options.maxZoom || null, this.styles_ = options.styles || [], this.imagePath_ = options.imagePath || this.MARKER_CLUSTER_IMAGE_PATH_, 
+            this.imageExtension_ = options.imageExtension || this.MARKER_CLUSTER_IMAGE_EXTENSION_, 
+            this.zoomOnClick_ = !0, void 0 != options.zoomOnClick && (this.zoomOnClick_ = options.zoomOnClick), 
+            this.averageCenter_ = !1, void 0 != options.averageCenter && (this.averageCenter_ = options.averageCenter), 
+            this.setupStyles_(), this.setMap(map), this.prevZoom_ = this.map_.getZoom();
+            var that = this;
+            google.maps.event.addListener(this.map_, "zoom_changed", function() {
+                var zoom = that.map_.getZoom();
+                that.prevZoom_ != zoom && (that.prevZoom_ = zoom, that.resetViewport());
+            }), google.maps.event.addListener(this.map_, "idle", function() {
+                that.redraw();
+            }), opt_markers && opt_markers.length && this.addMarkers(opt_markers, !1);
+        }
+        function Cluster(markerClusterer) {
+            this.markerClusterer_ = markerClusterer, this.map_ = markerClusterer.getMap(), this.gridSize_ = markerClusterer.getGridSize(), 
+            this.minClusterSize_ = markerClusterer.getMinClusterSize(), this.averageCenter_ = markerClusterer.isAverageCenter(), 
+            this.center_ = null, this.markers_ = [], this.bounds_ = null, this.clusterIcon_ = new ClusterIcon(this, markerClusterer.getStyles(), markerClusterer.getGridSize());
+        }
+        function ClusterIcon(cluster, styles, opt_padding) {
+            cluster.getMarkerClusterer().extend(ClusterIcon, google.maps.OverlayView), this.styles_ = styles, 
+            this.padding_ = opt_padding || 0, this.cluster_ = cluster, this.center_ = null, 
+            this.map_ = cluster.getMap(), this.div_ = null, this.sums_ = null, this.visible_ = !1, 
+            this.setMap(this.map_);
+        }
+        MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ = "../images/m", MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_EXTENSION_ = "png", 
+        MarkerClusterer.prototype.extend = function(obj1, obj2) {
+            return function(object) {
+                for (var property in object.prototype) this.prototype[property] = object.prototype[property];
+                return this;
+            }.apply(obj1, [ obj2 ]);
+        }, MarkerClusterer.prototype.onAdd = function() {
+            this.setReady_(!0);
+        }, MarkerClusterer.prototype.draw = function() {}, MarkerClusterer.prototype.setupStyles_ = function() {
+            if (!this.styles_.length) for (var size, i = 0; size = this.sizes[i]; i++) this.styles_.push({
+                url: this.imagePath_ + (i + 1) + "." + this.imageExtension_,
+                height: size,
+                width: size
+            });
+        }, MarkerClusterer.prototype.fitMapToMarkers = function() {
+            for (var marker, markers = this.getMarkers(), bounds = new google.maps.LatLngBounds(), i = 0; marker = markers[i]; i++) bounds.extend(marker.getPosition());
+            this.map_.fitBounds(bounds);
+        }, MarkerClusterer.prototype.setStyles = function(styles) {
+            this.styles_ = styles;
+        }, MarkerClusterer.prototype.getStyles = function() {
+            return this.styles_;
+        }, MarkerClusterer.prototype.isZoomOnClick = function() {
+            return this.zoomOnClick_;
+        }, MarkerClusterer.prototype.isAverageCenter = function() {
+            return this.averageCenter_;
+        }, MarkerClusterer.prototype.getMarkers = function() {
+            return this.markers_;
+        }, MarkerClusterer.prototype.getTotalMarkers = function() {
+            return this.markers_.length;
+        }, MarkerClusterer.prototype.setMaxZoom = function(maxZoom) {
+            this.maxZoom_ = maxZoom;
+        }, MarkerClusterer.prototype.getMaxZoom = function() {
+            return this.maxZoom_;
+        }, MarkerClusterer.prototype.calculator_ = function(markers, numStyles) {
+            for (var index = 0, count = markers.length, dv = count; 0 !== dv; ) dv = parseInt(dv / 10, 10), 
+            index++;
+            return index = Math.min(index, numStyles), {
+                text: count,
+                index: index
+            };
+        }, MarkerClusterer.prototype.setCalculator = function(calculator) {
+            this.calculator_ = calculator;
+        }, MarkerClusterer.prototype.getCalculator = function() {
+            return this.calculator_;
+        }, MarkerClusterer.prototype.addMarkers = function(markers, opt_nodraw) {
+            for (var marker, i = 0; marker = markers[i]; i++) this.pushMarkerTo_(marker);
+            opt_nodraw || this.redraw();
+        }, MarkerClusterer.prototype.pushMarkerTo_ = function(marker) {
+            if (marker.isAdded = !1, marker.draggable) {
+                var that = this;
+                google.maps.event.addListener(marker, "dragend", function() {
+                    marker.isAdded = !1, that.repaint();
+                });
+            }
+            this.markers_.push(marker);
+        }, MarkerClusterer.prototype.addMarker = function(marker, opt_nodraw) {
+            this.pushMarkerTo_(marker), opt_nodraw || this.redraw();
+        }, MarkerClusterer.prototype.removeMarker_ = function(marker) {
+            var index = -1;
+            if (this.markers_.indexOf) index = this.markers_.indexOf(marker); else for (var m, i = 0; m = this.markers_[i]; i++) if (m == marker) {
+                index = i;
+                break;
+            }
+            return index != -1 && (marker.setMap(null), this.markers_.splice(index, 1), !0);
+        }, MarkerClusterer.prototype.removeMarker = function(marker, opt_nodraw) {
+            var removed = this.removeMarker_(marker);
+            return !(opt_nodraw || !removed) && (this.resetViewport(), this.redraw(), !0);
+        }, MarkerClusterer.prototype.removeMarkers = function(markers, opt_nodraw) {
+            for (var marker, removed = !1, i = 0; marker = markers[i]; i++) {
+                var r = this.removeMarker_(marker);
+                removed = removed || r;
+            }
+            if (!opt_nodraw && removed) return this.resetViewport(), this.redraw(), !0;
+        }, MarkerClusterer.prototype.setReady_ = function(ready) {
+            this.ready_ || (this.ready_ = ready, this.createClusters_());
+        }, MarkerClusterer.prototype.getTotalClusters = function() {
+            return this.clusters_.length;
+        }, MarkerClusterer.prototype.getMap = function() {
+            return this.map_;
+        }, MarkerClusterer.prototype.setMap = function(map) {
+            this.map_ = map;
+        }, MarkerClusterer.prototype.getGridSize = function() {
+            return this.gridSize_;
+        }, MarkerClusterer.prototype.setGridSize = function(size) {
+            this.gridSize_ = size;
+        }, MarkerClusterer.prototype.getMinClusterSize = function() {
+            return this.minClusterSize_;
+        }, MarkerClusterer.prototype.setMinClusterSize = function(size) {
+            this.minClusterSize_ = size;
+        }, MarkerClusterer.prototype.getExtendedBounds = function(bounds) {
+            var projection = this.getProjection(), tr = new google.maps.LatLng(bounds.getNorthEast().lat(), bounds.getNorthEast().lng()), bl = new google.maps.LatLng(bounds.getSouthWest().lat(), bounds.getSouthWest().lng()), trPix = projection.fromLatLngToDivPixel(tr);
+            trPix.x += this.gridSize_, trPix.y -= this.gridSize_;
+            var blPix = projection.fromLatLngToDivPixel(bl);
+            blPix.x -= this.gridSize_, blPix.y += this.gridSize_;
+            var ne = projection.fromDivPixelToLatLng(trPix), sw = projection.fromDivPixelToLatLng(blPix);
+            return bounds.extend(ne), bounds.extend(sw), bounds;
+        }, MarkerClusterer.prototype.isMarkerInBounds_ = function(marker, bounds) {
+            return bounds.contains(marker.getPosition());
+        }, MarkerClusterer.prototype.clearMarkers = function() {
+            this.resetViewport(!0), this.markers_ = [];
+        }, MarkerClusterer.prototype.resetViewport = function(opt_hide) {
+            for (var cluster, i = 0; cluster = this.clusters_[i]; i++) cluster.remove();
+            for (var marker, i = 0; marker = this.markers_[i]; i++) marker.isAdded = !1, opt_hide && marker.setMap(null);
+            this.clusters_ = [];
+        }, MarkerClusterer.prototype.repaint = function() {
+            var oldClusters = this.clusters_.slice();
+            this.clusters_.length = 0, this.resetViewport(), this.redraw(), window.setTimeout(function() {
+                for (var cluster, i = 0; cluster = oldClusters[i]; i++) cluster.remove();
+            }, 0);
+        }, MarkerClusterer.prototype.redraw = function() {
+            this.createClusters_();
+        }, MarkerClusterer.prototype.distanceBetweenPoints_ = function(p1, p2) {
+            if (!p1 || !p2) return 0;
+            var R = 6371, dLat = (p2.lat() - p1.lat()) * Math.PI / 180, dLon = (p2.lng() - p1.lng()) * Math.PI / 180, a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(p1.lat() * Math.PI / 180) * Math.cos(p2.lat() * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2), c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), d = R * c;
+            return d;
+        }, MarkerClusterer.prototype.addToClosestCluster_ = function(marker) {
+            for (var cluster, distance = 4e4, clusterToAddTo = null, i = (marker.getPosition(), 
+            0); cluster = this.clusters_[i]; i++) {
+                var center = cluster.getCenter();
+                if (center) {
+                    var d = this.distanceBetweenPoints_(center, marker.getPosition());
+                    d < distance && (distance = d, clusterToAddTo = cluster);
+                }
+            }
+            if (clusterToAddTo && clusterToAddTo.isMarkerInClusterBounds(marker)) clusterToAddTo.addMarker(marker); else {
+                var cluster = new Cluster(this);
+                cluster.addMarker(marker), this.clusters_.push(cluster);
+            }
+        }, MarkerClusterer.prototype.createClusters_ = function() {
+            if (this.ready_) for (var marker, mapBounds = new google.maps.LatLngBounds(this.map_.getBounds().getSouthWest(), this.map_.getBounds().getNorthEast()), bounds = this.getExtendedBounds(mapBounds), i = 0; marker = this.markers_[i]; i++) !marker.isAdded && this.isMarkerInBounds_(marker, bounds) && this.addToClosestCluster_(marker);
+        }, Cluster.prototype.isMarkerAlreadyAdded = function(marker) {
+            if (this.markers_.indexOf) return this.markers_.indexOf(marker) != -1;
+            for (var m, i = 0; m = this.markers_[i]; i++) if (m == marker) return !0;
+            return !1;
+        }, Cluster.prototype.addMarker = function(marker) {
+            if (this.isMarkerAlreadyAdded(marker)) return !1;
+            if (this.center_) {
+                if (this.averageCenter_) {
+                    var l = this.markers_.length + 1, lat = (this.center_.lat() * (l - 1) + marker.getPosition().lat()) / l, lng = (this.center_.lng() * (l - 1) + marker.getPosition().lng()) / l;
+                    this.center_ = new google.maps.LatLng(lat, lng), this.calculateBounds_();
+                }
+            } else this.center_ = marker.getPosition(), this.calculateBounds_();
+            marker.isAdded = !0, this.markers_.push(marker);
+            var len = this.markers_.length;
+            if (len < this.minClusterSize_ && marker.getMap() != this.map_ && marker.setMap(this.map_), 
+            len == this.minClusterSize_) for (var i = 0; i < len; i++) this.markers_[i].setMap(null);
+            return len >= this.minClusterSize_ && marker.setMap(null), this.updateIcon(), !0;
+        }, Cluster.prototype.getMarkerClusterer = function() {
+            return this.markerClusterer_;
+        }, Cluster.prototype.getBounds = function() {
+            for (var marker, bounds = new google.maps.LatLngBounds(this.center_, this.center_), markers = this.getMarkers(), i = 0; marker = markers[i]; i++) bounds.extend(marker.getPosition());
+            return bounds;
+        }, Cluster.prototype.remove = function() {
+            this.clusterIcon_.remove(), this.markers_.length = 0, delete this.markers_;
+        }, Cluster.prototype.getSize = function() {
+            return this.markers_.length;
+        }, Cluster.prototype.getMarkers = function() {
+            return this.markers_;
+        }, Cluster.prototype.getCenter = function() {
+            return this.center_;
+        }, Cluster.prototype.calculateBounds_ = function() {
+            var bounds = new google.maps.LatLngBounds(this.center_, this.center_);
+            this.bounds_ = this.markerClusterer_.getExtendedBounds(bounds);
+        }, Cluster.prototype.isMarkerInClusterBounds = function(marker) {
+            return this.bounds_.contains(marker.getPosition());
+        }, Cluster.prototype.getMap = function() {
+            return this.map_;
+        }, Cluster.prototype.updateIcon = function() {
+            var zoom = this.map_.getZoom(), mz = this.markerClusterer_.getMaxZoom();
+            if (mz && zoom > mz) for (var marker, i = 0; marker = this.markers_[i]; i++) marker.setMap(this.map_); else {
+                if (this.markers_.length < this.minClusterSize_) return void this.clusterIcon_.hide();
+                var numStyles = this.markerClusterer_.getStyles().length, sums = this.markerClusterer_.getCalculator()(this.markers_, numStyles);
+                this.clusterIcon_.setCenter(this.center_), this.clusterIcon_.setSums(sums), this.clusterIcon_.show();
+            }
+        }, ClusterIcon.prototype.triggerClusterClick = function(event) {
+            var markerClusterer = this.cluster_.getMarkerClusterer();
+            google.maps.event.trigger(markerClusterer, "clusterclick", this.cluster_, event), 
+            markerClusterer.isZoomOnClick() && this.map_.fitBounds(this.cluster_.getBounds());
+        }, ClusterIcon.prototype.onAdd = function() {
+            if (this.div_ = document.createElement("DIV"), this.visible_) {
+                var pos = this.getPosFromLatLng_(this.center_);
+                this.div_.style.cssText = this.createCss(pos), this.div_.innerHTML = this.sums_.text;
+            }
+            var panes = this.getPanes();
+            panes.overlayMouseTarget.appendChild(this.div_);
+            var that = this, isDragging = !1;
+            google.maps.event.addDomListener(this.div_, "click", function(event) {
+                isDragging || that.triggerClusterClick(event);
+            }), google.maps.event.addDomListener(this.div_, "mousedown", function() {
+                isDragging = !1;
+            }), google.maps.event.addDomListener(this.div_, "mousemove", function() {
+                isDragging = !0;
+            });
+        }, ClusterIcon.prototype.getPosFromLatLng_ = function(latlng) {
+            var pos = this.getProjection().fromLatLngToDivPixel(latlng);
+            return "object" == typeof this.iconAnchor_ && 2 === this.iconAnchor_.length ? (pos.x -= this.iconAnchor_[0], 
+            pos.y -= this.iconAnchor_[1]) : (pos.x -= parseInt(this.width_ / 2, 10), pos.y -= parseInt(this.height_ / 2, 10)), 
+            pos;
+        }, ClusterIcon.prototype.draw = function() {
+            if (this.visible_) {
+                var pos = this.getPosFromLatLng_(this.center_);
+                this.div_.style.top = pos.y + "px", this.div_.style.left = pos.x + "px";
+            }
+        }, ClusterIcon.prototype.hide = function() {
+            this.div_ && (this.div_.style.display = "none"), this.visible_ = !1;
+        }, ClusterIcon.prototype.show = function() {
+            if (this.div_) {
+                var pos = this.getPosFromLatLng_(this.center_);
+                this.div_.style.cssText = this.createCss(pos), this.div_.style.display = "";
+            }
+            this.visible_ = !0;
+        }, ClusterIcon.prototype.remove = function() {
+            this.setMap(null);
+        }, ClusterIcon.prototype.onRemove = function() {
+            this.div_ && this.div_.parentNode && (this.hide(), this.div_.parentNode.removeChild(this.div_), 
+            this.div_ = null);
+        }, ClusterIcon.prototype.setSums = function(sums) {
+            this.sums_ = sums, this.text_ = sums.text, this.index_ = sums.index, this.div_ && (this.div_.innerHTML = sums.text), 
+            this.useStyle();
+        }, ClusterIcon.prototype.useStyle = function() {
+            var index = Math.max(0, this.sums_.index - 1);
+            index = Math.min(this.styles_.length - 1, index);
+            var style = this.styles_[index];
+            this.url_ = style.url, this.height_ = style.height, this.width_ = style.width, this.textColor_ = style.textColor, 
+            this.anchor_ = style.anchor, this.textSize_ = style.textSize, this.backgroundPosition_ = style.backgroundPosition, 
+            this.iconAnchor_ = style.iconAnchor;
+        }, ClusterIcon.prototype.setCenter = function(center) {
+            this.center_ = center;
+        }, ClusterIcon.prototype.createCss = function(pos) {
+            var style = [];
+            style.push("background-image:url(" + this.url_ + ");");
+            var backgroundPosition = this.backgroundPosition_ ? this.backgroundPosition_ : "0 0";
+            style.push("background-position:" + backgroundPosition + ";"), "object" == typeof this.anchor_ ? ("number" == typeof this.anchor_[0] && this.anchor_[0] > 0 && this.anchor_[0] < this.height_ ? style.push("height:" + (this.height_ - this.anchor_[0]) + "px; padding-top:" + this.anchor_[0] + "px;") : "number" == typeof this.anchor_[0] && this.anchor_[0] < 0 && -this.anchor_[0] < this.height_ ? style.push("height:" + this.height_ + "px; line-height:" + (this.height_ + this.anchor_[0]) + "px;") : style.push("height:" + this.height_ + "px; line-height:" + this.height_ + "px;"), 
+            "number" == typeof this.anchor_[1] && this.anchor_[1] > 0 && this.anchor_[1] < this.width_ ? style.push("width:" + (this.width_ - this.anchor_[1]) + "px; padding-left:" + this.anchor_[1] + "px;") : style.push("width:" + this.width_ + "px; text-align:center;")) : style.push("height:" + this.height_ + "px; line-height:" + this.height_ + "px; width:" + this.width_ + "px; text-align:center;");
+            var txtColor = this.textColor_ ? this.textColor_ : "black", txtSize = this.textSize_ ? this.textSize_ : 11;
+            return style.push("cursor:pointer; top:" + pos.y + "px; left:" + pos.x + "px; color:" + txtColor + "; position:absolute; font-size:" + txtSize + "px; font-family:Arial,sans-serif; font-weight:bold"), 
+            style.join("");
+        }, window.MarkerClusterer = MarkerClusterer, MarkerClusterer.prototype.addMarker = MarkerClusterer.prototype.addMarker, 
+        MarkerClusterer.prototype.addMarkers = MarkerClusterer.prototype.addMarkers, MarkerClusterer.prototype.clearMarkers = MarkerClusterer.prototype.clearMarkers, 
+        MarkerClusterer.prototype.fitMapToMarkers = MarkerClusterer.prototype.fitMapToMarkers, 
+        MarkerClusterer.prototype.getCalculator = MarkerClusterer.prototype.getCalculator, 
+        MarkerClusterer.prototype.getGridSize = MarkerClusterer.prototype.getGridSize, MarkerClusterer.prototype.getExtendedBounds = MarkerClusterer.prototype.getExtendedBounds, 
+        MarkerClusterer.prototype.getMap = MarkerClusterer.prototype.getMap, MarkerClusterer.prototype.getMarkers = MarkerClusterer.prototype.getMarkers, 
+        MarkerClusterer.prototype.getMaxZoom = MarkerClusterer.prototype.getMaxZoom, MarkerClusterer.prototype.getStyles = MarkerClusterer.prototype.getStyles, 
+        MarkerClusterer.prototype.getTotalClusters = MarkerClusterer.prototype.getTotalClusters, 
+        MarkerClusterer.prototype.getTotalMarkers = MarkerClusterer.prototype.getTotalMarkers, 
+        MarkerClusterer.prototype.redraw = MarkerClusterer.prototype.redraw, MarkerClusterer.prototype.removeMarker = MarkerClusterer.prototype.removeMarker, 
+        MarkerClusterer.prototype.removeMarkers = MarkerClusterer.prototype.removeMarkers, 
+        MarkerClusterer.prototype.resetViewport = MarkerClusterer.prototype.resetViewport, 
+        MarkerClusterer.prototype.repaint = MarkerClusterer.prototype.repaint, MarkerClusterer.prototype.setCalculator = MarkerClusterer.prototype.setCalculator, 
+        MarkerClusterer.prototype.setGridSize = MarkerClusterer.prototype.setGridSize, MarkerClusterer.prototype.setMaxZoom = MarkerClusterer.prototype.setMaxZoom, 
+        MarkerClusterer.prototype.onAdd = MarkerClusterer.prototype.onAdd, MarkerClusterer.prototype.draw = MarkerClusterer.prototype.draw, 
+        Cluster.prototype.getCenter = Cluster.prototype.getCenter, Cluster.prototype.getSize = Cluster.prototype.getSize, 
+        Cluster.prototype.getMarkers = Cluster.prototype.getMarkers, ClusterIcon.prototype.onAdd = ClusterIcon.prototype.onAdd, 
+        ClusterIcon.prototype.draw = ClusterIcon.prototype.draw, ClusterIcon.prototype.onRemove = ClusterIcon.prototype.onRemove;
+    }, function(module, exports) {
+        /*!
 	 *
 	 * Licensed under the Apache License, Version 2.0 (the "License");
 	 * you may not use this file except in compliance with the License.
@@ -55,4 +2513,352 @@ function n(t,e,r){this.extend(n,google.maps.OverlayView),this.map_=t,this.marker
 	 * See the License for the specific language governing permissions and
 	 * limitations under the License.
 	 */
-function n(t,e){function n(){}n.prototype=e.prototype,t.superClass_=e.prototype,t.prototype=new n,t.prototype.constructor=t}t.exports=function(t){function e(t,n,r){this.marker_=t,this.handCursorURL_=t.handCursorURL,this.labelDiv_=document.createElement("div"),this.labelDiv_.style.cssText="position: absolute; overflow: hidden;",this.eventDiv_=document.createElement("div"),this.eventDiv_.style.cssText=this.labelDiv_.style.cssText,this.eventDiv_.setAttribute("onselectstart","return false;"),this.eventDiv_.setAttribute("ondragstart","return false;"),this.crossDiv_=e.getSharedCross(n)}function r(n){n=n||{},n.labelContent=n.labelContent||"",n.labelAnchor=n.labelAnchor||new t.Point(0,0),n.labelClass=n.labelClass||"markerLabels",n.labelStyle=n.labelStyle||{},n.labelInBackground=n.labelInBackground||!1,"undefined"==typeof n.labelVisible&&(n.labelVisible=!0),"undefined"==typeof n.raiseOnDrag&&(n.raiseOnDrag=!0),"undefined"==typeof n.clickable&&(n.clickable=!0),"undefined"==typeof n.draggable&&(n.draggable=!1),"undefined"==typeof n.optimized&&(n.optimized=!1),n.crossImage=n.crossImage||"http"+("https:"===document.location.protocol?"s":"")+"://maps.gstatic.com/intl/en_us/mapfiles/drag_cross_67_16.png",n.handCursor=n.handCursor||"http"+("https:"===document.location.protocol?"s":"")+"://maps.gstatic.com/intl/en_us/mapfiles/closedhand_8_8.cur",n.optimized=!1,this.label=new e(this,n.crossImage,n.handCursor),t.Marker.apply(this,arguments)}return n(e,t.OverlayView),e.getSharedCross=function(t){var n;return"undefined"==typeof e.getSharedCross.crossDiv&&(n=document.createElement("img"),n.style.cssText="position: absolute; z-index: 1000002; display: none;",n.style.marginLeft="-8px",n.style.marginTop="-9px",n.src=t,e.getSharedCross.crossDiv=n),e.getSharedCross.crossDiv},e.prototype.onAdd=function(){var n,r,o,i,s,a,u,c=this,l=!1,p=!1,f=20,d="url("+this.handCursorURL_+")",h=function(t){t.preventDefault&&t.preventDefault(),t.cancelBubble=!0,t.stopPropagation&&t.stopPropagation()},y=function(){c.marker_.setAnimation(null)};this.getPanes().markerLayer.appendChild(this.labelDiv_),this.getPanes().overlayMouseTarget.appendChild(this.eventDiv_),"undefined"==typeof e.getSharedCross.processed&&(this.getPanes().markerLayer.appendChild(this.crossDiv_),e.getSharedCross.processed=!0),this.listeners_=[t.event.addDomListener(this.eventDiv_,"mouseover",function(e){(c.marker_.getDraggable()||c.marker_.getClickable())&&(this.style.cursor="pointer",t.event.trigger(c.marker_,"mouseover",e))}),t.event.addDomListener(this.eventDiv_,"mouseout",function(e){!c.marker_.getDraggable()&&!c.marker_.getClickable()||p||(this.style.cursor=c.marker_.getCursor(),t.event.trigger(c.marker_,"mouseout",e))}),t.event.addDomListener(this.eventDiv_,"mousedown",function(e){p=!1,c.marker_.getDraggable()&&(l=!0,this.style.cursor=d),(c.marker_.getDraggable()||c.marker_.getClickable())&&(t.event.trigger(c.marker_,"mousedown",e),h(e))}),t.event.addDomListener(document,"mouseup",function(e){var r;if(l&&(l=!1,c.eventDiv_.style.cursor="pointer",t.event.trigger(c.marker_,"mouseup",e)),p){if(s){r=c.getProjection().fromLatLngToDivPixel(c.marker_.getPosition()),r.y+=f,c.marker_.setPosition(c.getProjection().fromDivPixelToLatLng(r));try{c.marker_.setAnimation(t.Animation.BOUNCE),setTimeout(y,1406)}catch(t){}}c.crossDiv_.style.display="none",c.marker_.setZIndex(n),i=!0,p=!1,e.latLng=c.marker_.getPosition(),t.event.trigger(c.marker_,"dragend",e)}}),t.event.addListener(c.marker_.getMap(),"mousemove",function(e){var i;l&&(p?(e.latLng=new t.LatLng(e.latLng.lat()-r,e.latLng.lng()-o),i=c.getProjection().fromLatLngToDivPixel(e.latLng),s&&(c.crossDiv_.style.left=i.x+"px",c.crossDiv_.style.top=i.y+"px",c.crossDiv_.style.display="",i.y-=f),c.marker_.setPosition(c.getProjection().fromDivPixelToLatLng(i)),s&&(c.eventDiv_.style.top=i.y+f+"px"),t.event.trigger(c.marker_,"drag",e)):(r=e.latLng.lat()-c.marker_.getPosition().lat(),o=e.latLng.lng()-c.marker_.getPosition().lng(),n=c.marker_.getZIndex(),a=c.marker_.getPosition(),u=c.marker_.getMap().getCenter(),s=c.marker_.get("raiseOnDrag"),p=!0,c.marker_.setZIndex(1e6),e.latLng=c.marker_.getPosition(),t.event.trigger(c.marker_,"dragstart",e)))}),t.event.addDomListener(document,"keydown",function(e){p&&27===e.keyCode&&(s=!1,c.marker_.setPosition(a),c.marker_.getMap().setCenter(u),t.event.trigger(document,"mouseup",e))}),t.event.addDomListener(this.eventDiv_,"click",function(e){(c.marker_.getDraggable()||c.marker_.getClickable())&&(i?i=!1:(t.event.trigger(c.marker_,"click",e),h(e)))}),t.event.addDomListener(this.eventDiv_,"dblclick",function(e){(c.marker_.getDraggable()||c.marker_.getClickable())&&(t.event.trigger(c.marker_,"dblclick",e),h(e))}),t.event.addListener(this.marker_,"dragstart",function(t){p||(s=this.get("raiseOnDrag"))}),t.event.addListener(this.marker_,"drag",function(t){p||s&&(c.setPosition(f),c.labelDiv_.style.zIndex=1e6+(this.get("labelInBackground")?-1:1))}),t.event.addListener(this.marker_,"dragend",function(t){p||s&&c.setPosition(0)}),t.event.addListener(this.marker_,"position_changed",function(){c.setPosition()}),t.event.addListener(this.marker_,"zindex_changed",function(){c.setZIndex()}),t.event.addListener(this.marker_,"visible_changed",function(){c.setVisible()}),t.event.addListener(this.marker_,"labelvisible_changed",function(){c.setVisible()}),t.event.addListener(this.marker_,"title_changed",function(){c.setTitle()}),t.event.addListener(this.marker_,"labelcontent_changed",function(){c.setContent()}),t.event.addListener(this.marker_,"labelanchor_changed",function(){c.setAnchor()}),t.event.addListener(this.marker_,"labelclass_changed",function(){c.setStyles()}),t.event.addListener(this.marker_,"labelstyle_changed",function(){c.setStyles()})]},e.prototype.onRemove=function(){var e;for(this.labelDiv_.parentNode.removeChild(this.labelDiv_),this.eventDiv_.parentNode.removeChild(this.eventDiv_),e=0;e<this.listeners_.length;e++)t.event.removeListener(this.listeners_[e])},e.prototype.draw=function(){this.setContent(),this.setTitle(),this.setStyles()},e.prototype.setContent=function(){var t=this.marker_.get("labelContent");if("undefined"==typeof t.nodeType)this.labelDiv_.innerHTML=t,this.eventDiv_.innerHTML=this.labelDiv_.innerHTML;else{for(;this.labelDiv_.lastChild;)this.labelDiv_.removeChild(this.labelDiv_.lastChild);for(;this.eventDiv_.lastChild;)this.eventDiv_.removeChild(this.eventDiv_.lastChild);this.labelDiv_.appendChild(t),t=t.cloneNode(!0),this.eventDiv_.appendChild(t)}},e.prototype.setTitle=function(){this.eventDiv_.title=this.marker_.getTitle()||""},e.prototype.setStyles=function(){var t,e;this.labelDiv_.className=this.marker_.get("labelClass"),this.eventDiv_.className=this.labelDiv_.className,this.labelDiv_.style.cssText="",this.eventDiv_.style.cssText="",e=this.marker_.get("labelStyle");for(t in e)e.hasOwnProperty(t)&&(this.labelDiv_.style[t]=e[t],this.eventDiv_.style[t]=e[t]);this.setMandatoryStyles()},e.prototype.setMandatoryStyles=function(){this.labelDiv_.style.position="absolute",this.labelDiv_.style.overflow="hidden","undefined"!=typeof this.labelDiv_.style.opacity&&""!==this.labelDiv_.style.opacity&&(this.labelDiv_.style.MsFilter='"progid:DXImageTransform.Microsoft.Alpha(opacity='+100*this.labelDiv_.style.opacity+')"',this.labelDiv_.style.filter="alpha(opacity="+100*this.labelDiv_.style.opacity+")"),this.eventDiv_.style.position=this.labelDiv_.style.position,this.eventDiv_.style.overflow=this.labelDiv_.style.overflow,this.eventDiv_.style.opacity=.01,this.eventDiv_.style.MsFilter='"progid:DXImageTransform.Microsoft.Alpha(opacity=1)"',this.eventDiv_.style.filter="alpha(opacity=1)",this.setAnchor(),this.setPosition(),this.setVisible()},e.prototype.setAnchor=function(){var t=this.marker_.get("labelAnchor");this.labelDiv_.style.marginLeft=-t.x+"px",this.labelDiv_.style.marginTop=-t.y+"px",this.eventDiv_.style.marginLeft=-t.x+"px",this.eventDiv_.style.marginTop=-t.y+"px"},e.prototype.setPosition=function(t){var e=this.getProjection().fromLatLngToDivPixel(this.marker_.getPosition());"undefined"==typeof t&&(t=0),this.labelDiv_.style.left=Math.round(e.x)+"px",this.labelDiv_.style.top=Math.round(e.y-t)+"px",this.eventDiv_.style.left=this.labelDiv_.style.left,this.eventDiv_.style.top=this.labelDiv_.style.top,this.setZIndex()},e.prototype.setZIndex=function(){var t=this.marker_.get("labelInBackground")?-1:1;"undefined"==typeof this.marker_.getZIndex()?(this.labelDiv_.style.zIndex=parseInt(this.labelDiv_.style.top,10)+t,this.eventDiv_.style.zIndex=this.labelDiv_.style.zIndex):(this.labelDiv_.style.zIndex=this.marker_.getZIndex()+t,this.eventDiv_.style.zIndex=this.labelDiv_.style.zIndex)},e.prototype.setVisible=function(){this.marker_.get("labelVisible")?this.labelDiv_.style.display=this.marker_.getVisible()?"block":"none":this.labelDiv_.style.display="none",this.eventDiv_.style.display=this.labelDiv_.style.display},n(r,t.Marker),r.prototype.setMap=function(e){t.Marker.prototype.setMap.apply(this,arguments),this.label.setMap(e)},r}},function(t,e,n){function r(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=d[r.id];if(o){o.refs++;for(var i=0;i<o.parts.length;i++)o.parts[i](r.parts[i]);for(;i<r.parts.length;i++)o.parts.push(c(r.parts[i],e))}else{for(var s=[],i=0;i<r.parts.length;i++)s.push(c(r.parts[i],e));d[r.id]={id:r.id,refs:1,parts:s}}}}function o(t){for(var e=[],n={},r=0;r<t.length;r++){var o=t[r],i=o[0],s=o[1],a=o[2],u=o[3],c={css:s,media:a,sourceMap:u};n[i]?n[i].parts.push(c):e.push(n[i]={id:i,parts:[c]})}return e}function i(t,e){var n=v(),r=_[_.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),_.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function s(t){t.parentNode.removeChild(t);var e=_.indexOf(t);e>=0&&_.splice(e,1)}function a(t){var e=document.createElement("style");return e.type="text/css",i(t,e),e}function u(t){var e=document.createElement("link");return e.rel="stylesheet",i(t,e),e}function c(t,e){var n,r,o;if(e.singleton){var i=g++;n=m||(m=a(e)),r=l.bind(null,n,i,!1),o=l.bind(null,n,i,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=u(e),r=f.bind(null,n),o=function(){s(n),n.href&&URL.revokeObjectURL(n.href)}):(n=a(e),r=p.bind(null,n),o=function(){s(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}function l(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=b(e,o);else{var i=document.createTextNode(o),s=t.childNodes;s[e]&&t.removeChild(s[e]),s.length?t.insertBefore(i,s[e]):t.appendChild(i)}}function p(t,e){var n=e.css,r=e.media;if(r&&t.setAttribute("media",r),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}function f(t,e){var n=e.css,r=e.sourceMap;r&&(n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var o=new Blob([n],{type:"text/css"}),i=t.href;t.href=URL.createObjectURL(o),i&&URL.revokeObjectURL(i)}var d={},h=function(t){var e;return function(){return"undefined"==typeof e&&(e=t.apply(this,arguments)),e}},y=h(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),v=h(function(){return document.head||document.getElementsByTagName("head")[0]}),m=null,g=0,_=[];t.exports=function(t,e){e=e||{},"undefined"==typeof e.singleton&&(e.singleton=y()),"undefined"==typeof e.insertAt&&(e.insertAt="bottom");var n=o(t);return r(n,e),function(t){for(var i=[],s=0;s<n.length;s++){var a=n[s],u=d[a.id];u.refs--,i.push(u)}if(t){var c=o(t);r(c,e)}for(var s=0;s<i.length;s++){var u=i[s];if(0===u.refs){for(var l=0;l<u.parts.length;l++)u.parts[l]();delete d[u.id]}}}};var b=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e,n){var r=n(57);"string"==typeof r&&(r=[[t.id,r,""]]);n(61)(r,{});r.locals&&(t.exports=r.locals)},function(t,e){t.exports=" <slot></slot> "},function(t,e){t.exports=" <div> <slot> <div class=you-will-never-find-this></div> </slot> </div> "},function(t,e){t.exports=" <div class=vue-map-container> <div class=vue-map></div> <slot></slot> </div> "},function(t,e){t.exports=" <label> {{ label }} <input type=text v-el:input :placeholder=placeholder :class=class /> </label> "},function(t,e,n){var r,o;r=n(24),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(25),o=n(63),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(26),o=n(64),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;n(62),r=n(27),o=n(65),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(28),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(29),o=n(66),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(30),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(31),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)},function(t,e,n){var r,o;r=n(32),t.exports=r||{},t.exports.__esModule&&(t.exports=t.exports.default),o&&(("function"==typeof t.exports?t.exports.options:t.exports).template=o)}])});
+        function inherits(childCtor, parentCtor) {
+            function tempCtor() {}
+            tempCtor.prototype = parentCtor.prototype, childCtor.superClass_ = parentCtor.prototype, 
+            childCtor.prototype = new tempCtor(), childCtor.prototype.constructor = childCtor;
+        }
+        module.exports = function(gMapsApi) {
+            function MarkerLabel_(marker, crossURL, handCursorURL) {
+                this.marker_ = marker, this.handCursorURL_ = marker.handCursorURL, this.labelDiv_ = document.createElement("div"), 
+                this.labelDiv_.style.cssText = "position: absolute; overflow: hidden;", this.eventDiv_ = document.createElement("div"), 
+                this.eventDiv_.style.cssText = this.labelDiv_.style.cssText, this.eventDiv_.setAttribute("onselectstart", "return false;"), 
+                this.eventDiv_.setAttribute("ondragstart", "return false;"), this.crossDiv_ = MarkerLabel_.getSharedCross(crossURL);
+            }
+            function MarkerWithLabel(opt_options) {
+                opt_options = opt_options || {}, opt_options.labelContent = opt_options.labelContent || "", 
+                opt_options.labelAnchor = opt_options.labelAnchor || new gMapsApi.Point(0, 0), opt_options.labelClass = opt_options.labelClass || "markerLabels", 
+                opt_options.labelStyle = opt_options.labelStyle || {}, opt_options.labelInBackground = opt_options.labelInBackground || !1, 
+                "undefined" == typeof opt_options.labelVisible && (opt_options.labelVisible = !0), 
+                "undefined" == typeof opt_options.raiseOnDrag && (opt_options.raiseOnDrag = !0), 
+                "undefined" == typeof opt_options.clickable && (opt_options.clickable = !0), "undefined" == typeof opt_options.draggable && (opt_options.draggable = !1), 
+                "undefined" == typeof opt_options.optimized && (opt_options.optimized = !1), opt_options.crossImage = opt_options.crossImage || "http" + ("https:" === document.location.protocol ? "s" : "") + "://maps.gstatic.com/intl/en_us/mapfiles/drag_cross_67_16.png", 
+                opt_options.handCursor = opt_options.handCursor || "http" + ("https:" === document.location.protocol ? "s" : "") + "://maps.gstatic.com/intl/en_us/mapfiles/closedhand_8_8.cur", 
+                opt_options.optimized = !1, this.label = new MarkerLabel_(this, opt_options.crossImage, opt_options.handCursor), 
+                gMapsApi.Marker.apply(this, arguments);
+            }
+            return inherits(MarkerLabel_, gMapsApi.OverlayView), MarkerLabel_.getSharedCross = function(crossURL) {
+                var div;
+                return "undefined" == typeof MarkerLabel_.getSharedCross.crossDiv && (div = document.createElement("img"), 
+                div.style.cssText = "position: absolute; z-index: 1000002; display: none;", div.style.marginLeft = "-8px", 
+                div.style.marginTop = "-9px", div.src = crossURL, MarkerLabel_.getSharedCross.crossDiv = div), 
+                MarkerLabel_.getSharedCross.crossDiv;
+            }, MarkerLabel_.prototype.onAdd = function() {
+                var cSavedZIndex, cLatOffset, cLngOffset, cIgnoreClick, cRaiseEnabled, cStartPosition, cStartCenter, me = this, cMouseIsDown = !1, cDraggingLabel = !1, cRaiseOffset = 20, cDraggingCursor = "url(" + this.handCursorURL_ + ")", cAbortEvent = function(e) {
+                    e.preventDefault && e.preventDefault(), e.cancelBubble = !0, e.stopPropagation && e.stopPropagation();
+                }, cStopBounce = function() {
+                    me.marker_.setAnimation(null);
+                };
+                this.getPanes().markerLayer.appendChild(this.labelDiv_), this.getPanes().overlayMouseTarget.appendChild(this.eventDiv_), 
+                "undefined" == typeof MarkerLabel_.getSharedCross.processed && (this.getPanes().markerLayer.appendChild(this.crossDiv_), 
+                MarkerLabel_.getSharedCross.processed = !0), this.listeners_ = [ gMapsApi.event.addDomListener(this.eventDiv_, "mouseover", function(e) {
+                    (me.marker_.getDraggable() || me.marker_.getClickable()) && (this.style.cursor = "pointer", 
+                    gMapsApi.event.trigger(me.marker_, "mouseover", e));
+                }), gMapsApi.event.addDomListener(this.eventDiv_, "mouseout", function(e) {
+                    !me.marker_.getDraggable() && !me.marker_.getClickable() || cDraggingLabel || (this.style.cursor = me.marker_.getCursor(), 
+                    gMapsApi.event.trigger(me.marker_, "mouseout", e));
+                }), gMapsApi.event.addDomListener(this.eventDiv_, "mousedown", function(e) {
+                    cDraggingLabel = !1, me.marker_.getDraggable() && (cMouseIsDown = !0, this.style.cursor = cDraggingCursor), 
+                    (me.marker_.getDraggable() || me.marker_.getClickable()) && (gMapsApi.event.trigger(me.marker_, "mousedown", e), 
+                    cAbortEvent(e));
+                }), gMapsApi.event.addDomListener(document, "mouseup", function(mEvent) {
+                    var position;
+                    if (cMouseIsDown && (cMouseIsDown = !1, me.eventDiv_.style.cursor = "pointer", gMapsApi.event.trigger(me.marker_, "mouseup", mEvent)), 
+                    cDraggingLabel) {
+                        if (cRaiseEnabled) {
+                            position = me.getProjection().fromLatLngToDivPixel(me.marker_.getPosition()), position.y += cRaiseOffset, 
+                            me.marker_.setPosition(me.getProjection().fromDivPixelToLatLng(position));
+                            try {
+                                me.marker_.setAnimation(gMapsApi.Animation.BOUNCE), setTimeout(cStopBounce, 1406);
+                            } catch (e) {}
+                        }
+                        me.crossDiv_.style.display = "none", me.marker_.setZIndex(cSavedZIndex), cIgnoreClick = !0, 
+                        cDraggingLabel = !1, mEvent.latLng = me.marker_.getPosition(), gMapsApi.event.trigger(me.marker_, "dragend", mEvent);
+                    }
+                }), gMapsApi.event.addListener(me.marker_.getMap(), "mousemove", function(mEvent) {
+                    var position;
+                    cMouseIsDown && (cDraggingLabel ? (mEvent.latLng = new gMapsApi.LatLng(mEvent.latLng.lat() - cLatOffset, mEvent.latLng.lng() - cLngOffset), 
+                    position = me.getProjection().fromLatLngToDivPixel(mEvent.latLng), cRaiseEnabled && (me.crossDiv_.style.left = position.x + "px", 
+                    me.crossDiv_.style.top = position.y + "px", me.crossDiv_.style.display = "", position.y -= cRaiseOffset), 
+                    me.marker_.setPosition(me.getProjection().fromDivPixelToLatLng(position)), cRaiseEnabled && (me.eventDiv_.style.top = position.y + cRaiseOffset + "px"), 
+                    gMapsApi.event.trigger(me.marker_, "drag", mEvent)) : (cLatOffset = mEvent.latLng.lat() - me.marker_.getPosition().lat(), 
+                    cLngOffset = mEvent.latLng.lng() - me.marker_.getPosition().lng(), cSavedZIndex = me.marker_.getZIndex(), 
+                    cStartPosition = me.marker_.getPosition(), cStartCenter = me.marker_.getMap().getCenter(), 
+                    cRaiseEnabled = me.marker_.get("raiseOnDrag"), cDraggingLabel = !0, me.marker_.setZIndex(1e6), 
+                    mEvent.latLng = me.marker_.getPosition(), gMapsApi.event.trigger(me.marker_, "dragstart", mEvent)));
+                }), gMapsApi.event.addDomListener(document, "keydown", function(e) {
+                    cDraggingLabel && 27 === e.keyCode && (cRaiseEnabled = !1, me.marker_.setPosition(cStartPosition), 
+                    me.marker_.getMap().setCenter(cStartCenter), gMapsApi.event.trigger(document, "mouseup", e));
+                }), gMapsApi.event.addDomListener(this.eventDiv_, "click", function(e) {
+                    (me.marker_.getDraggable() || me.marker_.getClickable()) && (cIgnoreClick ? cIgnoreClick = !1 : (gMapsApi.event.trigger(me.marker_, "click", e), 
+                    cAbortEvent(e)));
+                }), gMapsApi.event.addDomListener(this.eventDiv_, "dblclick", function(e) {
+                    (me.marker_.getDraggable() || me.marker_.getClickable()) && (gMapsApi.event.trigger(me.marker_, "dblclick", e), 
+                    cAbortEvent(e));
+                }), gMapsApi.event.addListener(this.marker_, "dragstart", function(mEvent) {
+                    cDraggingLabel || (cRaiseEnabled = this.get("raiseOnDrag"));
+                }), gMapsApi.event.addListener(this.marker_, "drag", function(mEvent) {
+                    cDraggingLabel || cRaiseEnabled && (me.setPosition(cRaiseOffset), me.labelDiv_.style.zIndex = 1e6 + (this.get("labelInBackground") ? -1 : 1));
+                }), gMapsApi.event.addListener(this.marker_, "dragend", function(mEvent) {
+                    cDraggingLabel || cRaiseEnabled && me.setPosition(0);
+                }), gMapsApi.event.addListener(this.marker_, "position_changed", function() {
+                    me.setPosition();
+                }), gMapsApi.event.addListener(this.marker_, "zindex_changed", function() {
+                    me.setZIndex();
+                }), gMapsApi.event.addListener(this.marker_, "visible_changed", function() {
+                    me.setVisible();
+                }), gMapsApi.event.addListener(this.marker_, "labelvisible_changed", function() {
+                    me.setVisible();
+                }), gMapsApi.event.addListener(this.marker_, "title_changed", function() {
+                    me.setTitle();
+                }), gMapsApi.event.addListener(this.marker_, "labelcontent_changed", function() {
+                    me.setContent();
+                }), gMapsApi.event.addListener(this.marker_, "labelanchor_changed", function() {
+                    me.setAnchor();
+                }), gMapsApi.event.addListener(this.marker_, "labelclass_changed", function() {
+                    me.setStyles();
+                }), gMapsApi.event.addListener(this.marker_, "labelstyle_changed", function() {
+                    me.setStyles();
+                }) ];
+            }, MarkerLabel_.prototype.onRemove = function() {
+                var i;
+                for (this.labelDiv_.parentNode.removeChild(this.labelDiv_), this.eventDiv_.parentNode.removeChild(this.eventDiv_), 
+                i = 0; i < this.listeners_.length; i++) gMapsApi.event.removeListener(this.listeners_[i]);
+            }, MarkerLabel_.prototype.draw = function() {
+                this.setContent(), this.setTitle(), this.setStyles();
+            }, MarkerLabel_.prototype.setContent = function() {
+                var content = this.marker_.get("labelContent");
+                if ("undefined" == typeof content.nodeType) this.labelDiv_.innerHTML = content, 
+                this.eventDiv_.innerHTML = this.labelDiv_.innerHTML; else {
+                    for (;this.labelDiv_.lastChild; ) this.labelDiv_.removeChild(this.labelDiv_.lastChild);
+                    for (;this.eventDiv_.lastChild; ) this.eventDiv_.removeChild(this.eventDiv_.lastChild);
+                    this.labelDiv_.appendChild(content), content = content.cloneNode(!0), this.eventDiv_.appendChild(content);
+                }
+            }, MarkerLabel_.prototype.setTitle = function() {
+                this.eventDiv_.title = this.marker_.getTitle() || "";
+            }, MarkerLabel_.prototype.setStyles = function() {
+                var i, labelStyle;
+                this.labelDiv_.className = this.marker_.get("labelClass"), this.eventDiv_.className = this.labelDiv_.className, 
+                this.labelDiv_.style.cssText = "", this.eventDiv_.style.cssText = "", labelStyle = this.marker_.get("labelStyle");
+                for (i in labelStyle) labelStyle.hasOwnProperty(i) && (this.labelDiv_.style[i] = labelStyle[i], 
+                this.eventDiv_.style[i] = labelStyle[i]);
+                this.setMandatoryStyles();
+            }, MarkerLabel_.prototype.setMandatoryStyles = function() {
+                this.labelDiv_.style.position = "absolute", this.labelDiv_.style.overflow = "hidden", 
+                "undefined" != typeof this.labelDiv_.style.opacity && "" !== this.labelDiv_.style.opacity && (this.labelDiv_.style.MsFilter = '"progid:DXImageTransform.Microsoft.Alpha(opacity=' + 100 * this.labelDiv_.style.opacity + ')"', 
+                this.labelDiv_.style.filter = "alpha(opacity=" + 100 * this.labelDiv_.style.opacity + ")"), 
+                this.eventDiv_.style.position = this.labelDiv_.style.position, this.eventDiv_.style.overflow = this.labelDiv_.style.overflow, 
+                this.eventDiv_.style.opacity = .01, this.eventDiv_.style.MsFilter = '"progid:DXImageTransform.Microsoft.Alpha(opacity=1)"', 
+                this.eventDiv_.style.filter = "alpha(opacity=1)", this.setAnchor(), this.setPosition(), 
+                this.setVisible();
+            }, MarkerLabel_.prototype.setAnchor = function() {
+                var anchor = this.marker_.get("labelAnchor");
+                this.labelDiv_.style.marginLeft = -anchor.x + "px", this.labelDiv_.style.marginTop = -anchor.y + "px", 
+                this.eventDiv_.style.marginLeft = -anchor.x + "px", this.eventDiv_.style.marginTop = -anchor.y + "px";
+            }, MarkerLabel_.prototype.setPosition = function(yOffset) {
+                var position = this.getProjection().fromLatLngToDivPixel(this.marker_.getPosition());
+                "undefined" == typeof yOffset && (yOffset = 0), this.labelDiv_.style.left = Math.round(position.x) + "px", 
+                this.labelDiv_.style.top = Math.round(position.y - yOffset) + "px", this.eventDiv_.style.left = this.labelDiv_.style.left, 
+                this.eventDiv_.style.top = this.labelDiv_.style.top, this.setZIndex();
+            }, MarkerLabel_.prototype.setZIndex = function() {
+                var zAdjust = this.marker_.get("labelInBackground") ? -1 : 1;
+                "undefined" == typeof this.marker_.getZIndex() ? (this.labelDiv_.style.zIndex = parseInt(this.labelDiv_.style.top, 10) + zAdjust, 
+                this.eventDiv_.style.zIndex = this.labelDiv_.style.zIndex) : (this.labelDiv_.style.zIndex = this.marker_.getZIndex() + zAdjust, 
+                this.eventDiv_.style.zIndex = this.labelDiv_.style.zIndex);
+            }, MarkerLabel_.prototype.setVisible = function() {
+                this.marker_.get("labelVisible") ? this.labelDiv_.style.display = this.marker_.getVisible() ? "block" : "none" : this.labelDiv_.style.display = "none", 
+                this.eventDiv_.style.display = this.labelDiv_.style.display;
+            }, inherits(MarkerWithLabel, gMapsApi.Marker), MarkerWithLabel.prototype.setMap = function(theMap) {
+                gMapsApi.Marker.prototype.setMap.apply(this, arguments), this.label.setMap(theMap);
+            }, MarkerWithLabel;
+        };
+    }, function(module, exports, __webpack_require__) {
+        function addStylesToDom(styles, options) {
+            for (var i = 0; i < styles.length; i++) {
+                var item = styles[i], domStyle = stylesInDom[item.id];
+                if (domStyle) {
+                    domStyle.refs++;
+                    for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j](item.parts[j]);
+                    for (;j < item.parts.length; j++) domStyle.parts.push(addStyle(item.parts[j], options));
+                } else {
+                    for (var parts = [], j = 0; j < item.parts.length; j++) parts.push(addStyle(item.parts[j], options));
+                    stylesInDom[item.id] = {
+                        id: item.id,
+                        refs: 1,
+                        parts: parts
+                    };
+                }
+            }
+        }
+        function listToStyles(list) {
+            for (var styles = [], newStyles = {}, i = 0; i < list.length; i++) {
+                var item = list[i], id = item[0], css = item[1], media = item[2], sourceMap = item[3], part = {
+                    css: css,
+                    media: media,
+                    sourceMap: sourceMap
+                };
+                newStyles[id] ? newStyles[id].parts.push(part) : styles.push(newStyles[id] = {
+                    id: id,
+                    parts: [ part ]
+                });
+            }
+            return styles;
+        }
+        function insertStyleElement(options, styleElement) {
+            var head = getHeadElement(), lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+            if ("top" === options.insertAt) lastStyleElementInsertedAtTop ? lastStyleElementInsertedAtTop.nextSibling ? head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling) : head.appendChild(styleElement) : head.insertBefore(styleElement, head.firstChild), 
+            styleElementsInsertedAtTop.push(styleElement); else {
+                if ("bottom" !== options.insertAt) throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+                head.appendChild(styleElement);
+            }
+        }
+        function removeStyleElement(styleElement) {
+            styleElement.parentNode.removeChild(styleElement);
+            var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+            idx >= 0 && styleElementsInsertedAtTop.splice(idx, 1);
+        }
+        function createStyleElement(options) {
+            var styleElement = document.createElement("style");
+            return styleElement.type = "text/css", insertStyleElement(options, styleElement), 
+            styleElement;
+        }
+        function createLinkElement(options) {
+            var linkElement = document.createElement("link");
+            return linkElement.rel = "stylesheet", insertStyleElement(options, linkElement), 
+            linkElement;
+        }
+        function addStyle(obj, options) {
+            var styleElement, update, remove;
+            if (options.singleton) {
+                var styleIndex = singletonCounter++;
+                styleElement = singletonElement || (singletonElement = createStyleElement(options)), 
+                update = applyToSingletonTag.bind(null, styleElement, styleIndex, !1), remove = applyToSingletonTag.bind(null, styleElement, styleIndex, !0);
+            } else obj.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (styleElement = createLinkElement(options), 
+            update = updateLink.bind(null, styleElement), remove = function() {
+                removeStyleElement(styleElement), styleElement.href && URL.revokeObjectURL(styleElement.href);
+            }) : (styleElement = createStyleElement(options), update = applyToTag.bind(null, styleElement), 
+            remove = function() {
+                removeStyleElement(styleElement);
+            });
+            return update(obj), function(newObj) {
+                if (newObj) {
+                    if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) return;
+                    update(obj = newObj);
+                } else remove();
+            };
+        }
+        function applyToSingletonTag(styleElement, index, remove, obj) {
+            var css = remove ? "" : obj.css;
+            if (styleElement.styleSheet) styleElement.styleSheet.cssText = replaceText(index, css); else {
+                var cssNode = document.createTextNode(css), childNodes = styleElement.childNodes;
+                childNodes[index] && styleElement.removeChild(childNodes[index]), childNodes.length ? styleElement.insertBefore(cssNode, childNodes[index]) : styleElement.appendChild(cssNode);
+            }
+        }
+        function applyToTag(styleElement, obj) {
+            var css = obj.css, media = obj.media;
+            if (media && styleElement.setAttribute("media", media), styleElement.styleSheet) styleElement.styleSheet.cssText = css; else {
+                for (;styleElement.firstChild; ) styleElement.removeChild(styleElement.firstChild);
+                styleElement.appendChild(document.createTextNode(css));
+            }
+        }
+        function updateLink(linkElement, obj) {
+            var css = obj.css, sourceMap = obj.sourceMap;
+            sourceMap && (css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */");
+            var blob = new Blob([ css ], {
+                type: "text/css"
+            }), oldSrc = linkElement.href;
+            linkElement.href = URL.createObjectURL(blob), oldSrc && URL.revokeObjectURL(oldSrc);
+        }
+        var stylesInDom = {}, memoize = function(fn) {
+            var memo;
+            return function() {
+                return "undefined" == typeof memo && (memo = fn.apply(this, arguments)), memo;
+            };
+        }, isOldIE = memoize(function() {
+            return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+        }), getHeadElement = memoize(function() {
+            return document.head || document.getElementsByTagName("head")[0];
+        }), singletonElement = null, singletonCounter = 0, styleElementsInsertedAtTop = [];
+        module.exports = function(list, options) {
+            options = options || {}, "undefined" == typeof options.singleton && (options.singleton = isOldIE()), 
+            "undefined" == typeof options.insertAt && (options.insertAt = "bottom");
+            var styles = listToStyles(list);
+            return addStylesToDom(styles, options), function(newList) {
+                for (var mayRemove = [], i = 0; i < styles.length; i++) {
+                    var item = styles[i], domStyle = stylesInDom[item.id];
+                    domStyle.refs--, mayRemove.push(domStyle);
+                }
+                if (newList) {
+                    var newStyles = listToStyles(newList);
+                    addStylesToDom(newStyles, options);
+                }
+                for (var i = 0; i < mayRemove.length; i++) {
+                    var domStyle = mayRemove[i];
+                    if (0 === domStyle.refs) {
+                        for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+                        delete stylesInDom[domStyle.id];
+                    }
+                }
+            };
+        };
+        var replaceText = function() {
+            var textStore = [];
+            return function(index, replacement) {
+                return textStore[index] = replacement, textStore.filter(Boolean).join("\n");
+            };
+        }();
+    }, function(module, exports, __webpack_require__) {
+        var content = __webpack_require__(57);
+        "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
+        __webpack_require__(61)(content, {});
+        content.locals && (module.exports = content.locals);
+    }, function(module, exports) {
+        module.exports = " <slot></slot> ";
+    }, function(module, exports) {
+        module.exports = " <div> <slot> <div class=you-will-never-find-this></div> </slot> </div> ";
+    }, function(module, exports) {
+        module.exports = " <div class=vue-map-container> <div class=vue-map></div> <slot></slot> </div> ";
+    }, function(module, exports) {
+        module.exports = " <label> {{ label }} <input type=text v-el:input :placeholder=placeholder :class=class /> </label> ";
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(24), module.exports = __vue_script__ || {}, 
+        module.exports.__esModule && (module.exports = module.exports.default), __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(25), __vue_template__ = __webpack_require__(63), 
+        module.exports = __vue_script__ || {}, module.exports.__esModule && (module.exports = module.exports.default), 
+        __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(26), __vue_template__ = __webpack_require__(64), 
+        module.exports = __vue_script__ || {}, module.exports.__esModule && (module.exports = module.exports.default), 
+        __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __webpack_require__(62), __vue_script__ = __webpack_require__(27), __vue_template__ = __webpack_require__(65), 
+        module.exports = __vue_script__ || {}, module.exports.__esModule && (module.exports = module.exports.default), 
+        __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(28), module.exports = __vue_script__ || {}, 
+        module.exports.__esModule && (module.exports = module.exports.default), __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(29), __vue_template__ = __webpack_require__(66), 
+        module.exports = __vue_script__ || {}, module.exports.__esModule && (module.exports = module.exports.default), 
+        __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(30), module.exports = __vue_script__ || {}, 
+        module.exports.__esModule && (module.exports = module.exports.default), __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(31), module.exports = __vue_script__ || {}, 
+        module.exports.__esModule && (module.exports = module.exports.default), __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    }, function(module, exports, __webpack_require__) {
+        var __vue_script__, __vue_template__;
+        __vue_script__ = __webpack_require__(32), module.exports = __vue_script__ || {}, 
+        module.exports.__esModule && (module.exports = module.exports.default), __vue_template__ && (("function" == typeof module.exports ? module.exports.options : module.exports).template = __vue_template__);
+    } ]);
+});

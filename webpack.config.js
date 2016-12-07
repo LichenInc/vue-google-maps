@@ -85,9 +85,12 @@ if (process.env.NODE_ENV === 'production') {
           }
         }),
         new webpack.optimize.UglifyJsPlugin({
+          // compress: false,
           compress: {
-            warnings: false
-          }
+            warnings: false,
+          },
+          // mangle: false,
+          // beautify: true,
         }),
         new webpack.optimize.OccurenceOrderPlugin()
       ]
