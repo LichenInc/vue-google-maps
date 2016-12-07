@@ -8,7 +8,7 @@ import propsBinder from '../utils/propsBinder.js';
 import getPropsValuesMixin from '../utils/getPropsValuesMixin.js'
 import Q from 'q';
 import markerWithLabel from 'markerwithlabel'
-const MarkerWithLabel = markerWithLabel(google.maps)
+let MarkerWithLabel
 
 const props = {
   animation: {
@@ -134,6 +134,7 @@ export default {
 
   events: {
     'map-ready' (map) {
+      MarkerWithLabel = markerWithLabel(google.maps)
       this.registrar = 'map';
       this.mapObject = map;
       const options = _.clone(this.getPropsValues());
