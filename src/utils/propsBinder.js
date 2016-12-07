@@ -17,12 +17,12 @@ export default (vueElement, googleMapsElement, props, options) => {
     if (!twoWay) {
       vueElement.$watch(attribute, () => {
         const attributeValue = vueElement[attribute];
-        googleMapsElement[setMethodName](attributeValue);
+        googleMapsElement.set(attribute, attributeValue);
         if (afterModelChanged) {
           afterModelChanged(attribute, attributeValue);
         }
       }, {
-        deep: type === Object  
+        deep: type === Object
       });
     } else {
       var stable = 0;
