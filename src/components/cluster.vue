@@ -10,7 +10,7 @@ import Q from 'q';
 import _ from 'lodash';
 import propsBinder from '../utils/propsBinder.js'
 import getPropsValuesMixin from '../utils/getPropsValuesMixin.js'
-require('js-marker-clusterer');
+require('gmaps-marker-clusterer');
 
 const props = {
   maxZoom: {
