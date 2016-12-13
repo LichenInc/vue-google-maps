@@ -28,6 +28,10 @@ const props = {
   styles: {
     type: Array,
     twoWay: false
+  },
+  cssClass: {
+    type: String,
+    twoWay: false
   }
 };
 
