@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "gmaps-marker-clusterer": "^1.0.0",
+    "gmaps-marker-clusterer": "git://github.com/gmaps-marker-clusterer/gmaps-marker-clusterer",
     "markerwithlabel": "^2.0.0"
   },
   "peerDependencies": {
