@@ -14,7 +14,6 @@ import _ from 'lodash'
 import propsBinder from '../utils/propsBinder.js'
 import eventsBinder from '../utils/eventsBinder.js'
 import mutationObserver from '../utils/mutationObserver.js'
-import 'google-maps-utility-library-v3-infobox'
 
 const props = {
   options: {
@@ -110,7 +109,8 @@ export default {
       if (this.markerObject === null) {
         options.position = this.position;
       }
-
+      // require('google-maps-utility-library-v3-infobox')
+      const InfoBox = require("exports?InfoBox!google-maps-utility-library-v3-infobox")
       this.infoWindow = new InfoBox(options);
 
       // Binding
