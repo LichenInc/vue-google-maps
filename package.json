@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "gmaps-marker-clusterer": "git://github.com/gmaps-marker-clusterer/gmaps-marker-clusterer",
-    "markerwithlabel": "^2.0.0"
+    "markerwithlabel": "^2.0.0",
+    "google-maps-utility-library-v3-infobox": "git://github.com/nmccready/google-maps-utility-library-v3-infobox"
   },
   "peerDependencies": {
     "vue": "^1.0.0",

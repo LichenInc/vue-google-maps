@@ -14,6 +14,7 @@ import _ from 'lodash'
 import propsBinder from '../utils/propsBinder.js'
 import eventsBinder from '../utils/eventsBinder.js'
 import mutationObserver from '../utils/mutationObserver.js'
+import 'google-maps-utility-library-v3-infobox'
 
 const props = {
   options: {
@@ -110,7 +111,7 @@ export default {
         options.position = this.position;
       }
 
-      this.infoWindow = new google.maps.InfoWindow(options);
+      this.infoWindow = new InfoBox(options);
 
       // Binding
       const propsToBind = _.clone(props);
